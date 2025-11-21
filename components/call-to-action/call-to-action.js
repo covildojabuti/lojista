@@ -13,7 +13,7 @@
     }
 
     try {
-        const response = await fetch('/data/call-to-action.json'); // Caminho para o JSON
+        const response = await fetch('data/call-to-action.json'); // Caminho para o JSON
 
         if (!response.ok) {
             throw new Error(`Erro ao carregar call-to-action.json: ${response.statusText}`);

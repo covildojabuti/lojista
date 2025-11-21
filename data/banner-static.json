@@ -1,8 +1,8 @@
 [
   {
-    "id": "ipe",
-    "title": "Descubra o verdadeiro potencial da sua empresa com o IPE",
-    "image-url": "images/banner-static-ipe.png",
+    "id": "produto",
+    "title": "Produtos de RPG",
+    "image-url": "images/banner-home-2.png",
     "text": "Acesse gratuitamente o IPE (Índice de Produtividade Empresarial). Uma análise precisa que revela gargalos, compara sua operação com o mercado e entrega recomendações prontas para aplicar.",
     "button": "Quero meu IPE gratuito",
     "button-url": "pages/ipe/#b001",

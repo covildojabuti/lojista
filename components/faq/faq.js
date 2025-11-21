@@ -8,7 +8,7 @@
     const dataItem = componentContainer.dataset.item; // Optional: if you want different FAQ sets
 
     try {
-        const response = await fetch('/data/faq.json'); // Path to the JSON
+        const response = await fetch('data/faq.json'); // Path to the JSON
 
         if (!response.ok) {
             throw new Error(`Erro ao carregar faq.json: ${response.statusText}`);

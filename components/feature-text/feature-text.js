@@ -13,7 +13,7 @@
     }
 
     try {
-        const response = await fetch('/data/feature-text.json'); // Caminho para o JSON
+        const response = await fetch('data/feature-text.json'); // Caminho para o JSON
 
         if (!response.ok) {
             throw new Error(`Erro ao carregar feature-text-data.json: ${response.statusText}`);

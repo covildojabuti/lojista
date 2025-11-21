@@ -74,5 +74,9 @@
         "url": "pages/quemsomos"
       }
     ]
+  },
+  {
+    "text": "Produtos",
+    "url":  "pages/produtos"
   }
 ]
