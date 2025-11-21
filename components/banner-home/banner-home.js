@@ -6,12 +6,12 @@
     const nextButton = document.querySelector('.next-slide');
     const dotsContainer = document.querySelector('.dots');
 
-    let slides = []; // Inicialmente vazia, será preenchida pelo JSON
+    let slides = []; // Inicialmente vazia, serÃ¡ preenchida pelo JSON
     let slideIndex = 0;
     let autoSlideInterval;
     const slideDuration = 10000; // 5 segundos. Ajuste este valor.
 
-    // Função para criar o HTML de um slide
+    // FunÃ§Ã£o para criar o HTML de um slide
     function createBannerSlide(bannerData) {
         let html = `
             <div class="banner-slide">
@@ -28,10 +28,10 @@
         return html;
     }
 
-    // Função para renderizar todos os slides
+    // FunÃ§Ã£o para renderizar todos os slides
     function renderBannerSlides(items) {
         if (!carouselContainer) {
-            console.error('Container do carrossel não encontrado.');
+            console.error('Container do carrossel nÃ£o encontrado.');
             return;
         }
 
@@ -71,31 +71,31 @@
         resetAutoSlide();
     }
 
-    // Atualiza a posição do carrossel
+    // Atualiza a posiÃ§Ã£o do carrossel
     function updateCarousel() {
         if (carouselContainer && slides.length > 0) {
             carouselContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
         }
     }
 
-    // Inicia o auto-avanço
+    // Inicia o auto-avanÃ§o
     function startAutoSlide() {
-        if (slides.length > 1) { // Só inicia o auto-slide se houver mais de um slide
+        if (slides.length > 1) { // SÃ³ inicia o auto-slide se houver mais de um slide
             autoSlideInterval = setInterval(() => {
                 goToSlide(slideIndex + 1);
             }, slideDuration);
         }
     }
 
-    // Para e reinicia o auto-avanço
+    // Para e reinicia o auto-avanÃ§o
     function resetAutoSlide() {
         clearInterval(autoSlideInterval);
         startAutoSlide();
     }
 
-    // Lógica principal: carregar JSON e iniciar carrossel
+    // LÃ³gica principal: carregar JSON e iniciar carrossel
     try {
-        const response = await fetch('/data/banner-home.json'); // Caminho para o JSON
+        const response = await fetch('data/banner-home.json'); // Caminho para o JSON
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -105,17 +105,17 @@
             renderBannerSlides(bannerData); // Renderiza os slides baseados nos dados do JSON
             createDots();
             updateCarousel();
-            // Adiciona event listeners para navegação APÓS os slides serem renderizados
+            // Adiciona event listeners para navegaÃ§Ã£o APÃ“S os slides serem renderizados
             if (prevButton && nextButton) {
                 prevButton.addEventListener('click', () => goToSlide(slideIndex - 1));
                 nextButton.addEventListener('click', () => goToSlide(slideIndex + 1));
             }
-            startAutoSlide(); // Inicia o auto-avanço
+            startAutoSlide(); // Inicia o auto-avanÃ§o
         } else {
             console.warn('Nenhum dado encontrado no banner-home.json ou JSON vazio.');
             // Opcional: exibir uma mensagem de fallback no HTML
             if (carouselContainer) {
-                carouselContainer.innerHTML = '<p style="text-align:center; color: #555;">Conteúdo do banner indisponível.</p>';
+                carouselContainer.innerHTML = '<p style="text-align:center; color: #555;">ConteÃºdo do banner indisponÃ­vel.</p>';
             }
         }
     } catch (error) {
@@ -124,4 +124,5 @@
             carouselContainer.innerHTML = '<p style="text-align:center; color: red;">Erro ao carregar o banner.</p>';
         }
     }
+
 })();
