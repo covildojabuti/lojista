@@ -1,0 +1,62 @@
+﻿header {
+    display: flex;
+    justify-content: space-between; /* Distribute space between logo, menu, and contact */
+    align-items: center;
+    padding: 0 2rem;
+    background-color: #333; /* Inherited from common.css if not specified here */
+    position: relative;
+    z-index: 10;
+}
+
+/* Logo */
+.logo img {
+    height: 100px;
+    max-width: 100%;
+}
+
+/* Contact Icon */
+.contact-icon a {
+    font-size: 1.4rem; /* Specific size for this icon */
+    color: #d3a303; /* Specific color for this icon */
+    margin-left: 1.5rem;
+}
+/* Contact Icon */
+.contact-icon a:hover {
+    font-size: 1.5rem; /* Specific size for this icon */
+}
+
+/* Hamburger menu */
+.hamburger-menu {
+    display: none; /* Hidden by default on larger screens */
+    background: none;
+    border: none;
+    font-size: 2rem; /* Larger icon for better touch target */
+    color: #fff; /* White color for visibility on dark header */
+    cursor: pointer;
+    order: 1; /* Order it after the menu on mobile */
+}
+
+/* Responsive adjustments for header */
+@media (max-width: 600px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .hamburger-menu {
+        display: block; /* Show hamburger on small screens */
+        
+    }
+
+    .logo {
+        order: 1; /* Keep logo first */
+    }
+
+    .contact-icon {
+        order: 2; /* Place contact icon next to logo or before menu on mobile */
+        margin-left: auto; /* Push it to the right */
+        margin-right: 30px;
+    }
+
+    /* The menu will be handled by menu-top.css and menu-top.js for mobile */
+}

@@ -1,0 +1,98 @@
+﻿/* Estilos gerais para o submenu */
+.submenu-basic {
+    position: relative;
+    background: #d3a303; /* Cor de fundo que você já definiu */
+    height: 4rem; /* Define a altura total do menu */
+    display: flex; /* Transforma o container do submenu em um flex container */
+    justify-content: flex-end; /* Alinha o conteúdo (o <nav>) à direita */
+    align-items: center; /* Centraliza verticalmente o <nav> dentro do .submenu-basic */
+    padding-right: 20px; /* Adiciona um padding à direita para não colar na borda */
+    box-sizing: border-box; /* Garante que padding não adicione à altura/largura total */
+    flex-grow: 1; /* Permite que o submenu ocupe o espaço disponível se estiver dentro de um flex container */
+}
+
+/* O elemento <nav> dentro do .submenu-basic */
+.submenu-basic-nav {
+    /* Não precisa de regras de alinhamento aqui, pois o pai (.submenu-basic) já cuida do alinhamento */
+}
+
+/* A lista <ul> que contém os itens do menu */
+.submenu-basic-list {
+    list-style: none; /* Remove marcadores de lista */
+    margin: 0; /* Remove margem padrão da lista */
+    padding: 0; /* Remove padding padrão da lista */
+    display: flex; /* Transforma a lista em um flex container para os itens ficarem em linha */
+    align-items: center; /* Centraliza verticalmente os itens do menu dentro da lista */
+    height: 100%; /* Garante que a lista ocupe toda a altura do menu pai */
+}
+
+/* Cada item da lista <li> */
+.submenu-basic-item {
+    /* Não precisa de estilos complexos aqui, o link cuida da maior parte */
+}
+
+/* Os links <a> de cada item do menu */
+.submenu-basic-link {
+    color: #fff; /* Cor padrão do texto do link */
+    text-decoration: none; /* Remove sublinhado */
+    padding: 0 10px; /* Adiciona padding horizontal para dar espaço ao redor do texto/ícone */
+    display: flex; /* Permite que o ícone e o texto fiquem em linha e centralizados */
+    align-items: center; /* Centraliza verticalmente ícone e texto */
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+    font-weight: 700; /* Peso da fonte */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave para hover */
+    height: 100%; /* O link ocupa toda a altura do item da lista */
+    box-sizing: border-box; /* Garante que padding não adicione à altura/largura total */
+    font-size:0.8rem;
+}
+
+    /* Estado de HOVER para o link */
+    .submenu-basic-link:hover {
+        color: #333; /* Cor do texto ao passar o mouse */
+    }
+
+/* O ícone <i> dentro do link */
+.submenu-basic-icon {
+    color: inherit; /* FAZ O ÍCONE HERDAR A COR DO SEU PAI (o link) */
+    font-size: 1.2em; /* Tamanho do ícone relativo ao texto */
+    transition: color 0.3s ease; /* Adiciona transição suave para a cor do ícone */
+}
+
+/* **NOVA REGRA CRÍTICA PARA O ÍCONE NO HOVER** */
+/* Quando o link estiver em hover, o ícone dentro dele também muda de cor */
+/* Esta regra tem especificidade suficiente para sobrepor o 'color: inherit' */
+.submenu-basic-link:hover .submenu-basic-icon {
+    color: #333; /* Define a cor do ícone especificamente quando o link pai está em hover */
+}
+
+
+/* Responsividade: para telas menores */
+@media (max-width: 768px) {
+    .submenu-basic {
+        height: auto; /* Remove altura fixa em telas menores */
+        flex-direction: column; /* Empilha o conteúdo (nav) verticalmente */
+        justify-content: center; /* Centraliza o menu em telas menores */
+        padding-right: 0; /* Remove o padding da direita */
+        padding-bottom: 10px; /* Adiciona um pequeno padding na parte inferior */
+    }
+
+    .submenu-basic-list {
+        flex-direction: column; /* Itens do menu empilhados verticalmente */
+        width: 100%; /* Ocupa a largura total */
+        gap: 0; /* Remove o gap entre os itens empilhados */
+        align-items: flex-start; /* Alinha os itens à esquerda na coluna */
+        height: auto; /* Altura se ajusta ao conteúdo */
+    }
+
+    .submenu-basic-item {
+        width: 100%; /* Faz cada item ocupar a largura total */
+        text-align: left; /* Alinha o texto à esquerda */
+    }
+
+    .submenu-basic-link {
+        width: 100%; /* Garante que a área clicável ocupe a largura total */
+        padding: 15px 20px; /* Mais padding para itens em coluna */
+        height: auto; /* Altura se ajusta ao conteúdo */
+        justify-content: flex-start; /* Alinha ícone e texto à esquerda em mobile */
+    }
+}

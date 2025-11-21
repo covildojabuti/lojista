@@ -1,0 +1,240 @@
+﻿/* Estilos gerais para o container do componente */
+.feature-cards-slider {
+    padding: 40px 50px;
+    margin: 0 auto;
+    background-color: #31353e;
+}
+
+.feature-cards-slider-container {
+    text-align: left;
+    position: relative;
+    padding: 0 50px; /* Adicionado padding para as setas ficarem "fora" */
+}
+
+/* Cabeçalho */
+.feature-cards-slider-header {
+    margin-bottom: 40px;
+}
+
+/* Textos do cabeçalho */
+.feature-cards-slider-tagline {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.feature-cards-slider-main-title {
+    font-size: 35px;
+    color: #d3a303;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+/* Barra amarela decorativa */
+.feature-cards-slider-yellow-bar {
+    width: 80px;
+    height: 10px;
+    background-color: #d3a303;
+    margin: 0 auto 30px 0;
+}
+
+/* Container do slider */
+.feature-cards-slider-wrapper {
+    display: flex;
+    gap: 20px; /* Ajuste o gap para dar espaço entre os cards */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 10px; /* Espaço para não cortar sombras */
+}
+
+    .feature-cards-slider-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+
+/* Cards */
+.feature-cards-slider-item {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: calc(25% - 15px); /* Ajustado para 4 cards por linha em desktop, considerando gap */
+    width: 300px;
+    flex: 0 0 auto;
+    background-color: #4a4f59; /* Adicionado para os cards terem um fundo */
+}
+
+    .feature-cards-slider-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+.feature-cards-slider-image {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+.feature-cards-slider-content {
+    padding: 40px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-cards-slider-title {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.feature-cards-slider-text {
+    font-size: 0.8rem;
+    color: hsla(0, 0%, 100%, .8);
+    line-height: 1.1;
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: 400;
+}
+
+/* Botão Leia mais */
+.feature-cards-slider-link {
+    display: inline-block;
+    margin-top: auto;
+    padding: 8px 15px;
+    background-color: #d3a303;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    align-self: center; /* Centraliza o botão */
+}
+
+    .feature-cards-slider-link:hover {
+        background-color: #bb9106;
+    }
+
+/* Setas de navegação */
+.feature-cards-slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: #d3a303;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 2; /* Aumentado para garantir que fiquem acima dos cards */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0.9;
+}
+
+    .feature-cards-slider-arrow:hover {
+        background-color: #bb9106;
+        opacity: 1;
+    }
+
+.feature-cards-slider-prev {
+    left: 0px; /* Ajustado para ficar na borda do padding do container */
+}
+
+.feature-cards-slider-next {
+    right: 0px; /* Ajustado para ficar na borda do padding do container */
+}
+
+
+@media (max-width: 768px) {
+    .feature-cards-slider-container {
+        padding: 30px 20px; /* Ajuste o padding para telas menores */
+    }
+
+    .feature-cards-slider-main-title {
+        font-size: 28px;
+    }
+
+    .feature-cards-slider-wrapper {
+        flex-wrap: wrap; /* Faz os cards quebrarem para a próxima linha */
+        justify-content: center; /* Centraliza os cards */
+        overflow-x: hidden; /* Remove o scroll horizontal */
+        gap: 20px; /* Garante um espaçamento entre os cards quando empilhados */
+    }
+
+    .feature-cards-slider-item {
+        min-width: 100%; /* 2 cards por linha em tablets */
+        max-width: 350px; /* Adicionado max-width para não ficarem muito grandes em telas pequenas, mas não muito pequenas */
+    }
+
+    .feature-cards-slider-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+        top: calc(50% + 20px); /* Ajustado para que as setas fiquem abaixo do header e acima dos cards */
+    }
+
+    .feature-cards-slider-prev {
+        left: 0px;
+    }
+
+    .feature-cards-slider-next {
+        right: 0px;
+    }
+}
+
+@media (max-width: 480px) {
+    .feature-cards-slider-container {
+        padding: 25px 15px;
+    }
+
+    .feature-cards-slider-main-title {
+        font-size: 24px;
+    }
+
+    .feature-cards-slider-tagline {
+        font-size: 12px;
+    }
+
+    .feature-cards-slider-content {
+        padding: 15px;
+    }
+
+    .feature-cards-slider-item {
+        min-width: 100%; /* Um card por linha em celulares */
+    }
+
+    .feature-cards-slider-arrow {
+        top: calc(50% + 15px); /* Ajuste a posição vertical das setas para telas ainda menores */
+    }
+
+    .feature-cards-slider-prev {
+        left: 0px;
+    }
+
+    .feature-cards-slider-next {
+        right: 0px;
+    }
+}

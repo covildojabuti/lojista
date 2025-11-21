@@ -1,0 +1,162 @@
+﻿/* Estilos gerais para o container do componente */
+.feature-cards-container {
+    padding: 40px 50px; /* Espaçamento interno */
+    margin: 0 auto; /* Centraliza o container na página */
+    text-align: left; /* **MUDANÇA AQUI**: Alinha o texto do cabeçalho à esquerda */
+    background-color: #EFEFEF;
+}
+
+.feature-cards-header {
+    margin-bottom: 40px; /* Espaço entre o cabeçalho e a grade de cards */
+    /* Remove text-align: center; se houver um aqui, pois o container já cuida */
+}
+
+/* Chamada Superior (o texto maior e mais impactante) */
+.feature-cards-tagline {
+    font-size: 14px; /* Tamanho maior para a chamada, como na imagem */
+    color: #333; /* Cor escura para contraste */
+    font-weight: 700; /* Mais peso para a chamada (negrito pesado) */
+    line-height: 1.2;
+    margin-bottom: 5px; /* **MUDANÇA AQUI**: Reduz a margem para ficar mais próximo do título */
+    /* Removido max-width e margins auto, já que o alinhamento é à esquerda */
+    text-transform: uppercase;
+}
+
+/* Título Superior (o texto menor, abaixo da chamada) */
+.feature-cards-main-title {
+    font-size: 35px; /* Tamanho menor para o título, como na imagem */
+    color: #d3a303; /* Cor mais clara para ser o subtítulo */
+    font-weight: 700; /* Peso médio para o título */
+    line-height: 1.5;
+    margin-bottom: 15px; /* **MUDANÇA AQUI**: Mais espaço abaixo do título para o retângulo amarelo */
+    /* Removido max-width e margins auto, já que o alinhamento é à esquerda */
+    text-transform:uppercase;
+}
+
+/* **NOVO ESTILO**: Retângulo amarelo abaixo do título/chamada */
+.feature-cards-yellow-bar {
+    width: 80px; /* **MUDANÇA AQUI**: Largura do retângulo, ajuste conforme desejado */
+    height: 10px; /* **MUDANÇA AQUI**: Altura do retângulo */
+    background-color: #d3a303; /* Cor amarela do tema */
+    margin: 0 auto 30px 0; /* **MUDANÇA AQUI**: Alinha à esquerda e adiciona margem inferior */
+    /* Importante: Se o elemento do retângulo for injetado *após* o main-title no HTML,
+       esta margem funcionará para separar da grid. */
+}
+
+.feature-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.feature-card-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .feature-card-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+.feature-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.feature-card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-card-title {
+    font-size: 0.8rem;
+    color: #12222D;
+    margin-bottom: 10px;
+    font-weight: 600;
+    line-height: 1;
+    text-transform:uppercase;
+    width:90%;
+}
+
+.feature-card-text {
+    font-size: 0.8rem;
+    color: #12222D;
+    line-height: 1;
+    margin-bottom: 0;
+    flex-grow: 1;
+}
+
+.feature-card-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: #d3a303;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+    .feature-card-link:hover {
+        background-color: #bb9106;
+    }
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .feature-cards-tagline {
+        font-size: 1.8rem;
+    }
+
+    .feature-cards-main-title {
+        font-size: 1rem;
+    }
+
+    .feature-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card-image {
+        height: 180px;
+    }
+
+    .feature-cards-yellow-bar { /* Ajuste do retângulo em mobile */
+        margin-left: 0; /* Garante alinhamento à esquerda em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .feature-cards-container {
+        padding: 30px 15px;
+    }
+
+    .feature-cards-tagline {
+        font-size: 1.5rem;
+    }
+
+    .feature-cards-main-title {
+        font-size: 0.9rem;
+    }
+
+    .feature-card-title {
+        font-size: 1.2rem;
+    }
+
+    .feature-card-content {
+        padding: 15px;
+    }
+}

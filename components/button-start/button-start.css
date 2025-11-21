@@ -1,0 +1,44 @@
+﻿/* /components/button-start/button-start.css */
+
+.scroll-to-top-btn {
+    position: fixed; /* Fixa o botão na tela */
+    bottom: 20px; /* 20px da parte inferior */
+    left: 20px; /* 20px da parte esquerda */
+    background-color: #333; /* Cor de fundo escura */
+    color: #fff; /* Cor do ícone/texto, se houver */
+    border: none;
+    border-radius: 10px; /* Raio da borda para deixá-lo quadrado com cantos arredondados */
+    width: 30px; /* Largura do botão */
+    height: 30px; /* Altura do botão, para ser quadrado */
+    display: flex; /* Para centralizar a imagem dentro */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidade */
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, background-color 0.2s ease; /* Transição suave */
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+}
+
+    .scroll-to-top-btn img {
+        max-width: 80%; /* Ajusta o tamanho da logo dentro do botão */
+        max-height: 80%;
+        object-fit: contain; /* Garante que a imagem se ajuste sem distorcer */
+    }
+
+    /* Quando o botão está visível */
+    .scroll-to-top-btn.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .scroll-to-top-btn:hover {
+        background-color: #d3a303; /* Cor de destaque no hover */
+    }
+
+/* Media query para dispositivos menores, se quiser ajustar o tamanho/posição */
+@media (max-width: 600px) {
+    .scroll-to-top-btn{
+        display:none;
+    }
+}

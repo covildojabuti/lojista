@@ -1,0 +1,167 @@
+﻿/* banner-home.css */
+.banner-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.banner-section {
+    position: relative;
+}
+
+.banner-carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.banner-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+    height: auto; /* Ajuste conforme necessário */
+}
+
+.banner-card {
+    position: relative;
+    height: 300px; /* Altura fixa para os slides, ajuste conforme necessário */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+
+
+.banner-text-button-container {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    width: 50%; /* Ocupa metade da largura da tela */
+    color: white;
+    z-index: 2;
+    text-align: left;
+}
+
+    .banner-text-button-container h2 {
+        font-size: 42px;
+        color: #ffffff;
+        margin-bottom: 1.2rem;
+        font-weight: 600;
+        line-height: 1.1;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .banner-text-button-container p {
+        font-size: 13px;
+        color: #f0f0f0;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        text-shadow: 0 2px 3px rgba(0, 0, 0, 0.6) 0 0 10px rgba(255, 255, 255, 0.2);
+        
+    }
+
+
+.cta-button {
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #fff;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    font-weight: 700;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .cta-button:hover {
+        background-color: #d3a303;
+        color: #222;
+    }
+
+
+.carousel-nav {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    z-index: 3; /* Para garantir que os botões de navegação e dots fiquem acima do overlay */
+}
+
+    .carousel-nav button {
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: white;
+        cursor: pointer;
+        padding: 5px 10px;
+        opacity: 0.8;
+    }
+
+        .carousel-nav button:hover {
+            opacity: 1;
+        }
+
+    .carousel-nav .dots {
+        display: flex;
+        margin: 0 10px;
+    }
+
+        .carousel-nav .dots button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: white;
+            opacity: 0.5;
+            margin: 0 5px;
+            padding: 0;
+        }
+
+            .carousel-nav .dots button.active {
+                opacity: 1;
+            }
+
+@media (max-width: 600px) {
+    .banner-text-button-container {
+        position: absolute;
+        top: 45%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 85%;
+        padding: 0 5%;
+        text-align: center;
+    }
+
+        .banner-text-button-container h2 {
+            font-size: 2rem;
+        }
+
+        .banner-text-button-container p {
+            font-size: 1rem;
+            line-height: 1rem;
+        }
+
+    .cta-button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+    .carousel-nav {
+        position: absolute;
+        bottom: 1%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        z-index: 1; /* abaixo do CTA */
+    }
+}

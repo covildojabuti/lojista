@@ -1,0 +1,75 @@
+/* Estilos gerais para o container do componente Call to Action */
+.call-to-action-container {
+    padding: 50px 20px; /* Espaçamento interno */
+    background-color: #f8f8f8; /* Fundo claro para o container */
+    text-align: center; /* Centraliza o conteúdo (frase e botão) */
+    border-radius: 8px; /* Cantos arredondados */
+    margin: 30px auto; /* Margem superior/inferior e centraliza o bloco */
+    
+}
+
+/* Estilos para a frase de Call to Action */
+.call-to-action-phrase {
+    font-size: 1.8rem; /* Tamanho da fonte da frase */
+    color: #333; /* Cor do texto */
+    font-weight: 700; /* Negrito */
+    margin-bottom: 25px; /* Espaço entre a frase e o botão */
+    line-height: 1.3;
+}
+
+/* Estilos para o botão de Call to Action */
+.call-to-action-button {
+    display: inline-block; /* Permite aplicar padding e margin vertical */
+    padding: 15px 30px; /* Espaçamento interno do botão */
+    background-color: #d3a303; /* Cor de fundo do botão (amarelo do tema) */
+    color: #fff; /* Cor do texto do botão */
+    text-decoration: none; /* Remove sublinhado do link */
+    border-radius: 50px; /* Cantos bem arredondados para um visual de pílula */
+    font-size: 1.1rem; /* Tamanho da fonte do botão */
+    font-weight: 600; /* Peso da fonte */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transição suave */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para o botão */
+}
+
+.call-to-action-button:hover {
+    background-color: #bb9106; /* Cor de fundo ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de "levantar" ao passar o mouse */
+}
+
+/* ---------------------------------------------------- */
+/* RESPONSIVIDADE                                       */
+/* ---------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .call-to-action-container {
+        padding: 40px 15px;
+        margin: 20px auto;
+    }
+
+    .call-to-action-phrase {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .call-to-action-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .call-to-action-container {
+        padding: 30px 10px;
+        margin: 15px auto;
+    }
+
+    .call-to-action-phrase {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .call-to-action-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}

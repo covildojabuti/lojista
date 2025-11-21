@@ -1,0 +1,180 @@
+/* Base container for the FAQ component */
+.faq-container {
+    padding: 40px 50px; /* Espaçamento interno */
+    background-color: #fff; /* Fundo branco para o container */
+    border-radius: 8px; /* Cantos arredondados */
+    overflow: hidden; /* Garante que nada vaze dos cantos arredondados */
+}
+
+/* Tagline above the main title */
+.faq-tagline {
+    font-size: 14px;
+    color: #333;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+/* Main title of the FAQ section */
+.faq-main-title {
+    font-size: 35px;
+    color: #d3a303; /* Cor amarela do tema */
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+/* Decorative yellow bar below the main title */
+.faq-yellow-bar {
+    width: 80px;
+    height: 10px;
+    background-color: #d3a303; /* Cor amarela do tema */
+    margin: 0 auto 30px 0; /* Alinhado à esquerda com margem inferior */
+}
+
+/* Grid for FAQ items (questions and answers) */
+.faq-items-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Layout de coluna única para itens FAQ */
+    gap: 20px; /* Espaçamento entre os itens FAQ */
+}
+
+/* Individual FAQ item */
+.faq-item {
+    background-color: #f9f9f9; /* Fundo claro para cada item FAQ */
+    border: 1px solid #eee;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* FAQ question (toggle button) */
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #12222D;
+    background-color: #fff;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #f0f0f0;
+}
+
+/* Plus/minus icon for the FAQ question */
+.faq-question-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate icon when answer is open */
+.faq-item.open .faq-question-icon {
+    transform: rotate(45deg); /* Gira o sinal de mais para um 'x' ou apenas muda a orientação */
+}
+
+/* FAQ answer content */
+.faq-answer {
+    padding: 0 20px;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    max-height: 0; /* Escondido por padrão */
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* Transição suave para altura e preenchimento */
+}
+
+/* Show answer when FAQ item is open */
+.faq-item.open .faq-answer {
+    /* max-height será definido dinamicamente pelo JavaScript */
+    padding: 15px 20px 20px; /* Adiciona preenchimento quando aberto */
+}
+
+/* Separator line inside the answer if needed, or between questions */
+.faq-separator-line {
+    width: 100%;
+    height: 1px;
+    background-color: #eee;
+    margin: 10px 0;
+}
+
+
+/* ---------------------------------------------------- */
+/* RESPONSIVIDADE                                       */
+/* ---------------------------------------------------- */
+
+@media (max-width: 992px) {
+    .faq-container {
+        padding: 40px 25px;
+    }
+
+    .faq-main-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .faq-container {
+        padding: 30px 20px;
+    }
+
+    .faq-main-title {
+        font-size: 24px;
+    }
+
+    .faq-tagline {
+        font-size: 12px;
+    }
+
+    .faq-question {
+        font-size: 1rem;
+        padding: 12px 15px;
+    }
+
+    .faq-answer {
+        padding: 0 15px;
+    }
+
+    .faq-item.open .faq-answer {
+        padding: 10px 15px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .faq-container {
+        padding: 20px 15px;
+    }
+
+    .faq-main-title {
+        font-size: 20px;
+    }
+
+    .faq-yellow-bar {
+        width: 60px;
+        height: 4px;
+        margin-bottom: 20px;
+    }
+
+    .faq-question {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+    }
+
+    .faq-answer {
+        font-size: 0.9rem;
+        padding: 0 12px;
+    }
+
+    .faq-item.open .faq-answer {
+        padding: 8px 12px 12px;
+    }
+}

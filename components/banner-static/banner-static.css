@@ -1,0 +1,95 @@
+﻿
+.banner-static {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.banner-static-container {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    width: 50%; /* Ocupa metade da largura da tela */
+    color: white;
+    z-index: 2;
+    text-align: left;
+}
+
+.banner-static-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.banner-static-card {
+    position: relative;
+    height: 300px; /* Altura fixa para os slides, ajuste conforme necessário */
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.banner-static-title {
+    font-size: 30px;
+    color: #ffffff;
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+    line-height: 1.1;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    text-transform:uppercase;
+}
+
+.banner-static-text {
+    font-size: 13px;
+    color: #f0f0f0;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.6) 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.banner-static-button {
+    color: #fff;
+    background-color: #d3a303;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    font-weight: 700;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .banner-static-button:hover {
+        filter: brightness(1.1); /* Makes the button 10% brighter */
+        color:#fff;
+    }
+
+@media (max-width: 600px) {
+    .banner-static-container {
+        position: absolute;
+        top: 45%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 85%;
+        padding: 0 5%;
+        text-align: center;
+    }
+
+    .banner-static-title {
+        font-size: 25px;
+    }
+
+    .banner-static-text {
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+
+    .banner-static-button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}

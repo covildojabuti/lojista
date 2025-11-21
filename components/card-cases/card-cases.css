@@ -1,0 +1,93 @@
+﻿/* Estilos gerais para o container do componente de cases */
+.card-cases-container {
+    padding: 40px 50px; /* Espaçamento interno */
+    margin: 0 auto; /* Centraliza */
+    text-align: center; /* Centraliza o grid de cards */
+    background-color: #FFF; /* Fundo similar ao card-products */
+    margin-top:20px;
+    margin-bottom:20px;
+
+}
+
+/* Grid de Cards de Cases */
+.card-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Colunas flexíveis */
+    gap: 20px; /* Espaçamento entre os cards */
+    justify-items: center; /* Centraliza os itens na grid */
+}
+
+/* Estilos para cada Card de Case */
+.card-cases-item {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Conteúdo empilhado verticalmente */
+    text-align: left; /* Alinha o texto interno à esquerda */
+    background-color: #fff; /* Fundo branco para os cards */
+    max-width: 600px; /* Limita a largura dos cards para melhor apresentação */
+}
+
+.card-cases-content {
+    padding: 25px; /* Espaçamento interno do conteúdo do card */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Permite que o conteúdo se expanda */
+}
+
+.card-cases-tagline {
+    font-size: 14px; /* Tamanho da tagline */
+    color: #d3a303; /* Cor amarela para a tagline */
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.card-cases-title {
+    font-size: 2rem; /* Título do card */
+    color: #12222d;
+    font-weight: 700;
+    margin-bottom: 15px; /* Espaço abaixo do título */
+    text-transform: uppercase;
+    max-width:70%;
+}
+
+.card-cases-text {
+    font-size: 1.1rem;
+    color: #12222d;
+    line-height: 1.5;
+    font-weight:100;
+    margin-bottom: 0; /* Remove margem inferior padrão */
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .card-cases-container {
+        padding: 40px 25px;
+    }
+
+    .card-cases-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-cases-container {
+        padding: 30px 20px;
+    }
+
+    .card-cases-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-cases-container {
+        padding: 20px 15px;
+    }
+
+    .card-cases-content {
+        padding: 15px;
+    }
+}

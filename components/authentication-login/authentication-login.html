@@ -1,0 +1,24 @@
+<!-- /components/authentication-login/authentication-login.html -->
+<!-- Este é o componente HTML para a tela de login. -->
+<div class="auth-container">
+    <div class="auth-header">
+        <h1>Bem-vindo de Volta!</h1>
+        <p>Acesse sua área exclusiva para gerenciar seus arquivos.</p>
+    </div>
+    <form id="login-form" class="auth-form">
+        <div class="form-group">
+            <input type="email" name="email" id="login-email" placeholder=" " required autocomplete="username">
+            <label for="login-email">Seu E-mail</label>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" id="login-password" placeholder=" " required autocomplete="current-password">
+            <label for="login-password">Sua Senha</label>
+        </div>
+        <button type="submit" class="submit-btn">Entrar</button>
+    </form>
+    <div class="auth-links">
+        <p>Não tem conta? <a href="#" class="auth-link" data-action="show-register">Cadastre-se aqui</a></p>
+        <p><a href="#" class="auth-link" data-action="show-forgot-password">Esqueceu sua senha?</a></p>
+    </div>
+    <div id="login-message" class="auth-message" style="display: none;"></div>
+</div>

@@ -1,0 +1,259 @@
+/* authentication-files-available.css */
+/*
+   Este CSS reutiliza muitas das classes baseadas em 'auth-container' e 'auth-header'
+   dos componentes de autenticação anteriores para manter a consistência visual.
+   Adiciona estilos específicos para a listagem de arquivos e botões de download.
+*/
+
+/* Reutiliza estilos gerais do container de autenticação */
+.files-container {
+    max-width: 750px; /* Largura um pouco maior para melhor visualização */
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    display: none; /* Por padrão, oculto. Será mostrado via JS após o login. */
+}
+
+/* Garante que o container ativo seja exibido */
+.files-container.active {
+    display: block;
+}
+
+/* Reutiliza estilos do cabeçalho */
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header h1 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.auth-header p {
+    font-size: 1rem;
+    color: #7f8c8d;
+    line-height: 1.5;
+}
+
+/* Estilos para a seção de listagem de arquivos */
+.file-list-section {
+    margin-top: 30px;
+}
+
+.file-list-section h3 {
+    font-size: 1.8rem;
+    color: #d3a303; /* Cor de destaque para os títulos de seção */
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee; /* Linha divisória */
+    padding-bottom: 10px;
+    text-align: center; /* Centraliza o título da seção */
+}
+
+/* NOVO: Container para o layout de grade (Explorer-like) */
+.files-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Colunas responsivas */
+    gap: 20px; /* Espaçamento entre os itens */
+    justify-content: center; /* Centraliza os itens na grade */
+    margin-bottom: 40px;
+}
+
+/* NOVO: Estilo para cada item de arquivo na grade */
+.file-grid-item {
+    background-color: #fcfcfc;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px; /* Padding interno */
+    display: flex;
+    flex-direction: column; /* Ícone, nome, descrição empilhados */
+    align-items: center; /* Centraliza conteúdo horizontalmente */
+    text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    cursor: pointer; /* Indica que o item é clicável */
+    min-height: 200px; /* Altura mínima para consistência */
+    justify-content: flex-start; /* Alinha o conteúdo ao topo */
+}
+
+.file-grid-item:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+/* Estilo para o link que envolve o item inteiro */
+.file-link {
+    text-decoration: none; /* Remove sublinhado padrão */
+    color: inherit; /* Herda a cor do texto do pai */
+    display: flex; /* Permite que o link seja um flex container */
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Ocupa a largura total do item da grade */
+    height: 100%; /* Ocupa a altura total do item da grade */
+}
+
+/* Estilos para o contêiner do ícone */
+.file-icon {
+    flex-shrink: 0;
+    font-size: 4rem; /* Ícone maior */
+    width: 80px; /* Largura para o ícone */
+    height: 80px; /* Altura para o ícone */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; /* Espaçamento abaixo do ícone */
+}
+
+/* Cores específicas para ícones de Excel e PDF */
+.excel-icon {
+    background-color: #217346; /* Verde do Excel */
+}
+
+.pdf-icon {
+    background-color: #dc3545; /* Vermelho do PDF */
+}
+
+/* Estilos para o nome do arquivo */
+.file-name {
+    font-size: 1.1rem; /* Nome do arquivo */
+    color: #2c3e50;
+    margin-bottom: 5px; /* Espaçamento abaixo do nome */
+    font-weight: 600;
+    line-height: 1.3; /* Ajuste para nomes longos */
+    word-break: break-word; /* Quebra palavras longas */
+    max-width: 100%; /* Garante que o nome não transborde */
+}
+
+/* Estilos para a descrição do arquivo */
+.file-description {
+    font-size: 0.85rem; /* Descrição menor */
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 0; /* Remove margem padrão */
+    flex-grow: 1; /* Permite que a descrição ocupe espaço restante */
+    overflow: hidden; /* Esconde o texto que transborda */
+    text-overflow: ellipsis; /* Adiciona reticências se o texto for cortado */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-width: 100%; /* Garante que a descrição não transborde */
+}
+
+/* Estilos para a seção de logout */
+.logout-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.logout-btn {
+    background-color: #e74c3c; /* Cor vermelha para o botão de sair */
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+    padding: 12px 30px; /* Ajusta padding do botão de sair */
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+.logout-btn:active {
+    box-shadow: 0 2px 5px rgba(231, 76, 60, 0.4);
+}
+
+/* Estilos para mensagens de sucesso/erro - AGORA FIXAS NO TOPO */
+.auth-message {
+    position: fixed; /* Fixa a mensagem na tela */
+    top: 20px; /* 20px do topo */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajusta para centralizar perfeitamente */
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    width: 90%; /* Largura da mensagem */
+    max-width: 500px; /* Largura máxima */
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra para destaque */
+    animation: fadeInOut 10s forwards; /* Animação para aparecer e desaparecer */
+}
+
+.auth-message.success {
+    background-color: #e6ffe6;
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.auth-message.error {
+    background-color: #ffe6e6;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+/* Animação para a mensagem */
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .files-container {
+        margin: 30px auto;
+        padding: 30px;
+    }
+
+    .files-grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Menos colunas em telas menores */
+        gap: 15px;
+    }
+
+    .file-grid-item {
+        min-height: 180px;
+        padding: 10px;
+    }
+
+    .file-icon {
+        font-size: 3rem;
+        width: 70px;
+        height: 70px;
+    }
+
+    .file-name {
+        font-size: 1rem;
+    }
+
+    .file-description {
+        font-size: 0.8rem;
+    }
+
+    .auth-message {
+        width: 95%;
+        top: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .files-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .auth-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .file-list-section h3 {
+        font-size: 1.5rem;
+    }
+}

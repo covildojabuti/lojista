@@ -1,0 +1,238 @@
+﻿/* Estilos gerais para o container do componente */
+.card-products-container {
+    align-items: stretch; /* Garante que ambas as colunas tenham a mesma altura */
+    padding: 40px 50px; /* Espaçamento interno */
+    margin: 0 auto; /* Centraliza */
+    text-align: left; /* Alinha o texto do cabeçalho à esquerda */
+    background-color: #EFEFEF; /* Fundo branco */
+}
+
+/* Seção do Cabeçalho (similar ao feature-text) */
+.card-products-header {
+    margin-bottom: 40px; /* Espaço entre o cabeçalho e a grade de cards */
+}
+
+.card-products-tagline {
+    font-size: 14px; /* Tamanho da chamada */
+    color: #333;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 5px; /* Espaço entre a chamada e o título principal */
+    text-transform: uppercase; /* Transforma em maiúsculas, como na imagem */
+}
+
+.card-products-main-title {
+    font-size: 35px; /* Tamanho menor para o título, como na imagem */
+    color: #d3a303; /* Cor mais clara para ser o subtítulo */
+    font-weight: 700; /* Peso médio para o título */
+    line-height: 1.5;
+    margin-bottom: 15px; /* **MUDANÇA AQUI**: Mais espaço abaixo do título para o retângulo amarelo */
+    /* Removido max-width e margins auto, já que o alinhamento é à esquerda */
+    text-transform: uppercase;
+}
+
+.card-products-yellow-bar {
+    width: 80px; /* **MUDANÇA AQUI**: Largura do retângulo, ajuste conforme desejado */
+    height: 10px; /* **MUDANÇA AQUI**: Altura do retângulo */
+    background-color: #d3a303; /* Cor amarela do tema */
+    margin: 0 auto 30px 0; /* **MUDANÇA AQUI**: Alinha à esquerda e adiciona margem inferior */
+    /* Importante: Se o elemento do retângulo for injetado *após* o main-title no HTML,
+       esta margem funcionará para separar da grid. */
+}
+
+/* Grid de Cards de Produtos */
+.card-products-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Colunas flexíveis */
+    gap: 20px; /* Espaçamento entre os cards */
+}
+
+/* Estilos para cada Card de Produto */
+.card-products-item {
+    border-radius: 2px;
+    border: 1px solid #12222d;
+    border-top: 2px solid #d3a303;
+    background-color: #fcfcfc;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Conteúdo empilhado verticalmente */
+}
+
+.card-products-content {
+    padding: 25px; /* Espaçamento interno do conteúdo do card */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Permite que o conteúdo se expanda */
+}
+
+.card-products-title {
+    font-size: 1rem; /* Título do card */
+    color: #12222d;
+    font-weight: 700;
+    margin-bottom: 5px; /* Mais espaço para o título */
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 1px 1px 1px #dedede;
+}
+
+
+
+/* NOVO: Ícone 📌 para a lista TOP */
+/* Estilos para a lista de itens "bottom" */
+
+.card-products-title-top { /* Estilos específicos para o título TOP */
+    font-size: 12px;
+    color: #12222d; /* Cor amarela para os títulos de seção */
+    font-weight: 700;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #fff;
+    line-height: 12px;
+    background-color: #d3a303;
+    padding: 10px;
+    text-shadow: 1px 1px 1px #333;
+}
+
+.card-products-list-top { /* Alterado para .card-products-list-bottom */
+    list-style: none; /* Remove o marcador de lista padrão */
+    padding: 0;
+    margin: 0;
+}
+
+    .card-products-list-top li { /* Alterado para .card-products-list-bottom li */
+        position: relative; /* Necessário para posicionar o pseudo-elemento */
+        padding-left: 25px; /* Espaço para o ícone + algum padding */
+        margin-bottom: 8px; /* Espaço entre os itens da lista */
+        font-size: 12px;
+        color: #12222d;
+        line-height: 1; /* Ajuste o line-height para melhor alinhamento do texto */
+        
+    }
+
+        .card-products-list-top li:last-child { /* Alterado para .card-products-list-bottom li:last-child */
+            margin-bottom: 0; /* Remove margem do último item */
+        }
+
+        .card-products-list-top li::before { /* Alterado para .card-products-list-bottom li::before */
+            content: '✅';
+            position: absolute;
+            left: 0; /* Alinha à esquerda do padding-left do LI */
+            color: #d3a303; /* Cor amarela para o pino */
+            font-size: 1.1em; /* Ajusta o tamanho do ícone */
+            top: 50%; /* Tenta centralizar verticalmente o ícone */
+            transform: translateY(-50%); /* Ajuste fino para centralização vertical */
+            line-height: 1; /* Garante que o pseudo-elemento não afete a altura da linha principal */
+            width: 20px; /* Largura para o ícone */
+            text-align: center; /* Centraliza o ícone dentro da sua largura */
+        }
+
+/* NOVO: Ícone 📌 para a lista BOTTOM */
+/* Estilos para a lista de itens "bottom" */
+
+.card-products-title-bottom { /* Estilos específicos para o título BOTTOM */
+    font-size: 12px;
+    color: #12222d; /* Cor amarela para os títulos de seção */
+    font-weight: 700;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #fff;
+    line-height: 12px;
+    background-color: #d3a303;
+    padding: 10px;
+    text-shadow: 1px 1px 1px #333;
+}
+.card-products-list-bottom { /* Alterado para .card-products-list-bottom */
+    list-style: none; /* Remove o marcador de lista padrão */
+    padding: 0;
+    margin: 0;
+}
+
+    .card-products-list-bottom li { /* Alterado para .card-products-list-bottom li */
+        position: relative; /* Necessário para posicionar o pseudo-elemento */
+        padding-left: 25px; /* Espaço para o ícone + algum padding */
+        margin-bottom: 8px; /* Espaço entre os itens da lista */
+        font-size: 12px;
+        color: #12222d;
+        line-height: 1; /* Ajuste o line-height para melhor alinhamento do texto */
+    }
+
+        .card-products-list-bottom li:last-child { /* Alterado para .card-products-list-bottom li:last-child */
+            margin-bottom: 0; /* Remove margem do último item */
+        }
+
+        .card-products-list-bottom li::before { /* Alterado para .card-products-list-bottom li::before */
+            content: '📌'; /* O ícone de pino */
+            position: absolute;
+            left: 0; /* Alinha à esquerda do padding-left do LI */
+            color: #d3a303; /* Cor amarela para o pino */
+            font-size: 1.1em; /* Ajusta o tamanho do ícone */
+            top: 50%; /* Tenta centralizar verticalmente o ícone */
+            transform: translateY(-50%); /* Ajuste fino para centralização vertical */
+            line-height: 1; /* Garante que o pseudo-elemento não afete a altura da linha principal */
+            width: 20px; /* Largura para o ícone */
+            text-align: center; /* Centraliza o ícone dentro da sua largura */
+        }
+
+
+
+/* Responsividade (adaptado do feature-text) */
+@media (max-width: 992px) {
+    .card-products-container {
+        padding: 40px 25px;
+    }
+
+    .card-products-main-title {
+        font-size: 28px;
+    }
+
+    .card-products-cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajuste de colunas para telas menores */
+        gap: 20px; /* Reduz o gap em telas menores */
+    }
+}
+
+@media (max-width: 768px) {
+    .card-products-container {
+        padding: 30px 20px;
+    }
+
+    .card-products-main-title {
+        font-size: 24px;
+    }
+
+    .card-products-tagline {
+        font-size: 12px;
+    }
+
+    .card-products-title {
+        font-size: 1.3rem;
+    }
+
+    .card-products-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-products-container {
+        padding: 20px 15px;
+    }
+
+    .card-products-main-title {
+        font-size: 20px;
+    }
+
+    .card-products-yellow-bar {
+        width: 60px;
+        height: 4px;
+        margin-bottom: 20px;
+    }
+
+    .card-products-content {
+        padding: 15px;
+    }
+
+    .card-products-list li {
+        font-size: 0.9rem;
+    }
+}

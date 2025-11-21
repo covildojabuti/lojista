@@ -1,0 +1,60 @@
+﻿footer {
+    background-color: #000;
+    color: #eee;
+    padding: 40px 20px;
+}
+
+/* --- CONTATO EM LINHA COM ÍCONES --- */
+.footer-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+    .footer-contact a {
+        font-size: 1.4rem;
+    }
+
+/* --- REDES SOCIAIS (AGORA INTEGRADAS NO BLOCO ACIMA) --- */
+.footer-social {
+    display: none; /* Ícones já estão no .footer-contact */
+}
+
+/* --- RODAPÉ INFERIOR --- */
+.footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+    .footer-bottom ul {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 0;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 600px) {
+    
+    .footer-contact {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .footer-bottom ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

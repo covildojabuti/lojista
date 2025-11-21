@@ -1,0 +1,298 @@
+﻿/* ESTILOS GERAIS (DESKTOP) */
+.blogger-wrapper {
+    padding-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-bottom: 50px;
+    display: flex;
+}
+
+.blogger-main-content {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.blogger-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+    .blogger-carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+.blogger-post {
+    position: relative;
+    overflow: hidden;
+    margin-right: 20px;
+    border-radius: 10px;
+    background-color: #FFF;
+}
+
+    .blogger-post.main {
+        flex: 0 0 400px;
+        width: 400px;
+        height: 400px;
+    }
+
+        .blogger-post.main::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 180px;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            border-radius: 0 0 10px 10px;
+        }
+
+.secondary-posts-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.blogger-post.secondary {
+    flex: 0 0 200px;
+    width: 200px;
+    height: 400px;
+    margin-left: 20px;
+}
+
+.blogger-post img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.post-tag {
+    font-size: 0.8em;
+    padding: 5px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+    .post-tag.main {
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        bottom: 120px;
+    }
+
+    .post-tag.secondary {
+        color: #d3a303;
+        bottom: 120px;
+    }
+
+.post-title-link.main {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.post-title-link.secondary {
+    text-decoration: none;
+    line-height: 1.2;
+    color: #d3a303;
+}
+
+.article-below-title.main {
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+}
+
+.article-below-title.secondary {
+    text-transform: uppercase;
+    color: #000;
+}
+
+.blogger-post h3 {
+    font-size: 1em;
+    margin: 0;
+    padding: 5px;
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+.blogger-post .article-below-title {
+    font-size: 0.8em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    z-index: 2;
+}
+
+.blogger-post .no-image {
+    width: 100%;
+    height: 70%;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 0.8em;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+}
+/* Sidebar - Estilo que será replicado nos posts em mobile */
+.blogger-sidebar {
+    width: 300px;
+}
+
+    .blogger-sidebar h3 {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #000;
+    }
+
+    .blogger-sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .blogger-sidebar li {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #bbb;
+    }
+
+        .blogger-sidebar li:last-child {
+            border-bottom: none;
+        }
+
+        .blogger-sidebar li a {
+            text-decoration: none;
+            color: #d3a303;
+            font-size: 14px;
+            display: block;
+            line-height: 1.4;
+        }
+
+.sidebar-tag {
+    font-size: 12px;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.sidebar-article {
+    font-size: 10px;
+    color: #333;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 5px;
+}
+/* ============ RESPONSIVIDADE PARA CELULAR ============ */
+@media only screen and (max-width: 768px) {
+    .blogger-wrapper {
+        flex-direction: column;
+        margin-left: 15px;
+        margin-right: 15px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .blogger-main-content {
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+
+    .blogger-carousel {
+        flex-direction: column;
+        overflow-x: visible;
+    }
+    /* Transforma todos os posts em itens de lista como a sidebar */
+    .blogger-post.main,
+    .blogger-post.secondary {
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 0 15px 0 !important;
+        padding: 0 0 15px 0 !important;
+        background: none;
+        border-radius: 0;
+        border-bottom: 2px solid #bbb;
+        flex: 0;
+    }
+    /* Remove todos os estilos de desktop */
+    .blogger-post img,
+    .blogger-post .no-image,
+    .blogger-post::after {
+        display: none !important;
+    }
+    /* Container dos posts secundários vira uma lista normal */
+    .secondary-posts-container {
+        flex-direction: column;
+        margin-top: 15px;
+    }
+    /* Mostra todos os elementos de texto em mobile */
+    .blogger-post .post-tag,
+    .blogger-post .post-title-link,
+    .blogger-post .article-below-title {
+        display: block !important;
+        position: static !important;
+        text-align: left !important;
+        width: auto !important;
+        background: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    /* Estilo igual ao da sidebar */
+    .blogger-post .post-tag {
+        font-size: 12px;
+        color: #000 !important;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 5px !important;
+    }
+
+    .blogger-post .post-title-link {
+        font-size: 14px !important;
+        color: #d3a303 !important;
+        margin: 5px 0 !important;
+        line-height: 1.4;
+        font-weight: normal !important;
+    }
+
+    .blogger-post .article-below-title {
+        font-size: 10px !important;
+        color: #333 !important;
+        text-transform: uppercase;
+        margin-top: 5px !important;
+    }
+    /* Sidebar ajustes */
+    .blogger-sidebar {
+        width: 100%;
+        margin-top: 30px;
+    }
+        /* Remove a borda do último item */
+        .blogger-post:last-child,
+        .blogger-sidebar li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+    .blogger-post h3 {
+        position: initial;
+    }
+}

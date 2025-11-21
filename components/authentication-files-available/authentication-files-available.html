@@ -1,0 +1,36 @@
+<!-- authentication-files-available.html -->
+<!-- Este é o componente HTML para a área de arquivos disponíveis após o login, com layout de Explorer. -->
+<!-- Adicionado link para Font Awesome para os ícones de arquivo -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0V4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div class="files-container auth-container">
+    <div class="auth-header">
+        <h1>Bem-vindo(a) à Sua Área Exclusiva, <span id="display-user-name"></span>!</h1>
+        <p>Aqui você encontra todas as suas planilhas e Procedimentos Operacionais Padrão (POPs) disponíveis para download.</p>
+    </div>
+
+    <!-- NOVO: Campo de seleção de segmento -->
+    <div class="segment-selection">
+        <label for="business-segment-select">Filtrar por Segmento:</label>
+        <select id="business-segment-select" class="auth-input">
+            <!-- As opções serão carregadas via JavaScript -->
+        </select>
+    </div>
+
+    <div class="file-list-section">
+        <h3>Minhas Planilhas</h3>
+        <div id="excel-files-grid" class="files-grid-container">
+            <!-- Arquivos Excel serão carregados aqui via JavaScript -->
+        </div>
+
+        <h3>Meus POPs</h3>
+        <div id="pdf-files-grid" class="files-grid-container">
+            <!-- Arquivos PDF serão carregados aqui via JavaScript -->
+        </div>
+    </div>
+
+    <div class="auth-links logout-section">
+        <p><a href="#" class="auth-link submit-btn logout-btn" data-action="logout">Sair da Conta</a></p>
+    </div>
+    <div id="files-message" class="auth-message" style="display: none;"></div>
+</div>

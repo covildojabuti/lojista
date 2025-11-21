@@ -1,0 +1,64 @@
+﻿.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #128C7E;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none !important; /* Remove sublinhado */
+}
+
+.whatsapp-icon {
+    color: #fff !important; /* Herda a cor do elemento pai */
+}
+/* Efeitos de hover */
+.whatsapp-float:hover {
+    background-color: #25d366;
+    transform: scale(1.1);
+    color: #FFF !important; /* Garante que o ícone permaneça branco */
+}
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    text-decoration: none; /* Remove sublinhado do tooltip */
+}
+
+    .tooltip:after {
+        content: "";
+        position: absolute;
+        right: -5px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent transparent #333;
+    }
+
+.whatsapp-float:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    right: 65px;
+    color: #FFF !important;
+}
