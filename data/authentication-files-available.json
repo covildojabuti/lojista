@@ -1,0 +1,34 @@
+[
+  {
+    "id": "dre-simples",
+    "name": "Planilha de Orçamento Empresarial",
+    "description": "DRE simplificada para PMEs. Organize finanças, lance transações e veja seu lucro por período.",
+    "url": "https://docs.google.com/spreadsheets/d/1NX94oWWkoT-YBfsOtZzRb1ogxbY2Hv0Y/export?format=xlsx",
+    "type": "excel",
+    "available_for": ["all"]
+  },
+  {
+    "id": "checklist-falha-eficiencia-mao-obra-industrial",
+    "name": "Checklist de Falhas na Eficiência da Mão de Obra Industrial",
+    "description": "Checklist prático para identificar falhas e otimizar a produtividade no chão de fábrica industrial.",
+    "url": "https://drive.google.com/file/d/1QvQBZxLbEr3-InP7-5u6xnUimRqsRDFq/view?usp=drive_link",
+    "type": "pdf",
+    "available_for": ["industria"]
+  },
+  {
+    "id": "dashboard-barbearia",
+    "name": "Planilha de Controle para sua Barbearia",
+    "description": "Possui DRE e Indicadores para vários setores de sua barbearia.",
+    "url": "https://docs.google.com/spreadsheets/d/1FnGATXIAdvKUjgT4lmtZNLSXqe_kEAsc/export?format=xlsx",
+    "type": "excel",
+    "available_for": ["barbearia"]
+  },
+  {
+    "id": "dashboard-salaobeleza",
+    "name": "Planilha de Controle para seu Salão de Beleza",
+    "description": "Possui DRE e Indicadores para vários setores de seu salão de beleza.",
+    "url": "https://docs.google.com/spreadsheets/d/1sf1Aqw32Va2RXYadwur2TcyHWZ-plScw/export?format=xlsx",
+    "type": "excel",
+    "available_for": ["salao_beleza"]
+  }
+]

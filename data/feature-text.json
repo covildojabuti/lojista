@@ -1,0 +1,68 @@
+[
+  {
+    "id": "solucoes",
+    "tagline": "Como Implantar",
+    "mainTitle": "O processo de implantação na sua empresa é simples",
+    "cards": [
+      {
+        "title": "Avaliação Estratégica Gratuita",
+        "text": "Antes de qualquer ação, mergulhamos nos dados e contextos da sua empresa. Avaliamos cenários, identificamos gargalos e mapeamos oportunidades com base em benchmarks, tendências e KPIs do setor.",
+        "smallText": "🔎 Etapa 1"
+      },
+      {
+        "title": "Escolha da Solução Ideal",
+        "text": "Com base no diagnóstico, selecionamos a quatro mãos as soluções mais adequadas do nosso portfólio. Cada proposta é personalizada, com foco em resultado rápido e impacto sustentável.",
+        "smallText": "🧩 Etapa 2"
+      },
+      {
+        "title": "Execução com Agilidade e Suporte",
+        "text": "Implementamos a solução com metodologias ágeis, ferramentas de gestão e acompanhamento contínuo. Atuamos lado a lado com sua equipe para garantir performance, inovação e crescimento real.",
+        "smallText": "🚀 Etapa 3"
+      }
+    ]
+  },
+  {
+    "id": "verticais",
+    "tagline": "Como Implantar",
+    "mainTitle": "O processo de implantação na sua empresa é simples",
+    "cards": [
+      {
+        "title": "Avaliação Estratégica Gratuita",
+        "text": "Antes de qualquer ação, mergulhamos nos dados e contextos da sua empresa. Avaliamos cenários, identificamos gargalos e mapeamos oportunidades com base em benchmarks, tendências e KPIs do setor.",
+        "smallText": "🔎 Etapa 1"
+      },
+      {
+        "title": "Escolha da Solução Ideal",
+        "text": "Com base no diagnóstico, selecionamos a quatro mãos as soluções mais adequadas do nosso portfólio. Cada proposta é personalizada, com foco em resultado rápido e impacto sustentável.",
+        "smallText": "🧩 Etapa 2"
+      },
+      {
+        "title": "Execução com Agilidade e Suporte",
+        "text": "Implementamos a solução com metodologias ágeis, ferramentas de gestão e acompanhamento contínuo. Atuamos lado a lado com sua equipe para garantir performance, inovação e crescimento real.",
+        "smallText": "🚀 Etapa 3"
+      }
+    ]
+  },
+  {
+    "id": "pme",
+    "tagline": "Como Implantar",
+    "mainTitle": "O processo de implantação na sua empresa é simples",
+    "cards": [
+      {
+        "title": "Diagnóstico Gratuito e Sem Compromisso",
+        "text": "Comece com uma conversa franca de 60 minutos. Vamos entender suas dores, desafios financeiros e o que está impedindo seu negócio de crescer. Receba uma mini-análise inicial que já te dará novas perspectivas.",
+        "smallText": "Identificação do problema e valor rápido."
+      },
+      {
+        "title": "A Radiografia Financeira Essencial",
+        "text": "Se você sentir que faz sentido, realizaremos 'exames' financeiros e operacionais aprofundados. É aqui que coletamos os dados cruciais para um diagnóstico preciso, como um médico faz para entender a causa da doença.",
+        "smallText": "Precisão, dados, custo-benefício"
+      },
+      {
+        "title": "Plano de Ação Personalizado e Acompanhamento",
+        "text": "Com o diagnóstico em mãos, você terá um plano claro. Juntos, decidiremos o melhor 'tratamento' para seu negócio: seja um Projeto de Melhoria focado em resultados rápidos, um Acompanhamento contínuo para crescimento sustentável, ou uma Mentoria para você liderar a mudança. E o valor investido nos exames vira crédito para essa fase!",
+        "smallText": "Solução personalizada, opções, reversão de valor."
+      }
+    ]
+  }
+]

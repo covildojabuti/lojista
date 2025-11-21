@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Descubra o que está travando o crescimento da sua empresa.",
+    "image-url": "images/banner-home-1.png",
+    "text": "Acesse gratuitamente o IPE (Índice de Produtividade Empresarial). Uma análise precisa que revela gargalos, compara sua operação com o mercado e entrega recomendações prontas para aplicar.",
+    "button": "Quero meu IPE gratuito",
+    "button-url": "pages/ipe"
+  },
+  {
+    "title": "Receba nossas novidades em primeira mão!",
+    "image-url": "images/banner-home-2.png",
+    "text": "Entre no nosso grupo oficial do WhatsApp e fique por dentro de conteúdos exclusivos, novidades, eventos e oportunidades especiais.<br>Sem spam, sem enrolação — só o que realmente importa para você e seu negócio.",
+    "button": "👉 Entrar no Grupo do WhatsApp",
+    "button-url": "https://chat.whatsapp.com/HXb8FJNSbHFFMYNe5XxiIO"
+  }
+]

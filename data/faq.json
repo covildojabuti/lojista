@@ -1,0 +1,49 @@
+[
+    {
+        "id": "pme",
+        "tagline": "Perguntas Frequentes",
+        "mainTitle": "Tire Suas Dúvidas Conosco",
+        "faqs": [
+            {
+                "question": "A Consulta Grátis é realmente sem compromisso?",
+                "answer": "Sim, absolutamente. É um bate-papo inicial para entendermos seus desafios e se nossa metodologia faz sentido para sua empresa. Não há custo nem obrigação de contratação."
+            },
+            {
+                "question": "Qual o objetivo da Consulta Grátis de 60 minutos?",
+                "answer": "O objetivo é fazer um diagnóstico rápido das suas principais dores financeiras e operacionais e identificar se podemos realmente te ajudar. Você já sai com insights valiosos, mesmo que não siga em frente. Após a consulta, o consultor pode recomendar a realização de Exames mais aprofundados para entender a saúde da empresa."
+            },
+            {
+                "question": "O que são os Exames para o meu negócio?",
+                "answer": "Os Exames são uma análise aprofundada da saúde financeira e operacional da sua empresa. Assim como exames médicos revelam o que está acontecendo internamente, nossos 'exames' (análise de fluxo de caixa, DRE, precificação, etc.) diagnosticam as causas reais dos seus desafios, identificando desperdícios, oportunidades de lucro e os pontos de alavancagem para o crescimento. É o passo fundamental para entender seu negócio com clareza total e planejar um futuro lucrativo."
+            },
+            {
+                "question": "Os Exames são pagos?",
+                "answer": "Sim, os Exames são um investimento para um diagnóstico aprofundado e profissional do seu negócio. Eles exigem tempo e expertise de análise para revelar as causas reais dos problemas, não apenas os sintomas. É um passo fundamental para alcançar clareza e construir a base para um plano de ação eficaz."
+            },
+            {
+                "question": "O valor dos Exames é revertido em crédito?",
+                "answer": "Sim! 50% do valor pago pelos Exames é revertido como crédito para você utilizar nas nossas modalidades de Acompanhamento Contínuo, Mentoria Estratégica ou Projetos de Melhoria. Além disso, a consulta de devolutiva dos Exames já está inclusa, garantindo que você entenda todos os resultados."
+            },
+            {
+                "question": "Os Exames têm devolutiva com consulta?",
+                "answer": "Sim, o valor dos Exames inclui uma consulta dedicada para a apresentação e explicação detalhada de todos os resultados e do diagnóstico completo do seu negócio."
+            },
+            {
+                "question": "Qual a diferença entre Acompanhamento, Mentoria e Projeto de Melhoria?",
+                "answer": "Com o diagnóstico dos seus Exames em mãos, definimos o caminho ideal para o crescimento do seu negócio. Você pode optar pelo Acompanhamento Contínuo, com suporte semanal para monitorar indicadores e ajustar o plano de ação rapidamente; pela Mentoria Estratégica, para ter minha expertise direta no direcionamento das suas decisões e desafios; ou por Projetos de Melhoria, que são soluções focadas e sob medida para áreas específicas, como reestruturação financeira, otimização de vendas, gestão de projetos, ou desenvolvimento de estratégias de crescimento e inovação. Uma parte do valor investido nos exames será revertida em crédito para qualquer uma dessas modalidades, garantindo um tratamento personalizado e eficaz para a saúde e lucratividade da sua empresa."
+            },
+            {
+                "question": "Por quanto tempo precisarei da consultoria?",
+                "answer": "A duração varia conforme o objetivo e a complexidade do seu negócio. Nosso compromisso é entregar resultados e capacitar você para a autonomia. Avaliamos juntos a cada etapa."
+            },
+            {
+                "question": "Minha empresa é muito pequena, a Lightus pode me ajudar?",
+                "answer": "Sim! Nossas metodologias são adaptadas para negócios de diversos portes, incluindo MEIs e Pequenas e Médias Empresas. Nosso foco é a saúde e o crescimento sustentável, independentemente do tamanho."
+            },
+            {
+                "question": "Qual a experiência dos consultores da Lightus no mercado?",
+                "answer": "Todos os consultores da Lightus já atuaram nas maiores consultorias do Brasil. Já trabalhamos com Pequenas, Médias, Grandes e Mega empresas, porém, para cada tipo de empresa, existe um método personalizado de melhoria contínua."
+            }
+        ]
+    }
+]

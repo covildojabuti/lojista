@@ -1,0 +1,101 @@
+[
+  {
+    "id": "ipe",
+    "title": "Descubra o verdadeiro potencial da sua empresa com o IPE",
+    "image-url": "images/banner-static-ipe.png",
+    "text": "Acesse gratuitamente o IPE (Índice de Produtividade Empresarial). Uma análise precisa que revela gargalos, compara sua operação com o mercado e entrega recomendações prontas para aplicar.",
+    "button": "Quero meu IPE gratuito",
+    "button-url": "pages/ipe/#b001",
+    "target": "_self"
+  },
+  {
+    "id": "afi",
+    "title": "Torne-se referência em inovação e lidere o futuro do seu setor",
+    "image-url": "images/banner-static-afi.png",
+    "text": "Antecipe tendências, inove com consistência e execute com velocidade.<br>Estratégia, inovação e agilidade para sair na frente e dominar seu mercado.",
+    "button": "Agende um Diagnóstico Gratuito",
+    "button-url": "pages/afi/#b006",
+    "target": "_self"
+  },
+  {
+    "id": "gfa",
+    "title": "Tenha Autoridade Financeira e Domine o Futuro da Sua Empresa",
+    "image-url": "images/banner-static-gfa.png",
+    "text": "Controle absoluto do caixa, decisões baseadas em dados e crescimento com rentabilidade.<br>Finanças organizadas, lucros previsíveis, e segurança a longo prazo.",
+    "button": "Agende um Diagnóstico Gratuito",
+    "button-url": "pages/gfa/#b006",
+    "target": "_self"
+  },
+  {
+    "id": "ggc",
+    "title": "Construa uma governança sólida e lidere com confiança",
+    "image-url": "images/banner-static-ggc.png",
+    "text": "Profissionalize sua gestão, fortaleça a cultura organizacional e prepare sua empresa para o futuro.<br>Governança moderna, ética e estratégica para gerar credibilidade, sustentabilidade e crescimento de longo prazo.",
+    "button": "Agende um Diagnóstico Gratuito",
+    "button-url": "pages/ggc/#b006",
+    "target": "_self"
+  },
+  {
+    "id": "mhc",
+    "title": "Acelere suas vendas com método, posicionamento e performance",
+    "image-url": "images/banner-static-mhc.png",
+    "text": "Estruture seu processo comercial com inteligência, gere leads com constância e feche negócios com mais previsibilidade.",
+    "button": "Agende um Diagnóstico Gratuito",
+    "button-url": "pages/mhc/#b006",
+    "target": "_self"
+  },
+  {
+    "id": "gpp",
+    "title": "Tenha controle total sobre seus projetos e maximize o retorno estratégico",
+    "image-url": "images/banner-static-gpp.png",
+    "text": "Selecione os projetos certos, aloque recursos com inteligência e entregue resultados com eficiência.<br>Portfólio de projetos alinhado à estratégia para garantir foco, agilidade e impacto.",
+    "button": "Agende um Diagnóstico Gratuito",
+    "button-url": "pages/gpp/#b006",
+    "target": "_self"
+  },
+  {
+    "id": "v_in",
+    "title": "Aumente sua margem e eficiência na Indústria",
+    "image-url": "images/banner-static-v_in.png",
+    "text": "Resultados concretos para indústrias que enfrentam pressão de custos, desperdícios e dificuldade de escalar com qualidade.",
+    "button": "Agende um Diagnóstico Gratuito",
+    "button-url": "pages/gpp/#b006",
+    "target": "_self"
+  },
+  {
+    "id": "v_lg",
+    "title": "Mais lucro e previsibilidade para Transportadoras e Operadores Logísticos",
+    "image-url": "images/banner-static-v_lg.png",
+    "text": "Resultados práticos para empresas de logística que lidam com custos crescentes, baixa margem, processos pouco controlados e dificuldade para escalar com segurança.",
+    "button": "Agende um Diagnóstico Gratuito",
+    "button-url": "pages/gpp/#b006",
+    "target": "_self"
+  },
+  {
+    "id": "v_va",
+    "title": "Aumente sua margem e eficiência no setor varejista",
+    "image-url": "images/banner-static-v_va.png",
+    "text": "Resultados concretos para varejos que enfrentam margens apertadas, perdas operacionais e desafios na gestão de equipes e processos.",
+    "button": "Agende um Diagnóstico Gratuito",
+    "button-url": "pages/gpp/#b006",
+    "target": "_self"
+  },
+  {
+    "id": "v_tc",
+    "title": "Aumente sua margem e controle na Telecom",
+    "image-url": "images/banner-static-v_tc.png",
+    "text": "Resultados concretos para operadoras regionais e empresas de telecomunicações que enfrentam alta inadimplência, baixa eficiência e dificuldades em escalar com governança.",
+    "button": "Agende um Diagnóstico Gratuito",
+    "button-url": "pages/gpp/#b006",
+    "target": "_self"
+  },
+  {
+    "id": "pme",
+    "title": "Seu Negócio Patinando Enquanto o Lucro Escapa? Descubra o Porquê em 60 Minutos!",
+    "image-url": "images/banner-static-mhc.png",
+    "text": "Seu faturamento não cresce, a margem está no chão e você tem medo de quebrar? Agende sua consulta gratuita e receba um diagnóstico rápido dos pontos que estão impedindo seu negócio de decolar",
+    "button": "Agende a Consulta Grátis!",
+    "button-url": "https://calendly.com/lightus/consulta-inicial",
+    "target": "_blank"
+  }
+]

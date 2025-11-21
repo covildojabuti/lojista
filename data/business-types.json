@@ -1,0 +1,11 @@
+[
+  { "id": "all", "name": "Todos os Segmentos", "type": "special" },
+  { "id": "industria", "name": "Indústria", "type": "sector" },
+  { "id": "comercio", "name": "Comércio", "type": "sector" },
+  { "id": "servicos", "name": "Serviços", "type": "sector" },
+  { "id": "salao_beleza", "name": "Salão de Beleza", "type": "business_type", "parent_sector": "servicos" },
+  { "id": "barbearia", "name": "Barbearia", "type": "business_type", "parent_sector": "servicos" },
+  { "id": "padaria", "name": "Padaria", "type": "business_type", "parent_sector": "comercio" },
+  { "id": "restaurante", "name": "Restaurante", "type": "business_type", "parent_sector": "servicos" },
+  { "id": "clinica", "name": "Clínica", "type": "business_type", "parent_sector": "servicos" }
+]

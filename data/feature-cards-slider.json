@@ -1,0 +1,332 @@
+[
+  {
+    "id": "v_in",
+    "mainTitle": "Como Podemos Ajudar?",
+    "mainSubtitle": "Soluções",
+    "cards": [
+      {
+        "title": "Estruturação Financeira Essencial (Fundação)",
+        "imageUrl": "/images/gfa.png",
+        "link": "/pages/gfa/",
+        "text": [
+          { "item": "Este produto é ideal para empresas e profissionais que precisam estruturar sua gestão financeira do zero ou corrigir falhas básicas." },
+          { "item": "Pequenas empresas e MEIs que não possuem um controle financeiro formalizado." },
+          { "item": "Empreendedores iniciantes que precisam estruturar suas finanças desde o começo." },
+          { "item": "Empresas que misturam contas PJ e PF, causando confusão financeira." },
+          { "item": "Negócios que querem migrar do controle informal (caderno, anotações soltas) para um sistema estruturado." },
+          { "item": "Startups e novos negócios que precisam de um modelo financeiro funcional para escalar com segurança." }
+        ]
+      },
+      {
+        "title": "Estruturação do Processo Comercial",
+        "imageUrl": "/images/mhc.png",
+        "link": "/pages/mhc/",
+        "text": [
+          { "item": "Ideal para empresas que desejam previsibilidade de receita, aumento de conversão e uma operação comercial com clareza e foco em resultados." },
+          { "item": "Negócios com vendas desorganizadas e sem processo definido." },
+          { "item": "Empresas que dependem exclusivamente de indicações ou vendedores chave." },
+          { "item": "Empresas com leads, mas baixa conversão." },
+          { "item": "Times comerciais que precisam de direção, metas e rituais claros." }
+        ]
+      },
+      {
+        "title": "Definição de Estratégias de Crescimento e Expansão",
+        "imageUrl": "/images/afi.png",
+        "link": "/pages/afi/",
+        "text": [
+          { "item": "Esta solução é indicada para empresas que buscam crescimento estruturado e expansão de mercado com estratégia e inovação, evitando riscos financeiros e operacionais." },
+          { "item": "Negócios que querem expandir para novas regiões ou mercados, mas não têm um plano estruturado." },
+          { "item": "Empresas que cresceram rápido e agora precisam definir direções estratégicas claras." },
+          { "item": "Empresas que faturam bem, mas sentem dificuldades em escalar suas operações de forma eficiente." },
+          { "item": "Negócios que desejam inovar e diferenciar seus modelos de crescimento." },
+          { "item": "Empresas que precisam validar financeiramente sua estratégia de crescimento antes de investir." }
+        ]
+      },
+      {
+        "title": "Escritório de Projetos (PMO)",
+        "imageUrl": "/images/gpp.png",
+        "link": "/pages/gpp/",
+        "text": [
+          { "item": "Esta solução é ideal para empresas que precisam organizar, padronizar e profissionalizar sua gestão de projetos para garantir entregas consistentes e mensuráveis." },
+          { "item": "Empresas que executam muitos projetos, mas não sabem se estão gerando valor real." },
+          { "item": "Negócios que sofrem com retrabalho, atrasos ou falta de controle nas execuções." },
+          { "item": "Organizações em fase de crescimento que precisam sustentar a execução com estrutura." },
+          { "item": "Equipes sobrecarregadas ou sem clareza de prioridades e papéis." },
+          { "item": "Líderes que sentem que a execução está “solta” e sem governança." }
+        ]
+      },
+      {
+        "title": "RH Estratégico e Cultura Organizacional",
+        "imageUrl": "/images/ggc.png",
+        "link": "/pages/ggc/",
+        "text": [
+          { "item": "Essencial para consolidar uma cultura alinhada ao propósito da empresa." },
+          { "item": "Empresas com alta rotatividade ou clima organizacional ruim." },
+          { "item": "Negócios em transformação que precisam de engajamento." },
+          { "item": "Empresas que buscam alta performance com pessoas certas." }
+        ]
+      },
+      {
+        "title": "Estratégias de Prospecção e Geração de Leads",
+        "imageUrl": "/images/mhc.png",
+        "link": "/pages/mhc/",
+        "text": [
+          { "item": "Ideal para empresas que não têm uma geração constante de oportunidades e precisam aumentar o volume e a qualidade de leads." },
+          { "item": "Empresas que dependem exclusivamente de indicações." },
+          { "item": "Negócios que não sabem como abordar leads frios." },
+          { "item": "Empresas com dificuldades para gerar volume qualificado de reuniões." },
+          { "item": "Times comerciais que ficam ociosos por falta de leads." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v_lg",
+    "mainTitle": "Como Podemos Ajudar?",
+    "mainSubtitle": "Soluções",
+    "cards": [
+      {
+        "title": "Indicadores Financeiros e Performance Empresarial (Dashboard Estratégico)",
+        "imageUrl": "/images/gfa.png",
+        "link": "/pages/gfa/",
+        "text": [
+          { "item": "Este produto é indicado para empresas que precisam de uma visão clara e estratégica dos seus números, mas não possuem um sistema de monitoramento eficiente." },
+          { "item": "Gestores que tomam decisões financeiras sem base em dados concretos." },
+          { "item": "Empresas que precisam acompanhar a evolução de seus indicadores financeiros de forma prática." },
+          { "item": "Negócios que já possuem algum controle, mas não sabem interpretar os resultados." },
+          { "item": "Empresas que querem monitorar sua performance ao longo do tempo para crescimento sustentável." },
+          { "item": "Empresas que necessitam de dashboards visuais para tomada de decisão mais rápida e eficiente." }
+
+        ]
+      },
+      {
+        "title": "RH Estratégico e Cultura Organizacional",
+        "imageUrl": "/images/ggc.png",
+        "link": "/pages/ggc/",
+        "text": [
+          { "item": "Essencial para consolidar uma cultura alinhada ao propósito da empresa." },
+          { "item": "Empresas com alta rotatividade ou clima organizacional ruim." },
+          { "item": "Negócios em transformação que precisam de engajamento." },
+          { "item": "Empresas que buscam alta performance com pessoas certas." }
+        ]
+      },
+      {
+        "title": "Gestão por Diretrizes e Desdobramento de Metas",
+        "imageUrl": "/images/afi.png",
+        "link": "/pages/afi/",
+        "text": [
+          { "item": "Este produto é indicado para empresas que precisam melhorar a execução de sua estratégia, garantindo que as metas estabelecidas sejam desdobradas corretamente e acompanhadas com eficiência." },
+          { "item": "Empresas que definem metas, mas têm dificuldades em desdobrá-las em ações práticas." },
+          { "item": "Negócios que perdem tempo e recursos devido à falta de alinhamento entre equipes." },
+          { "item": "Empresas que não conseguem medir com precisão seu desempenho estratégico." },
+          { "item": "Organizações que precisam aumentar a produtividade e a clareza na execução de planos." },
+          { "item": "Empresas que querem profissionalizar a gestão, tornando-a baseada em dados e indicadores.  " }
+        ]
+      },
+      {
+        "title": "Compliance, Riscos e Controles Internos",
+        "imageUrl": "/images/ggc.png",
+        "link": "/pages/ggc/",
+        "text": [
+          { "item": "Para empresas que precisam prevenir fraudes, erros e passivos ocultos." },
+          { "item": "Negócios que atuam em setores regulados." },
+          { "item": "Empresas que cresceram rápido e perderam controle." },
+          { "item": "Empresas expostas a riscos fiscais, jurídicos ou reputacionais." }
+        ]
+      },
+      {
+        "title": "Gestão de Equipe Comercial e Indicadores de Performance",
+        "imageUrl": "/images/mhc.png",
+        "link": "/pages/mhc/",
+        "text": [
+          { "item": "Ideal para empresas que têm equipe comercial, mas falta gestão, acompanhamento e cultura de performance." },
+          { "item": "Times que não batem meta com constância." },
+          { "item": "Empresas sem rituais ou indicadores comerciais." },
+          { "item": "Negócios com vendedores desmotivados ou desorganizados." },
+          { "item": "Gestores que não sabem como cobrar ou acompanhar resultados." }
+
+        ]
+      },
+      {
+        "title": "Gestão de Riscos em Projetos e Portfólio",
+        "imageUrl": "/images/gpp.png",
+        "link": "/pages/gpp/",
+        "text": [
+          { "item": "Solução ideal para empresas que vivem apagando incêndios e não conseguem prever problemas antes que eles impactem os resultados." },
+          { "item": "Empresas com histórico recorrente de projetos estourados ou cancelados." },
+          { "item": "Negócios que não sabem calcular impactos financeiros e operacionais dos riscos." },
+          { "item": "Equipes que não documentam aprendizados nem previnem erros repetitivos." },
+          { "item": "Organizações que querem desenvolver uma cultura preventiva e estratégica." }
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v_tc",
+    "mainTitle": "Como Podemos Ajudar?",
+    "mainSubtitle": "Soluções",
+    "cards": [
+      {
+        "title": "Gestão de Equipe Comercial e Indicadores de Performance",
+        "imageUrl": "/images/mhc.png",
+        "link": "/pages/mhc/",
+        "text": [
+          { "item": "Ideal para empresas que têm equipe comercial, mas falta gestão, acompanhamento e cultura de performance." },
+          { "item": "Times que não batem meta com constância." },
+          { "item": "Empresas sem rituais ou indicadores comerciais." },
+          { "item": "Negócios com vendedores desmotivados ou desorganizados." },
+          { "item": "Gestores que não sabem como cobrar ou acompanhar resultados." }
+
+        ]
+      },
+      {
+        "title": "Gestão de Riscos em Projetos e Portfólio",
+        "imageUrl": "/images/gfa.png",
+        "link": "/pages/gfa/",
+        "text": [
+          { "item": "Solução ideal para empresas que vivem apagando incêndios e não conseguem prever problemas antes que eles impactem os resultados." },
+          { "item": "Empresas com histórico recorrente de projetos estourados ou cancelados." },
+          { "item": "Negócios que não sabem calcular impactos financeiros e operacionais dos riscos." },
+          { "item": "Equipes que não documentam aprendizados nem previnem erros repetitivos." },
+          { "item": "Organizações que querem desenvolver uma cultura preventiva e estratégica." }
+
+        ]
+      },
+      {
+        "title": "Indicadores Financeiros e Performance Empresarial (Dashboard Estratégico)",
+        "imageUrl": "/images/gfa.png",
+        "link": "/pages/gfa/",
+        "text": [
+          { "item": "Este produto é indicado para empresas que precisam de uma visão clara e estratégica dos seus números, mas não possuem um sistema de monitoramento eficiente." },
+          { "item": "Gestores que tomam decisões financeiras sem base em dados concretos." },
+          { "item": "Empresas que precisam acompanhar a evolução de seus indicadores financeiros de forma prática." },
+          { "item": "Negócios que já possuem algum controle, mas não sabem interpretar os resultados." },
+          { "item": "Empresas que querem monitorar sua performance ao longo do tempo para crescimento sustentável." },
+          { "item": "Empresas que necessitam de dashboards visuais para tomada de decisão mais rápida e eficiente." }
+
+        ]
+      },
+      {
+        "title": "RH Estratégico e Cultura Organizacional",
+        "imageUrl": "/images/ggc.png",
+        "link": "/pages/ggc/",
+        "text": [
+          { "item": "Essencial para consolidar uma cultura alinhada ao propósito da empresa." },
+          { "item": "Empresas com alta rotatividade ou clima organizacional ruim." },
+          { "item": "Negócios em transformação que precisam de engajamento." },
+          { "item": "Empresas que buscam alta performance com pessoas certas." }
+        ]
+      },
+      {
+        "title": "Gestão por Diretrizes e Desdobramento de Metas",
+        "imageUrl": "/images/afi.png",
+        "link": "/pages/afi/",
+        "text": [
+          { "item": "Este produto é indicado para empresas que precisam melhorar a execução de sua estratégia, garantindo que as metas estabelecidas sejam desdobradas corretamente e acompanhadas com eficiência." },
+          { "item": "Empresas que definem metas, mas têm dificuldades em desdobrá-las em ações práticas." },
+          { "item": "Negócios que perdem tempo e recursos devido à falta de alinhamento entre equipes." },
+          { "item": "Empresas que não conseguem medir com precisão seu desempenho estratégico." },
+          { "item": "Organizações que precisam aumentar a produtividade e a clareza na execução de planos." },
+          { "item": "Empresas que querem profissionalizar a gestão, tornando-a baseada em dados e indicadores.  " }
+        ]
+      },
+      {
+        "title": "Compliance, Riscos e Controles Internos",
+        "imageUrl": "/images/ggc.png",
+        "link": "/pages/ggc/",
+        "text": [
+          { "item": "Para empresas que precisam prevenir fraudes, erros e passivos ocultos." },
+          { "item": "Negócios que atuam em setores regulados." },
+          { "item": "Empresas que cresceram rápido e perderam controle." },
+          { "item": "Empresas expostas a riscos fiscais, jurídicos ou reputacionais." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v_va",
+    "mainTitle": "Como Podemos Ajudar?",
+    "mainSubtitle": "Soluções",
+    "cards": [
+      {
+        "title": "Estruturação Financeira Essencial (Fundação)",
+        "imageUrl": "/images/gfa.png",
+        "link": "/pages/gfa/",
+        "text": [
+          { "item": "Este produto é ideal para empresas e profissionais que precisam estruturar sua gestão financeira do zero ou corrigir falhas básicas." },
+          { "item": "Pequenas empresas e MEIs que não possuem um controle financeiro formalizado." },
+          { "item": "Empreendedores iniciantes que precisam estruturar suas finanças desde o começo." },
+          { "item": "Empresas que misturam contas PJ e PF, causando confusão financeira." },
+          { "item": "Negócios que querem migrar do controle informal (caderno, anotações soltas) para um sistema estruturado." },
+          { "item": "Startups e novos negócios que precisam de um modelo financeiro funcional para escalar com segurança." }
+        ]
+      },
+      {
+        "title": "Escritório de Projetos (PMO)",
+        "imageUrl": "/images/gpp.png",
+        "link": "/pages/gpp/",
+        "text": [
+          { "item": "Esta solução é ideal para empresas que precisam organizar, padronizar e profissionalizar sua gestão de projetos para garantir entregas consistentes e mensuráveis." },
+          { "item": "Empresas que executam muitos projetos, mas não sabem se estão gerando valor real." },
+          { "item": "Negócios que sofrem com retrabalho, atrasos ou falta de controle nas execuções." },
+          { "item": "Organizações em fase de crescimento que precisam sustentar a execução com estrutura." },
+          { "item": "Equipes sobrecarregadas ou sem clareza de prioridades e papéis." },
+          { "item": "Líderes que sentem que a execução está “solta” e sem governança." }
+        ]
+      },
+      {
+        "title": "Gestão de Resultados e Rentabilidade (DRE e Análises Profundas)",
+        "imageUrl": "/images/gfa.png",
+        "link": "/pages/gfa/",
+        "text": [
+          { "item": "Este produto é essencial para empresas que já possuem operações estruturadas, mas não analisam seus resultados financeiros com profundidade, comprometendo a rentabilidade e eficiência." },
+          { "item": "Empresas que faturam bem, mas não sabem exatamente quanto lucram." },
+          { "item": "Negócios que querem reduzir custos sem comprometer a operação." },
+          { "item": "Empresas que precisam entender melhor sua margem de lucro e pontos de equilíbrio." },
+          { "item": "Gestores que querem utilizar o DRE como ferramenta estratégica para tomada de decisões." },
+          { "item": "Negócios que buscam expandir, mas precisam garantir que o crescimento será rentável." }
+
+        ]
+      },
+      {
+        "title": "Gestão de Equipe Comercial e Indicadores de Performance",
+        "imageUrl": "/images/mhc.png",
+        "link": "/pages/mhc/",
+        "text": [
+          { "item": "Ideal para empresas que têm equipe comercial, mas falta gestão, acompanhamento e cultura de performance." },
+          { "item": "Times que não batem meta com constância." },
+          { "item": "Empresas sem rituais ou indicadores comerciais." },
+          { "item": "Negócios com vendedores desmotivados ou desorganizados." },
+          { "item": "Gestores que não sabem como cobrar ou acompanhar resultados." }
+
+        ]
+      },
+      {
+        "title": "Definição de Estratégias de Crescimento e Expansão",
+        "imageUrl": "/images/afi.png",
+        "link": "/pages/afi/",
+        "text": [
+          { "item": "Esta solução é indicada para empresas que buscam crescimento estruturado e expansão de mercado com estratégia e inovação, evitando riscos financeiros e operacionais." },
+          { "item": "Negócios que querem expandir para novas regiões ou mercados, mas não têm um plano estruturado." },
+          { "item": "Empresas que cresceram rápido e agora precisam definir direções estratégicas claras." },
+          { "item": "Empresas que faturam bem, mas sentem dificuldades em escalar suas operações de forma eficiente." },
+          { "item": "Negócios que desejam inovar e diferenciar seus modelos de crescimento." },
+          { "item": "Empresas que precisam validar financeiramente sua estratégia de crescimento antes de investir." }
+        ]
+      },
+      {
+        "title": "Avaliação de Desempenho e Sucessão",
+        "imageUrl": "/images/ggc.png",
+        "link": "/pages/ggc/",
+        "text": [
+          { "item": "Para empresas que querem garantir continuidade e performance futura." },
+          { "item": "Negócios com equipes críticas e risco de perda de talentos." },
+          { "item": "Empresas em transição geracional ou com sucessão indefinida." },
+          { "item": "Empresas que buscam profissionalizar sua gestão de pessoas." }
+
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,636 @@
+[
+  {
+    "id": "afi",
+    "tagline": "Soluções",
+    "title": "Como podemos ajudar?",
+    "cards": [
+      {
+        "card-products-title": "Gestão por Diretrizes e Desdobramento de Metas",
+        "card-products-title-top": "Alinhe toda a equipe à estratégia com metas claras, indicadores eficientes e uma execução disciplinada que gera resultados.",
+        "card-products-title-bottom": "Indicado para empresas que precisam melhorar a execução de sua estratégia, garantindo que as metas estabelecidas sejam desdobradas corretamente e acompanhadas com eficiência.",
+        "card-products-top": [
+          { "item": "Mapeamento da Estratégia Corporativa → Definição dos direcionadores estratégicos e objetivos organizacionais." },
+          { "item": "Estruturação do Desdobramento de Metas → Tradução das metas estratégicas em metas táticas e operacionais." },
+          { "item": "Definição de Responsabilidades e Indicadores → Designação de KPIs por setor e definição de responsáveis." },
+          { "item": "Ferramenta de Acompanhamento → Implementação de dashboards, reuniões de alinhamento e relatórios gerenciais." },
+          { "item": "Plano de Acompanhamento e Revisão → Estruturação do ciclo de checagem de metas e ajustes contínuos." },
+          { "item": "Treinamento para Times → Workshops para garantir a adoção das diretrizes e execução disciplinada." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas que definem metas, mas têm dificuldades em desdobrá-las em ações práticas." },
+          { "item": "Negócios que perdem tempo e recursos devido à falta de alinhamento entre equipes." },
+          { "item": "Empresas que não conseguem medir com precisão seu desempenho estratégico." },
+          { "item": "Organizações que precisam aumentar a produtividade e a clareza na execução de planos." },
+          { "item": "Empresas que querem profissionalizar a gestão, tornando-a baseada em dados e indicadores." }
+        ]
+      },
+      {
+        "card-products-title": "OKRs (Objectives and Key Results) e Metodologias Ágeis",
+        "card-products-title-top": "Implemente foco, alinhamento e agilidade com OKRs bem definidos e práticas ágeis que aceleram a execução estratégica.",
+        "card-products-title-bottom": "Indicado para empresas que desejam implementar uma gestão orientada a metas e execução ágil, garantindo alinhamento estratégico e alto desempenho.",
+        "card-products-top": [
+          { "item": "Diagnóstico de Gestão Atual → Avaliação do nível de maturidade em OKRs e agilidade." },
+          { "item": "Definição dos OKRs da Empresa → Estruturação de objetivos estratégicos e Key Results mensuráveis." },
+          { "item": "Cascata de OKRs por Equipes → Alinhamento dos OKRs entre os níveis organizacionais." },
+          { "item": "Ritmo de Execução e Check-ins → Ciclos de acompanhamento (semanais, mensais, trimestrais)." },
+          { "item": "Estruturação de Cerimônias Ágeis → Sprint Planning, Reviews e Retrospectives para execução eficiente." },
+          { "item": "Treinamento e Onboarding → Capacitação para liderança e times na adoção dos OKRs e metodologias ágeis." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas que enfrentam dificuldades em definir e acompanhar metas claras." },
+          { "item": "Negócios que desejam melhorar a comunicação e o alinhamento entre equipes." },
+          { "item": "Empresas que querem aumentar a velocidade e a qualidade da execução estratégica." },
+          { "item": "Organizações que desejam adotar metodologias ágeis para melhorar a produtividade." },
+          { "item": "Empresas que precisam transformar sua cultura para se tornarem mais inovadoras e eficientes." }
+        ]
+      },
+      {
+        "card-products-title": "Monitoramento de Mercado e Tendências",
+        "card-products-title-top": "Antecipe movimentos do mercado com inteligência competitiva, insights estratégicos e respostas ágeis às tendências emergentes.",
+        "card-products-title-bottom": "Indicado para empresas que precisam de inteligência estratégica contínua para antecipar tendências, mitigar riscos e capturar oportunidades no mercado.",
+        "card-products-top": [
+          { "item": "Mapeamento de Fontes de Informação → Definição de relatórios, bases de dados e concorrentes monitorados." },
+          { "item": "Definição de Indicadores de Tendências → Criação de KPI’s para acompanhamento da evolução do mercado." },
+          { "item": "Sistema de Inteligência Competitiva → Monitoramento de players, novas tecnologias e movimentos estratégicos da concorrência." },
+          { "item": "Relatórios de Insights Periódicos → Boletins mensais ou trimestrais com análises de impacto e recomendações." },
+          { "item": "Workshops de Sensibilização e Adaptação → Sessões com a liderança e equipes para traduzir insights em ações." },
+          { "item": "Plano de Respostas Estratégicas → Desenvolvimento de estratégias ágeis para adaptação às mudanças do mercado." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas que querem se antecipar às tendências do setor e evitar surpresas do mercado." },
+          { "item": "Negócios que precisam acompanhar a concorrência e identificar mudanças estratégicas antes que impactem sua operação." },
+          { "item": "Empresas que atuam em mercados dinâmicos e de rápida transformação." },
+          { "item": "Startups e scale-ups que precisam validar oportunidades de crescimento com base em dados concretos." },
+          { "item": "Empresas que desejam criar um sistema contínuo de inteligência de mercado para embasar decisões estratégicas." }
+        ]
+      },
+      {
+        "card-products-title": "Planejamento Estratégico",
+        "card-products-title-top": "Impulsione o crescimento do seu negócio com estratégias sólidas, expansão direcionada e foco em resultados mensuráveis.",
+        "card-products-title-bottom": "Indicado para empresas que buscam crescimento estruturado e expansão de mercado com estratégia e inovação, evitando riscos financeiros e operacionais.",
+        "card-products-top": [
+          { "item": "Análise de Cenário Atual → Matriz SWOT, diagnóstico organizacional e posicionamento de mercado." },
+          { "item": "Mapeamento de Oportunidades de Expansão → Identificação de mercados-alvo e segmentação de clientes." },
+          { "item": "Definição da Estratégia de Crescimento → Desenvolvimento de plano focado em penetração, diversificação ou novas aquisições." },
+          { "item": "Plano de Implementação → Roadmap com fases definidas, responsáveis e KPIs de sucesso." },
+          { "item": "Simulação de Impacto Financeiro → Projeção de ROI e análise de viabilidade financeira." },
+          { "item": "Plano de Acompanhamento → Monitoramento trimestral, dashboards estratégicos e governança da execução." }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios que querem expandir para novas regiões ou mercados, mas não têm um plano estruturado." },
+          { "item": "Empresas que cresceram rápido e agora precisam definir direções estratégicas claras." },
+          { "item": "Empresas que faturam bem, mas sentem dificuldades em escalar suas operações de forma eficiente." },
+          { "item": "Negócios que desejam inovar e diferenciar seus modelos de crescimento." },
+          { "item": "Empresas que precisam validar financeiramente sua estratégia de crescimento antes de investir." }
+        ]
+      },
+      {
+        "card-products-title": "Inovação de Modelos de Negócio e Diferenciação Competitiva",
+        "card-products-title-top": "Transforme sua empresa com inovação prática e estratégias que reposicionam seu modelo de negócio no mercado!",
+        "card-products-title-bottom": "Indicado para empresas que precisam se reinventar para continuar relevantes e competitivas no mercado, criando novas ofertas de valor e explorando novas fontes de receita.",
+        "card-products-top": [
+          { "item": "Diagnóstico do Modelo de Negócio Atual → Canvas do Modelo de Negócio e análise de diferenciação." },
+          { "item": "Benchmarking e Tendências de Mercado → Estudo de cases e análise de tendências emergentes." },
+          { "item": "Desenho de Novas Propostas de Valor → Criação e prototipação de novos serviços/produtos." },
+          { "item": "Reformulação de Canais de Distribuição e Receita → Novos formatos de venda e monetização." },
+          { "item": "Plano de Adoção da Inovação → Testes pilotos, desenvolvimento de MVPs e rollout escalável." },
+          { "item": "Definição de KPIs de Inovação e Competitividade → Métricas e monitoramento para evolução contínua." }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios que querem inovar, mas não sabem por onde começar." },
+          { "item": "Empresas que estão perdendo mercado para concorrentes mais inovadores." },
+          { "item": "Empresas que querem lançar novos produtos e serviços, mas precisam validar a aceitação." },
+          { "item": "Empresas que querem explorar novos canais de distribuição e monetização." },
+          { "item": "Negócios que buscam um modelo de crescimento escalável e sustentável." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gfa",
+    "tagline": "Soluções",
+    "title": "Como podemos ajudar?",
+    "cards": [
+      {
+        "card-products-title": "Estruturação Financeira Essencial (Fundação)",
+        "card-products-title-top": "Organize o básico e ganhe clareza: contas separadas, fluxo de caixa e controle simples já mudam tudo.",
+        "card-products-title-bottom": "Este produto é ideal para empresas e profissionais que precisam estruturar sua gestão financeira do zero ou corrigir falhas básicas.",
+        "card-products-top": [
+          { "item": "Estruturação do Plano de Contas." },
+          { "item": "Separação de contas PJ e PF." },
+          { "item": "Definição do modelo de controle (Planilha ou Software)." },
+          { "item": "Fluxo de Caixa Simples e Controle de Contas a Pagar e a Receber." },
+          { "item": "Primeiros Indicadores de Controle (Receita, Despesa, Saldo)." },
+          { "item": "Treinamento básico para gestão financeira." }
+        ],
+        "card-products-bottom": [
+          { "item": "Pequenas empresas e MEIs que não possuem um controle financeiro formalizado." },
+          { "item": "Empreendedores iniciantes que precisam estruturar suas finanças desde o começo." },
+          { "item": "Empresas que misturam contas PJ e PF, causando confusão financeira." },
+          { "item": "Negócios que querem migrar do controle informal (caderno, anotações soltas) para um sistema estruturado." },
+          { "item": "Startups e novos negócios que precisam de um modelo financeiro funcional para escalar com segurança." }
+        ]
+      },
+      {
+        "card-products-title": "Controle e Gestão do Caixa",
+        "card-products-title-top": "Domine seu fluxo de caixa e antecipe decisões com controle, previsibilidade e liquidez estratégica.",
+        "card-products-title-bottom": "Este produto é ideal para empresas que enfrentam problemas com fluxo de caixa desorganizado, falta de previsibilidade e dificuldades para equilibrar entradas e saídas financeiras.",
+        "card-products-top": [
+          { "item": "Estruturação do Fluxo de Caixa (Modelo Direto e Indireto)." },
+          { "item": "Indicadores Essenciais de Caixa (FC Líquido, Saldo Mínimo Necessário, Ciclo de Caixa)." },
+          { "item": "Estratégia de otimização de recebimentos e pagamentos." },
+          { "item": "Treinamento em gestão de liquidez." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas que não sabem exatamente quanto dinheiro têm disponível em cada momento." },
+          { "item": "Negócios que enfrentam constantes apertos de caixa e atrasam pagamentos." },
+          { "item": "Empresas que precisam otimizar o fluxo de recebimentos para melhorar capital de giro." },
+          { "item": "Empresas que possuem sazonalidade e precisam planejar melhor os períodos de menor faturamento." },
+          { "item": "Empresas que já faturam bem, mas não conseguem visualizar e gerenciar sua liquidez com segurança." }
+        ]
+      },
+      {
+        "card-products-title": "Gestão de Resultados e Rentabilidade (DRE e Análises Profundas)",
+        "card-products-title-top": "Transforme dados em lucros: domine o DRE e impulsione a rentabilidade com decisões estratégicas.",
+        "card-products-title-bottom": "Este produto é essencial para empresas que já possuem operações estruturadas, mas não analisam seus resultados financeiros com profundidade, comprometendo a rentabilidade e eficiência.",
+        "card-products-top": [
+          { "item": "Estruturação do DRE completo (mensal e anual)." },
+          { "item": "Implantação dos Indicadores de Rentabilidade (Margem Bruta, Margem Líquida, EBITDA, ROE, ROCE, Ponto de Equilíbrio)." },
+          { "item": "Estratégia para redução de custos e melhoria da margem." },
+          { "item": "Implantação de políticas para controle de despesas operacionais." },
+          { "item": "Treinamento para análise do DRE e tomada de decisões." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas que faturam bem, mas não sabem exatamente quanto lucram." },
+          { "item": "Negócios que querem reduzir custos sem comprometer a operação." },
+          { "item": "Empresas que precisam entender melhor sua margem de lucro e pontos de equilíbrio." },
+          { "item": "Gestores que querem utilizar o DRE como ferramenta estratégica para tomada de decisões." },
+          { "item": "Negócios que buscam expandir, mas precisam garantir que o crescimento será rentável." }
+        ]
+      },
+      {
+        "card-products-title": "Indicadores Financeiros e Performance Empresarial (Dashboard Estratégico)",
+        "card-products-title-top": "Veja além dos números: monitore KPIs e direcione decisões com um dashboard financeiro estratégico.",
+        "card-products-title-bottom": "Este produto é indicado para empresas que precisam de uma visão clara e estratégica dos seus números, mas não possuem um sistema de monitoramento eficiente.",
+        "card-products-top": [
+          { "item": "Implantação dos principais KPIs financeiros:" },
+          { "item": "+ Liquidez (NCG, CDG, ST)." },
+          { "item": "+ Atividade (PMP, PMR, PME, Ciclo Financeiro)." },
+          { "item": "+ Endividamento (Longo Prazo, Exigível Total, Cobertura de Juros)." },
+          { "item": "+ Financeiros (% Custo Operacional nas Vendas, Custo do Capital de Terceiros)." },
+          { "item": "+ Valor Agregado e Precificação Estratégica." },
+          { "item": "Construção de um Dashboard Financeiro com gráficos dinâmicos." },
+          { "item": "Análises trimestrais para melhoria contínua." }
+        ],
+        "card-products-bottom": [
+          { "item": "Gestores que tomam decisões financeiras sem base em dados concretos." },
+          { "item": "Empresas que precisam acompanhar a evolução de seus indicadores financeiros de forma prática." },
+          { "item": "Negócios que já possuem algum controle, mas não sabem interpretar os resultados." },
+          { "item": "Empresas que querem monitorar sua performance ao longo do tempo para crescimento sustentável." },
+          { "item": "Empresas que necessitam de dashboards visuais para tomada de decisão mais rápida e eficiente." }
+        ]
+      },
+      {
+        "card-products-title": "Gestão de Crédito, Risco e Endividamento",
+        "card-products-title-top": "Controle dívidas, minimize riscos e fortaleça sua empresa com uma gestão de crédito inteligente.",
+        "card-products-title-bottom": "Este produto é ideal para empresas que enfrentam problemas com dívidas, dificuldades de crédito ou riscos financeiros elevados.",
+        "card-products-top": [
+          { "item": "Análise do nível de endividamento e estrutura de capital." },
+          { "item": "Definição de um plano de pagamento de dívidas e renegociação." },
+          { "item": "Implantação de políticas de concessão de crédito e mitigação de riscos." },
+          { "item": "Treinamento para análise de risco financeiro." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas endividadas que precisam organizar e renegociar passivos." },
+          { "item": "Negócios que precisam de uma política eficiente de concessão de crédito a clientes." },
+          { "item": "Empresas que enfrentam dificuldades para acessar crédito bancário devido a um histórico financeiro ruim." },
+          { "item": "Negócios que querem otimizar seu capital de giro sem comprometer a liquidez." },
+          { "item": "Empresas que desejam expandir, mas precisam estruturar o endividamento corretamente para evitar riscos financeiros." }
+        ]
+      },
+      {
+        "card-products-title": "Recuperação Financeira e Crescimento Estratégico",
+        "card-products-title-top": "Recupere sua saúde financeira e cresça com estratégia, controle absoluto e foco em resultados.",
+        "card-products-title-bottom": "Este produto é indicado para empresas que enfrentam dificuldades financeiras graves ou querem crescer com um planejamento sólido e controle absoluto dos recursos.",
+        "card-products-top": [
+          { "item": "Diagnóstico financeiro profundo." },
+          { "item": "Estruturação de um Plano de Recuperação Empresarial." },
+          { "item": "Implantação de um Plano de Crescimento Financeiro baseado em metas e investimentos estratégicos." },
+          { "item": "Autoridade no Caixa → A Lightus valida cada pagamento da empresa semanalmente para garantir que os recursos sejam alocados corretamente." },
+          { "item": "Acompanhamento mensal para garantir a implementação do plano." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas endividadas que precisam de um plano estruturado para sair da crise." },
+          { "item": "Negócios que cresceram rápido, mas perderam o controle financeiro." },
+          { "item": "Empresas que querem expandir, mas precisam organizar suas finanças antes de investir." },
+          { "item": "Empresas que têm faturamento, mas não conseguem gerar lucro consistente." },
+          { "item": "Negócios que precisam de um acompanhamento rigoroso para manter o caixa equilibrado." }
+        ]
+      },
+      {
+        "card-products-title": "Orçamento Base Zero",
+        "card-products-title-top": "",
+        "card-products-title-bottom": "O Orçamento Base Zero é indicado para empresas que precisam reavaliar seus gastos e otimizar a alocação de recursos, seja para cortar custos ou direcionar investimentos de forma mais estratégica.",
+        "card-products-top": [
+          { "item": "Mapeamento dos Custos e Despesas Atuais" },
+          { "item": "+ Levantamento de todas as despesas fixas e variáveis." },
+          { "item": "+ Classificação por categorias: essenciais, estratégicas e dispensáveis." },
+          { "item": "Reestruturação do Orçamento do Zero" },
+          { "item": "+ Definição de um novo orçamento, sem considerar valores anteriores." },
+          { "item": "+ Identificação de áreas para corte de custos ou realocação de recursos." },
+          { "item": "Implantação de Políticas e Processos de Controle" },
+          { "item": "+ Definição de limites de gastos por setor." },
+          { "item": "+ Criação de um modelo de aprovação de despesas." },
+          { "item": "Indicadores e Monitoramento do Novo Orçamento" },
+          { "item": "+ Definição de KPIs para medir eficiência financeira." },
+          { "item": "+ Monitoramento trimestral para ajustes estratégicos." },
+          { "item": "Treinamento para Gestão do OBZ" },
+          { "item": "+ Capacitação da equipe para manter disciplina orçamentária." },
+          { "item": "+ Implementação de ferramentas de acompanhamento." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas que querem reduzir custos sem comprometer a operação." },
+          { "item": "Negócios que cresceram e perderam o controle dos gastos." },
+          { "item": "Empresas com despesas elevadas que impactam a rentabilidade." },
+          { "item": "Organizações que querem evitar desperdícios e melhorar eficiência operacional." },
+          { "item": "Empresas que precisam de um processo disciplinado para aprovar despesas." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ggc",
+    "tagline": "Soluções",
+    "title": "Como podemos ajudar?",
+    "cards": [
+      {
+        "card-products-title": "Fundamentos da Governança Empresarial",
+        "card-products-title-top": "Construa bases sólidas de governança e alinhe decisões com transparência, ética e visão de longo prazo.",
+        "card-products-title-bottom": "Ideal para empresas que querem iniciar sua jornada de profissionalização da gestão.",
+        "card-products-top": [
+          { "item": "Mapeamento da estrutura atual e nível de maturidade em governança." },
+          { "item": "Definição de princípios, pilares e diretrizes de atuação." },
+          { "item": "Estruturação dos níveis de decisão e papéis estratégicos." },
+          { "item": "Treinamento introdutório para sócios, gestores e conselheiros." }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios familiares ou com gestão centralizada que buscam mais organização." },
+          { "item": "Empresas em crescimento que precisam alinhar processos decisórios." },
+          { "item": "Negócios que buscam atrair investidores ou preparar sucessão." }
+        ]
+      },
+      {
+        "card-products-title": "Estruturação de Conselhos e Comitês",
+        "card-products-title-top": "Conselhos fortes criam empresas resilientes: decida melhor com estrutura, foco e governança ativa.",
+        "card-products-title-bottom": "Para empresas que precisam garantir decisões estratégicas, técnicas e imparciais.",
+        "card-products-top": [
+          { "item": "Criação e formalização de Conselho de Administração e Consultivo." },
+          { "item": "Definição de comitês (Risco, Estratégia, Pessoas, Auditoria etc.)." },
+          { "item": "Políticas e regimentos internos para funcionamento eficaz." },
+          { "item": "Orientações práticas sobre dinâmica de reuniões e atas." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas médias e grandes com múltiplos sócios ou estrutura complexa." },
+          { "item": "Negócios que precisam de conselhos para governança robusta." },
+          { "item": "Empresas em busca de visão externa estratégica." }
+        ]
+      },
+      {
+        "card-products-title": "RH Estratégico e Cultura Organizacional",
+        "card-products-title-top": "",
+        "card-products-title-bottom": "Essencial para consolidar uma cultura alinhada ao propósito da empresa.",
+        "card-products-top": [
+          { "item": "Diagnóstico de cultura atual e gaps de alinhamento." },
+          { "item": "Estruturação de valores organizacionais aplicados no dia a dia." },
+          { "item": "Planos de atração, retenção e desenvolvimento de talentos." },
+          { "item": "Integração da cultura com metas e avaliação de desempenho." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas com alta rotatividade ou clima organizacional ruim." },
+          { "item": "Negócios em transformação que precisam de engajamento." },
+          { "item": "Empresas que buscam alta performance com pessoas certas." }
+        ]
+      },
+      {
+        "card-products-title": "Compliance, Riscos e Controles Internos",
+        "card-products-title-top": "Blindagem ética e estratégica: controle riscos, atue com integridade e fortaleça sua reputação.",
+        "card-products-title-bottom": "Para empresas que precisam prevenir fraudes, erros e passivos ocultos.",
+        "card-products-top": [
+          { "item": "Avaliação de riscos operacionais, financeiros e legais." },
+          { "item": "Implantação de matriz de riscos e planos de mitigação." },
+          { "item": "Políticas de integridade e programa de compliance." },
+          { "item": "Treinamentos para equipe sobre ética e responsabilidade." }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios que atuam em setores regulados." },
+          { "item": "Empresas que cresceram rápido e perderam controle." },
+          { "item": "Empresas expostas a riscos fiscais, jurídicos ou reputacionais." }
+        ]
+      },
+      {
+        "card-products-title": "Código de Conduta e Ética Empresarial",
+        "card-products-title-top": "Transforme valores em prática: conduta clara, ética ativa e cultura sólida em toda a empresa.",
+        "card-products-title-bottom": "Ideal para empresas que desejam reforçar seu compromisso com ética.",
+        "card-products-top": [
+          { "item": "Criação e formalização de código de conduta personalizado." },
+          { "item": "Alinhamento com cultura e valores da organização." },
+          { "item": "Política de canal de denúncias e apuração." },
+          { "item": "Treinamento para colaboradores e lideranças." }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios familiares ou com histórico de conflitos internos." },
+          { "item": "Empresas que querem fortalecer sua imagem institucional." },
+          { "item": "Organizações que buscam certificações ou selos de reputação." }
+        ]
+      },
+      {
+        "card-products-title": "Avaliação de Desempenho e Sucessão",
+        "card-products-title-top": "Desempenho mensurado, talentos desenvolvidos e sucessão garantida com estratégia e clareza.",
+        "card-products-title-bottom": "Para empresas que querem garantir continuidade e performance futura.",
+        "card-products-top": [
+          { "item": "Estruturação de modelo de avaliação de desempenho por competências." },
+          { "item": "Planos de desenvolvimento individual (PDI) e sucessão planejada." },
+          { "item": "Mapeamento de lideranças e plano de retenção." },
+          { "item": "Indicadores de performance por áreas." }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios com equipes críticas e risco de perda de talentos." },
+          { "item": "Empresas em transição geracional ou com sucessão indefinida." },
+          { "item": "Empresas que buscam profissionalizar sua gestão de pessoas." }
+        ]
+      },
+      {
+        "card-products-title": "Transparência e ESG",
+        "card-products-title-top": "Transparência real e ESG na prática: governança responsável, impacto positivo e valor sustentável.",
+        "card-products-title-bottom": "Essencial para empresas que querem crescer com responsabilidade e reputação sólida.",
+        "card-products-top": [
+          { "item": "Estruturação de políticas de transparência e prestação de contas." },
+          { "item": "Diagnóstico e plano de implantação de práticas ESG." },
+          { "item": "Indicadores de responsabilidade social, ambiental e de governança." },
+          { "item": "Relatórios anuais e comunicação com stakeholders." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas que buscam atrair investidores e parceiros estratégicos." },
+          { "item": "Negócios que atuam em setores sensíveis ao impacto ambiental/social." },
+          { "item": "Empresas que buscam sustentabilidade de longo prazo." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gpp",
+    "tagline": "Soluções",
+    "title": "Como podemos ajudar?",
+    "cards": [
+      {
+        "card-products-title": "Escritório de Projetos (PMO)",
+        "card-products-title-top": "Crie um PMO que entrega resultado: governança clara, rituais ágeis e projetos sob controle desde o início.",
+        "card-products-title-bottom": "Esta solução é ideal para empresas que precisam organizar, padronizar e profissionalizar sua gestão de projetos para garantir entregas consistentes e mensuráveis.",
+        "card-products-top": [
+          { "item": "Diagnóstico da maturidade em gestão de projetos." },
+          { "item": "Estruturação do modelo de governança e papéis." },
+          { "item": "Definição dos fluxos, templates e rituais." },
+          { "item": "Treinamento para gestores e PMs." },
+          { "item": "Implantação do PMO com suporte inicial." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas que executam muitos projetos, mas não sabem se estão gerando valor real." },
+          { "item": "Negócios que sofrem com retrabalho, atrasos ou falta de controle nas execuções." },
+          { "item": "Organizações em fase de crescimento que precisam sustentar a execução com estrutura." },
+          { "item": "Equipes sobrecarregadas ou sem clareza de prioridades e papéis." },
+          { "item": "Líderes que sentem que a execução está “solta” e sem governança." }
+        ]
+      },
+      {
+        "card-products-title": "Priorização e Seleção de Projetos Estratégicos",
+        "card-products-title-top": "Decida com critério: priorize projetos pelo que mais gera impacto com menor risco e mais viabilidade.",
+        "card-products-title-bottom": "Esta solução é indicada para empresas que precisam sair da confusão de ideias e focar no que realmente gera impacto estratégico.",
+        "card-products-top": [
+          { "item": "Matriz de priorização adaptada à realidade da empresa" },
+          { "item": "Classificação por impacto, esforço, risco e viabilidade" },
+          { "item": "Oficina de priorização com alta liderança" },
+          { "item": "Definição do pipeline estratégico de projetos" }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas com muitas ideias e poucas entregas concretas." },
+          { "item": "Negócios que gastam energia em iniciativas sem retorno claro." },
+          { "item": "Equipes que sentem que 'fazem muito e concluem pouco'." },
+          { "item": "Lideranças que têm dificuldade em escolher o que priorizar." },
+          { "item": "Organizações que querem alinhar seus projetos aos objetivos estratégicos." }
+        ]
+      },
+      {
+        "card-products-title": "Gestão de Recursos e Alocação Estratégica",
+        "card-products-title-top": "Use seus recursos com inteligência: mais resultado, menos desperdício, com foco no que realmente importa.",
+        "card-products-title-bottom": "Ideal para empresas que enfrentam sobrecarga de times, conflitos de prioridade e baixa produtividade por má distribuição de esforços.",
+        "card-products-top": [
+          { "item": "Mapeamento da capacidade e competências internas" },
+          { "item": "Simulações de cenários de alocação e carga de trabalho" },
+          { "item": "Modelos de priorização de recursos por criticidade e impacto" },
+          { "item": "Processos e rotinas para governança de uso dos recursos" }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas em que todos estão ocupados, mas poucos entregam." },
+          { "item": "Negócios em que os melhores talentos são alocados em projetos de pouco valor." },
+          { "item": "Organizações que vivem mudando prazos por falta de mão de obra adequada." },
+          { "item": "Equipes que não conseguem planejar prazos reais nem prever entregas." },
+          { "item": "Lideranças que precisam tomar decisões baseadas em dados de capacidade." }
+        ]
+      },
+      {
+        "card-products-title": "Monitoramento de KPIs e Performance de Projetos",
+        "card-products-title-top": "Projetos sob controle: dados certos, decisões rápidas e foco total no que gera resultado real.",
+        "card-products-title-bottom": "Solução pensada para empresas que desejam profissionalizar sua gestão com dados, evitando decisões baseadas apenas em percepção.",
+        "card-products-top": [
+          { "item": "Definição dos principais indicadores de sucesso" },
+          { "item": "Implantação de dashboards e relatórios visuais" },
+          { "item": "Plano de ação com base em desvios de rota" },
+          { "item": "Rotinas de leitura crítica e tomada de decisão com dados" }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios que não sabem se seus projetos estão atrasados, adiantados ou no caminho certo." },
+          { "item": "Empresas que precisam prestar contas a sócios ou conselhos, mas não têm visibilidade das entregas." },
+          { "item": "Times que não entendem claramente o que precisa ser entregue nem o que já foi feito." },
+          { "item": "Organizações que querem transformar execução em inteligência de gestão." }
+        ]
+      },
+      {
+        "card-products-title": "Metodologias Híbridas de Gestão de Projetos",
+        "card-products-title-top": "Gestão adaptada ao seu negócio: métodos híbridos para agilidade, controle e resultados sob medida.",
+        "card-products-title-bottom": "Recomendado para empresas que querem mais agilidade e flexibilidade, mas sem perder controle e previsibilidade.",
+        "card-products-top": [
+          { "item": "Avaliação da maturidade e do melhor modelo (ágil, tradicional, híbrido)" },
+          { "item": "Customização dos métodos ao porte, cultura e tipo de projetos da empresa" },
+          { "item": "Capacitação e coaching para times e líderes" },
+          { "item": "Suporte na transição e mudança cultural" }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios que tentaram aplicar métodos ágeis, mas perderam o controle da execução." },
+          { "item": "Empresas que seguem métodos tradicionais e precisam acelerar entregas." },
+          { "item": "Equipes com resistência à mudança e insegurança sobre qual caminho seguir." },
+          { "item": "Líderes que desejam modernizar a execução sem desorganizar a estrutura." }
+        ]
+      },
+      {
+        "card-products-title": "Gestão de Riscos em Projetos e Portfólio",
+        "card-products-title-top": "Antecipe e controle riscos com governança forte para proteger seus projetos e garantir resultados seguros.",
+        "card-products-title-bottom": "Solução ideal para empresas que vivem apagando incêndios e não conseguem prever problemas antes que eles impactem os resultados.",
+        "card-products-top": [
+          { "item": "Levantamento de riscos críticos e matriz de riscos" },
+          { "item": "Definição de planos de contingência e mitigação" },
+          { "item": "Criação de comitês de análise de riscos e governança preventiva" },
+          { "item": "Capacitação para antecipação de problemas" }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas com histórico recorrente de projetos estourados ou cancelados." },
+          { "item": "Negócios que não sabem calcular impactos financeiros e operacionais dos riscos." },
+          { "item": "Equipes que não documentam aprendizados nem previnem erros repetitivos." },
+          { "item": "Organizações que querem desenvolver uma cultura preventiva e estratégica." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mhc",
+    "tagline": "Soluções",
+    "title": "Como podemos ajudar?",
+    "cards": [
+      {
+        "card-products-title": "Estruturação do Processo Comercial",
+        "card-products-title-top": "Transforme seu processo comercial com funil estruturado, cliente ideal definido e previsibilidade de vendas.",
+        "card-products-title-bottom": "Ideal para empresas que desejam previsibilidade de receita, aumento de conversão e uma operação comercial com clareza e foco em resultados.",
+        "card-products-top": [
+          { "item": "Desenho completo do funil de vendas e etapas comerciais." },
+          { "item": "Definição clara de ICP e perfil de cliente ideal." },
+          { "item": "Mapeamento da jornada do cliente e pontos de contato." },
+          { "item": "Integração entre marketing e comercial." },
+          { "item": "Implantação de modelo de previsibilidade de vendas." }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios com vendas desorganizadas e sem processo definido." },
+          { "item": "Empresas que dependem exclusivamente de indicações ou vendedores chave." },
+          { "item": "Empresas com leads, mas baixa conversão." },
+          { "item": "Times comerciais que precisam de direção, metas e rituais claros." }
+        ]
+      },
+      {
+        "card-products-title": "Estratégias de Prospecção e Geração de Leads",
+        "card-products-title-top": "Potencialize suas vendas com prospecção ativa, leads qualificados e automação inteligente de cadências.",
+        "card-products-title-bottom": "Ideal para empresas que não têm uma geração constante de oportunidades e precisam aumentar o volume e a qualidade de leads.",
+        "card-products-top": [
+          { "item": "Planejamento e execução de prospecção ativa (Cold Call, Cold Mail, LinkedIn)." },
+          { "item": "Criação de iscas digitais e captação inbound." },
+          { "item": "Estratégia de campanhas e geração de listas qualificadas." },
+          { "item": "Automação de cadências e acompanhamento." }
+        ],
+        "card-products-bottom": [
+          { "item": "Empresas que dependem exclusivamente de indicações." },
+          { "item": "Negócios que não sabem como abordar leads frios." },
+          { "item": "Empresas com dificuldades para gerar volume qualificado de reuniões." },
+          { "item": "Times comerciais que ficam ociosos por falta de leads." }
+        ]
+      },
+      {
+        "card-products-title": "Serviço direto de SDR - Prospecção na Prática",
+        "card-products-title-top": "",
+        "card-products-title-bottom": "Ideal para empresas que querem resultados rápidos, mas ainda não têm equipe ou tempo para prospectar.",
+        "card-products-top": [
+          { "item": "Execução direta da prospecção pela equipe Lightus." },
+          { "item": "Geração de listas, cadência multicanal e agendamento de reuniões." },
+          { "item": "Feedbacks semanais e indicadores de performance." },
+          { "item": "Transferência do conhecimento para sua equipe (se desejado)." }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios sem equipe dedicada à geração de oportunidades." },
+          { "item": "Empresas que querem acelerar vendas sem esperar estrutura interna." },
+          { "item": "Negócios que precisam validar novos mercados ou ICPs rapidamente. " }
+        ]
+      },
+      {
+        "card-products-title": "CRM e Gestão de Relacionamento com o Cliente",
+        "card-products-title-top": "Transforme seu relacionamento com clientes com CRM eficiente, automações e gestão estratégica de vendas.",
+        "card-products-title-bottom": "Ideal para empresas que precisam organizar seus contatos, entender seu funil e aumentar o controle sobre a equipe e as oportunidades.",
+        "card-products-top": [
+          { "item": "Implantação de CRM (Bitrix, Pipedrive, Hubspot ou outro)." },
+          { "item": "Segmentação de leads, criação de pipelines e automações." },
+          { "item": "Rotinas comerciais e gestão por dashboards." },
+          { "item": "Treinamento da equipe comercial no uso do CRM." }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios que usam planilhas ou controles informais." },
+          { "item": "Empresas que perdem oportunidades por falta de follow-up." },
+          { "item": "Equipes comerciais que não têm visibilidade dos resultados." },
+          { "item": "Times que não utilizam o CRM de forma estratégica." }
+        ]
+      },
+      {
+        "card-products-title": "Técnicas Avançadas de Negociação e Fechamento ",
+        "card-products-title-top": "Domine a arte da negociação: escuta ativa, fechamento eficaz e criação de urgência para resultados reais.",
+        "card-products-title-bottom": "Ideal para empresas que geram oportunidades, mas não conseguem converter em vendas com constância.",
+        "card-products-top": [
+          { "item": "Técnicas de escuta ativa, rapport e objeções." },
+          { "item": "Abordagem consultiva e foco no problema real do cliente." },
+          { "item": "Técnicas de fechamento eficaz e geração de urgência." },
+          { "item": "Simulações e roleplays com a equipe." }
+        ],
+        "card-products-bottom": [
+          { "item": "Times que têm medo ou insegurança na negociação." },
+          { "item": "Vendedores que dependem do preço como principal argumento." },
+          { "item": "Empresas que enfrentam muita objeção ou demora nas decisões." },
+          { "item": "Negócios com ciclo de venda longo e ineficiente." }
+        ]
+      },
+      {
+        "card-products-title": "Estratégias de Precificação e Posicionamento",
+        "card-products-title-top": "Precifique com estratégia: valor, margem e posicionamento alinhados para maximizar lucro e competitividade.",
+        "card-products-title-bottom": "Ideal para empresas que não sabem precificar, perdem margem ou não se diferenciam no discurso comercial.",
+        "card-products-top": [
+          { "item": "Definição de preço com base em valor e diferenciais." },
+          { "item": "Estratégia de margem, pacotes e posicionamento competitivo." },
+          { "item": "Ajustes por nicho, canal ou mercado-alvo." },
+          { "item": "Integração entre marketing, produto e vendas." }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios com guerra de preços no mercado." },
+          { "item": "Empresas com margem apertada ou modelo pouco escalável." },
+          { "item": "Negócios que oferecem valor, mas não sabem comunicar isso." },
+          { "item": "Produtos ou serviços com proposta confusa ou mal posicionada." }
+        ]
+      },
+      {
+        "card-products-title": "Expansão de Mercado e Abertura de Novos Canais",
+        "card-products-title-top": "Expanda com inteligência: novos canais, parceiros certos e estratégia sólida para crescer com consistência.",
+        "card-products-title-bottom": "Ideal para empresas que querem crescer sem depender só do canal atual ou expandir para novas regiões.",
+        "card-products-top": [
+          { "item": "Análise de viabilidade de novos canais (marketplaces, representantes, distribuidores, parcerias)." },
+          { "item": "Definição da estratégia de entrada." },
+          { "item": "Implantação piloto e rampagem de novos canais." },
+          { "item": "Estruturação do time ou parceiros externos." }
+        ],
+        "card-products-bottom": [
+          { "item": "Negócios que estão estagnados no mercado atual." },
+          { "item": "Empresas que querem escalar sem depender de equipe própria." },
+          { "item": "Empresas com produto pronto, mas canal de venda ineficiente." },
+          { "item": "Empresas que desejam abrir filiais, franquias ou braços comerciais." }
+        ]
+      },
+      {
+        "card-products-title": "Gestão de Equipe Comercial e Indicadores de Performance",
+        "card-products-title-top": "Equipes comerciais de alta performance nascem de metas claras, líderes fortes e indicadores que guiam resultados.",
+        "card-products-title-bottom": "Ideal para empresas que têm equipe comercial, mas falta gestão, acompanhamento e cultura de performance.",
+        "card-products-top": [
+          { "item": "Implantação de metas e KPIs comerciais." },
+          { "item": "Rotina de reuniões, rituais e dashboards." },
+          { "item": "Treinamento de líderes e acompanhamento da equipe." },
+          { "item": "Avaliação de desempenho e plano de desenvolvimento da equipe." }
+        ],
+        "card-products-bottom": [
+          { "item": "Times que não batem meta com constância." },
+          { "item": "Empresas sem rituais ou indicadores comerciais." },
+          { "item": "Negócios com vendedores desmotivados ou desorganizados." },
+          { "item": "Gestores que não sabem como cobrar ou acompanhar resultados." }
+        ]
+      }
+    ]
+  }
+]

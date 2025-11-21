@@ -1,0 +1,137 @@
+[
+  {
+    "id": "afi",
+    "cards": [
+      {
+        "card-cases-tagline": "Diretor de Inovação",
+        "card-cases-title": "Empresa do Setor Alimentício",
+        "card-cases-text": "“Conseguimos sair da inércia e colocar inovação no centro da nossa estratégia. Em menos de 90 dias, já tínhamos dois projetos validados e rodando com retorno real.”"
+      },
+      {
+        "card-cases-tagline": "CEO",
+        "card-cases-title": "Supermercado de Médio Porte",
+        "card-cases-text": "“Com o apoio da Lightus, definimos um plano de crescimento que uniu estratégia e execução. Pela primeira vez, sentimos que estávamos no controle do futuro.”"
+      }
+    ]
+  },
+  {
+    "id": "gfa",
+    "cards": [
+      {
+        "card-cases-tagline": "Diretor Financeiro",
+        "card-cases-title": "Indústria de Alimentos",
+        "card-cases-text": "“Não tínhamos previsibilidade de caixa e acumulávamos juros desnecessários. A Lightus implantou um fluxo de caixa estruturado, DRE detalhado e indicadores em dashboard. Hoje, temos segurança total para decidir.”"
+      },
+      {
+        "card-cases-tagline": "CEO",
+        "card-cases-title": "Rede de Supermercados",
+        "card-cases-text": "“Estávamos endividados e sem controle dos pagamentos. Com o pacote SOS Financeiro, renegociamos dívidas, validamos pagamentos semanalmente e eliminamos despesas inúteis. Voltamos a respirar financeiramente em 90 dias.”"
+      }
+    ]
+  },
+  {
+    "id": "ggc",
+    "cards": [
+      {
+        "card-cases-tagline": "CEO",
+        "card-cases-title": "Indústria Familiar de Médio Porte",
+        "card-cases-text": "“Implantar a governança com a Lightus foi um divisor de águas. Conseguimos organizar nosso conselho, estruturar nossa cultura e tomar decisões mais estratégicas. Hoje, temos mais clareza, menos conflitos e um rumo claro para o futuro.”"
+      },
+      {
+        "card-cases-tagline": "diretor de pessoas",
+        "card-cases-title": "telecom",
+        "card-cases-text": "“A cultura da empresa mudou completamente. Saímos da informalidade, estruturamos avaliação de desempenho, sucessão e alinhamos toda a liderança com os valores da companhia. Os resultados em engajamento e produtividade foram visíveis.”"
+      }
+    ]
+  },
+  {
+    "id": "gpp",
+    "cards": [
+      {
+        "card-cases-tagline": "Diretora de Operações",
+        "card-cases-title": "Indústria de Equipamentos Médicos",
+        "card-cases-text": "“Conseguimos finalmente parar de apagar incêndios e executar o que realmente importa. Com a estrutura de portfólio montada, nossos projetos passaram a ter começo, meio e fim — com resultado.”"
+      },
+      {
+        "card-cases-tagline": "CEO",
+        "card-cases-title": "Holding do Agronegócio",
+        "card-cases-text": "“A Lightus nos ajudou a transformar ideias soltas em uma linha de execução estratégica. Hoje priorizamos melhor, alocamos com inteligência e ganhamos previsibilidade.”"
+      }
+    ]
+  },
+  {
+    "id": "mhc",
+    "cards": [
+      {
+        "card-cases-tagline": "diretor comercial",
+        "card-cases-title": "Empresa B2B Industrial",
+        "card-cases-text": "“Nós tínhamos muitos leads, mas pouquíssima conversão. O trabalho da Lightus foi essencial para estruturar nosso funil, treinar o time e dobrar nossas vendas em 3 meses.”"
+      },
+      {
+        "card-cases-tagline": "CEO",
+        "card-cases-title": "Empresa de Serviços para PMEs",
+        "card-cases-text": "“Nunca imaginei que fosse possível gerar leads todos os dias de forma estruturada. Com a ajuda do SDR da Lightus, conseguimos abrir portas em contas que antes pareciam inalcançáveis.”"
+      }
+    ]
+  },
+  {
+    "id": "v_in",
+    "cards": [
+      {
+        "card-cases-tagline": "CEO",
+        "card-cases-title": "INDÚSTRIA DE EMBUTIDOS",
+        "card-cases-text": "“Campanha outbound + inbound com conteúdo técnico resultou em R$ 780 mil em novas propostas para o canal food service.”"
+      },
+      {
+        "card-cases-tagline": "Diretor Comercial",
+        "card-cases-title": "INDÚSTRIA DE CAFÉ",
+        "card-cases-text": "“Integração entre marketing e comercial gerou aumento de 3x na geração de leads qualificados em 60 dias, com uso de CRM e SDR.”"
+      }
+    ]
+  },
+  {
+    "id": "v_lg",
+    "cards": [
+      {
+        "card-cases-tagline": "CEO",
+        "card-cases-title": "Operador Logístico Regional",
+        "card-cases-text": "“Implantamos indicadores de frota e painel de controle em 30 dias. Reduzimos em 23% os gastos com manutenção emergencial e ganhamos agilidade na tomada de decisão.”"
+      },
+      {
+        "card-cases-tagline": "Diretor de Operações",
+        "card-cases-title": "Transporte de Cargas Fracionadas",
+        "card-cases-text": "“Com a separação de custos por rota e cliente, conseguimos cortar 18% dos trajetos deficitários e aumentamos a margem líquida em 5,6 pontos em 90 dias.”"
+      }
+    ]
+  },
+  {
+    "id": "v_tc",
+    "cards": [
+      {
+        "card-cases-tagline": "CEO",
+        "card-cases-title": "Operadora Regional de Internet",
+        "card-cases-text": "“Reduzimos a inadimplência de 17% para 6% em 90 dias, com a implantação de um modelo automatizado de cobrança e renegociação.”"
+      },
+      {
+        "card-cases-tagline": "Diretor Comercial",
+        "card-cases-title": "Telecom de médio porte",
+        "card-cases-text": "“Com a implantação do funil comercial e CRM, passamos de 80 para 260 novos contratos/mês, com aumento de 30% na taxa de conversão.”"
+      }
+    ]
+  },
+  {
+    "id": "v_va",
+    "cards": [
+      {
+        "card-cases-tagline": "CEO",
+        "card-cases-title": "varejo de materiais de construção",
+        "card-cases-text": "“Após a implementação da Estruturação Financeira Essencial, aumentamos nossa margem líquida de 2,5% para 5,8% em seis meses.”"
+      },
+      {
+        "card-cases-tagline": "COO",
+        "card-cases-title": "Supermercado de Médio Porte",
+        "card-cases-text": "“Com a Gestão de Estoques e Curvas de Mix, reduzimos as perdas operacionais em 30% e aumentamos o giro de produtos em 20%.”"
+      }
+    ]
+  }
+]

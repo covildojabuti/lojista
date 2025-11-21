@@ -1,0 +1,72 @@
+[
+  {
+    "id": "solucoes",
+    "items": [
+      {
+        "text": "Visão Geral",
+        "url": "#b001",
+        "icon": "fa-solid fa-info-circle"
+      },
+      {
+        "text": "Benefícios",
+        "url": "#b002",
+        "icon": "fa-solid fa-star"
+      },
+      {
+        "text": "Como Implantar",
+        "url": "#b003",
+        "icon": "fa-solid fa-rocket"
+      },
+      {
+        "text": "Soluções",
+        "url": "#b004",
+        "icon": "fa-solid fa-lightbulb"
+      },
+      {
+        "text": "Cases",
+        "url": "#b005",
+        "icon": "fa-solid fa-trophy"
+      },
+      {
+        "text": "Contato",
+        "url": "#b006",
+        "icon": "fa-solid fa-headset"
+      }
+    ]
+  },
+  {
+    "id": "verticais",
+    "items": [
+      {
+        "text": "Desafios do Setor",
+        "url": "#b001",
+        "icon": "fa-solid fa-info-circle"
+      },
+      {
+        "text": "Como Ajudamos o Setor",
+        "url": "#b002",
+        "icon": "fa-solid fa-star"
+      },
+      {
+        "text": "Como Implantar",
+        "url": "#b003",
+        "icon": "fa-solid fa-rocket"
+      },
+      {
+        "text": "Soluções",
+        "url": "#b004",
+        "icon": "fa-solid fa-lightbulb"
+      },
+      {
+        "text": "Cases",
+        "url": "#b005",
+        "icon": "fa-solid fa-trophy"
+      },
+      {
+        "text": "Contato",
+        "url": "#b006",
+        "icon": "fa-solid fa-headset"
+      }
+    ]
+  }
+]

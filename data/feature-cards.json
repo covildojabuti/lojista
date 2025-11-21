@@ -1,0 +1,357 @@
+[
+  {
+    "id": "afi",
+    "mainTitle": "Resultados reais e práticos para a sua empresa",
+    "mainSubtitle": "Benefícios",
+    "cards": [
+      {
+        "title": "Antecipação de tendências",
+        "text": "Monitoramento constante de mercado, concorrência e mudanças estratégicas.",
+        "imageUrl": "/images/feature-card-afi-1.png"
+      },
+      {
+        "title": "Inovação na prática",
+        "text": "Modelos de negócio diferenciados e novas oportunidades de receita.",
+        "imageUrl": "/images/feature-card-afi-2.png"
+      },
+      {
+        "title": "Execução ágil e eficaz",
+        "text": "Metodologias ágeis e gestão baseada em OKRs para garantir resultados.",
+        "imageUrl": "/images/feature-card-afi-3.png"
+      },
+      {
+        "title": "Estratégia escalável",
+        "text": "Planejamento estruturado para crescimento sustentável e expansão.",
+        "imageUrl": "/images/feature-card-afi-4.png"
+      },
+      {
+        "title": "Tomada de decisão baseada em dados",
+        "text": "Inteligência de mercado e KPIs estratégicos para minimizar riscos.",
+        "imageUrl": "/images/feature-card-afi-5.png"
+      },
+      {
+        "title": "Cultura de inovação contínua",
+        "text": "Transformação da mentalidade organizacional com foco em agilidade, protagonismo e evolução constante do negócio.",
+        "imageUrl": "/images/feature-card-afi-6.png"
+      }
+    ]
+  },
+  {
+    "id": "gfa",
+    "mainTitle": "Resultados reais e práticos para a sua empresa",
+    "mainSubtitle": "Benefícios",
+    "cards": [
+      {
+        "title": "Controle total do caixa",
+        "text": "Gestão rigorosa de entradas, saídas e previsões, com validação estratégica dos pagamentos.",
+        "imageUrl": "/images/feature-card-afi-1.png"
+      },
+      {
+        "title": "Corte de desperdícios com inteligência",
+        "text": "Análise crítica de despesas e reestruturação eficiente do custo operacional.",
+        "imageUrl": "/images/feature-card-afi-2.png"
+      },
+      {
+        "title": "Decisões guiadas por dados confiáveis",
+        "text": "Dashboards, DRE estruturado e KPIs para orientar o crescimento com segurança.",
+        "imageUrl": "/images/feature-card-afi-3.png"
+      },
+      {
+        "title": "Recuperação e expansão financeira",
+        "text": "Planos personalizados para empresas endividadas ou em fase de crescimento.",
+        "imageUrl": "/images/feature-card-afi-4.png"
+      },
+      {
+        "title": "Segurança e rentabilidade a longo prazo",
+        "text": "Precificação correta, endividamento controlado e saúde financeira permanente.",
+        "imageUrl": "/images/feature-card-afi-5.png"
+      },
+      {
+        "title": "Educação e cultura financeira na empresa",
+        "text": "Boas práticas, padronização e capacitação interna para manter os resultados.",
+        "imageUrl": "/images/feature-card-afi-6.png"
+      }
+    ]
+  },
+  {
+    "id": "ggc",
+    "mainTitle": "Resultados reais e práticos para a sua empresa",
+    "mainSubtitle": "Benefícios",
+    "cards": [
+      {
+        "title": "Governança Estruturada",
+        "text": "Definição clara de papéis, responsabilidades e instâncias decisórias com conselhos e comitês atuantes.",
+        "imageUrl": "/images/feature-card-afi-1.png"
+      },
+      {
+        "title": "Cultura Organizacional Forte",
+        "text": "RH estratégico alinhado à missão e valores da empresa para consolidar uma cultura de alta performance.",
+        "imageUrl": "/images/feature-card-afi-2.png"
+      },
+      {
+        "title": "Conformidade e Controle de Riscos",
+        "text": "Compliance robusto, controles internos eficientes e mitigação proativa de riscos operacionais e reputacionais.",
+        "imageUrl": "/images/feature-card-afi-3.png"
+      },
+      {
+        "title": "Transparência e Prestação de Contas",
+        "text": "Adoção de práticas de reporte, ética e responsabilidade para fortalecer a confiança de stakeholders.",
+        "imageUrl": "/images/feature-card-afi-4.png"
+      },
+      {
+        "title": "Sustentabilidade e Longevidade Empresarial",
+        "text": "Visão de longo prazo, sucessão planejada e aderência às práticas ESG para perenizar o negócio.",
+        "imageUrl": "/images/feature-card-afi-5.png"
+      },
+      {
+        "title": "RH Alinhado à Estratégia",
+        "text": "Transformação do RH em uma área estratégica, com foco em cultura, desempenho, sucessão e engajamento de pessoas.",
+        "imageUrl": "/images/feature-card-afi-6.png"
+      }
+    ]
+  },
+  {
+    "id": "gpp",
+    "mainTitle": "Resultados reais e práticos para a sua empresa",
+    "mainSubtitle": "Benefícios",
+    "cards": [
+      {
+        "title": "Portfólio Alinhado à Estratégia",
+        "text": "Seleção e priorização de projetos com base em impacto e objetivos estratégicos.",
+        "imageUrl": "/images/feature-card-afi-1.png"
+      },
+      {
+        "title": "PMO Estruturado e Eficiente",
+        "text": "Criação ou reestruturação do Escritório de Projetos com governança e processos claros.",
+        "imageUrl": "/images/feature-card-afi-2.png"
+      },
+      {
+        "title": "Uso Inteligente de Recursos",
+        "text": "Alocação estratégica de pessoas, tempo e orçamento conforme a criticidade de cada projeto.",
+        "imageUrl": "/images/feature-card-afi-3.png"
+      },
+      {
+        "title": "Execução com Agilidade e Método",
+        "text": "Aplicação de metodologias híbridas (tradicional + ágil) para entregar com consistência.",
+        "imageUrl": "/images/feature-card-afi-4.png"
+      },
+      {
+        "title": "Decisões Baseadas em Dados",
+        "text": "KPIs e dashboards que permitem monitoramento em tempo real e correções rápidas de rota.",
+        "imageUrl": "/images/feature-card-afi-5.png"
+      },
+      {
+        "title": "Engajamento e Alta Performance das Equipes",
+        "text": "Processos e rituais que melhoram a comunicação, motivam os times e garantem entregas com qualidade.",
+        "imageUrl": "/images/feature-card-afi-6.png"
+      }
+    ]
+  },
+  {
+    "id": "mhc",
+    "mainTitle": "Resultados reais e práticos para a sua empresa",
+    "mainSubtitle": "Benefícios",
+    "cards": [
+      {
+        "title": "Funil de vendas estruturado",
+        "text": "Do lead ao pós-venda, seu processo comercial mapeado e com etapas claras.",
+        "imageUrl": "/images/feature-card-afi-1.png"
+      },
+      {
+        "title": "Geração de leads qualificados",
+        "text": "Ações estratégicas de prospecção ativa e passiva com foco em leads que compram.",
+        "imageUrl": "/images/feature-card-afi-2.png"
+      },
+      {
+        "title": "Alta taxa de conversão",
+        "text": "Negociações mais assertivas com técnicas de persuasão e fechamento consultivo.",
+        "imageUrl": "/images/feature-card-afi-3.png"
+      },
+      {
+        "title": "Equipe comercial de alta performance",
+        "text": "Gestão por indicadores, metas realistas e acompanhamento estratégico da equipe.",
+        "imageUrl": "/images/feature-card-afi-4.png"
+      },
+      {
+        "title": "Crescimento com posicionamento inteligente",
+        "text": "Precificação estratégica, canais de venda bem definidos e posicionamento claro.",
+        "imageUrl": "/images/feature-card-afi-5.png"
+      },
+      {
+        "title": "Expansão comercial segura e escalável",
+        "text": "Novos mercados explorados com inteligência, análise de viabilidade e plano de ação.",
+        "imageUrl": "/images/feature-card-afi-6.png"
+      }
+    ]
+  },
+  {
+    "id": "v_lg",
+    "mainTitle": "Resultados práticos com foco em margem, escala e produtividade",
+    "mainSubtitle": "Como Ajudamos o Setor",
+    "cards": [
+      {
+        "title": "Controle de custos por rota e cliente",
+        "text": "Ajudamos a calcular e acompanhar custos e margem por operação.",
+        "imageUrl": "/images/feature-card-afi-1.png"
+      },
+      {
+        "title": "Gestão inteligente da frota",
+        "text": "Criamos indicadores e rotinas para manutenção, abastecimento e uso.",
+        "imageUrl": "/images/feature-card-afi-2.png"
+      },
+      {
+        "title": "Roteirização eficiente com apoio à operação",
+        "text": "Implantamos métodos e ferramentas para reduzir retrabalho e aumentar entregas.",
+        "imageUrl": "/images/feature-card-afi-3.png"
+      },
+      {
+        "title": "Precificação estratégica por tipo de serviço",
+        "text": "Definimos políticas que consideram custos reais e garantem rentabilidade.",
+        "imageUrl": "/images/feature-card-afi-4.png"
+      },
+      {
+        "title": "Planejamento para crescimento estruturado",
+        "text": "Estruturamos expansão com metas, orçamento e visão de longo prazo.",
+        "imageUrl": "/images/feature-card-afi-5.png"
+      },
+      {
+        "title": "Indicadores e painéis para decisão ágil",
+        "text": "Implantamos gestão à vista com foco em eficiência operacional e margem.",
+        "imageUrl": "/images/feature-card-afi-6.png"
+      }
+    ]
+  },
+  {
+    "id": "v_in",
+    "mainTitle": "Resultados práticos com foco em margem, escala e produtividade",
+    "mainSubtitle": "Como Ajudamos o Setor",
+    "cards": [
+      {
+        "title": "Controle total dos custos reais",
+        "text": "Mapeamos custos por produto e otimizamos sua rentabilidade.",
+        "imageUrl": "/images/feature-card-afi-1.png"
+      },
+      {
+        "title": "Redução de perdas e desperdícios",
+        "text": "Atuamos no chão de fábrica para eliminar gargalos e retrabalhos.",
+        "imageUrl": "/images/feature-card-afi-2.png"
+      },
+      {
+        "title": "Precificação estratégica e segura",
+        "text": "Definimos preços com base em margem, mercado e posicionamento.",
+        "imageUrl": "/images/feature-card-afi-3.png"
+      },
+      {
+        "title": "Gestão de pessoas mais eficiente",
+        "text": "Reduzimos a rotatividade e criamos líderes no chão de fábrica.",
+        "imageUrl": "/images/feature-card-afi-4.png"
+      },
+      {
+        "title": "Processos com mais padrão e controle",
+        "text": "Desenhamos rotinas claras e implantamos KPIs fáceis de acompanhar.",
+        "imageUrl": "/images/feature-card-afi-5.png"
+      },
+      {
+        "title": "Crescimento com menos riscos",
+        "text": "Apoiamos a expansão com dados, inovação e plano estruturado.",
+        "imageUrl": "/images/feature-card-afi-6.png"
+      }
+    ]
+  },
+  {
+    "id": "v_tc",
+    "mainTitle": "Resultados práticos com foco em margem, escala e produtividade",
+    "mainSubtitle": "Como Ajudamos o Setor",
+    "cards": [
+      {
+        "title": "Redução da inadimplência",
+        "text": "Implementamos políticas e sistemas de cobrança com foco em recorrência.",
+        "imageUrl": "/images/feature-card-afi-1.png"
+      },
+      {
+        "title": "Clareza total sobre rentabilidade",
+        "text": "Estruturamos a contabilidade para visualizar lucros reais por serviço.",
+        "imageUrl": "/images/feature-card-afi-2.png"
+      },
+      {
+        "title": "Comercial que realmente vende",
+        "text": "Criamos funis, metas, scripts e equipe comercial com foco em resultado.",
+        "imageUrl": "/images/feature-card-afi-3.png"
+      },
+      {
+        "title": "Expansão com controle e ROI",
+        "text": "Planejamos e acompanhamos cada nova operação com governança e indicadores.",
+        "imageUrl": "/images/feature-card-afi-4.png"
+      },
+      {
+        "title": "Padronização de processos críticos",
+        "text": "Modelamos fluxos operacionais e instalamos gestão por indicadores.",
+        "imageUrl": "/images/feature-card-afi-5.png"
+      },
+      {
+        "title": "Time mais produtivo e alinhado",
+        "text": "Estruturamos reuniões, metas e gestão de desempenho para acelerar entregas.",
+        "imageUrl": "/images/feature-card-afi-6.png"
+      }
+    ]
+  },
+  {
+    "id": "v_va",
+    "mainTitle": "Resultados práticos com foco em margem, escala e produtividade",
+    "mainSubtitle": "Como Ajudamos o Setor",
+    "cards": [
+      {
+        "title": "Controle total dos custos reais",
+        "text": "Mapeamos custos por produto e otimizamos sua rentabilidade.",
+        "imageUrl": "/images/feature-card-afi-1.png"
+      },
+      {
+        "title": "Redução de perdas operacionais",
+        "text": "Implementamos processos para minimizar desperdícios e perdas.",
+        "imageUrl": "/images/feature-card-afi-2.png"
+      },
+      {
+        "title": "Precificação estratégica",
+        "text": "Desenvolvemos modelos de precificação que equilibram competitividade e lucro.",
+        "imageUrl": "/images/feature-card-afi-3.png"
+      },
+      {
+        "title": "Gestão eficaz de equipes",
+        "text": "Estruturamos processos de RH para reduzir rotatividade e aumentar produtividade.",
+        "imageUrl": "/images/feature-card-afi-4.png"
+      },
+      {
+        "title": "Planejamento estratégico para expansão",
+        "text": "Elaboramos planos de crescimento sustentáveis com base em dados e análises.",
+        "imageUrl": "/images/feature-card-afi-5.png"
+      },
+      {
+        "title": "Padronização de processos e indicadores",
+        "text": "Implementamos KPIs e processos padronizados para melhor controle e eficiência.",
+        "imageUrl": "/images/feature-card-afi-6.png"
+      }
+    ]
+  },
+  {
+    "id": "pme",
+    "mainTitle": "Escolha o Melhor Tratamento para o Seu Negócio: Flexibilidade e Resultados",
+    "mainSubtitle": "Como Ajudamos as PMEs",
+    "cards": [
+      {
+        "title": "Acompanhamento Periódico: Alinhamento e Velocidade",
+        "text": "Perfeito para quem busca suporte contínuo e flexibilidade. Neste modelo, realizamos encontros periódicos (à sua escolha) para analisar seus indicadores (financeiros, de gestão, de vendas), monitorar planos de ação e ajustar a rota rapidamente. É o suporte do 'Médico Empresarial' ao seu lado, garantindo que as ações certas sejam tomadas e os resultados acompanhados de perto.",
+        "imageUrl": "/images/feature-card-afi-5.png"
+      },
+      {
+        "title": "Mentoria Estratégica: Guia e Decisões Acertadas",
+        "text": "Ideal para empreendedores que desejam um guia experiente para validar ideias, tomar decisões estratégicas e superar desafios complexos. Você terá acesso direto ao meu conhecimento e visão estratégica em sessões focadas, onde juntos traçaremos os melhores caminhos para o futuro do seu negócio, desenvolvendo sua capacidade de liderar a transformação.",
+        "imageUrl": "/images/feature-card-afi-3.png"
+      },
+      {
+        "title": "Projetos de Melhoria: Soluções Completas e Focadas",
+        "text": "Para desafios específicos que exigem uma intervenção profunda e focada. Com base no seu diagnóstico, vamos implementar soluções completas em áreas como: Gestão Financeira e Rentabilidade, Performance e Gestão de Projetos, Faturamento e Vendas, Estratégia e Governança, dentre outros. Cada projeto é desenhado para entregar resultados mensuráveis e transformar uma área chave do seu negócio.",
+        "imageUrl": "/images/feature-card-afi-6.png"
+      }
+    ]
+  }
+]
