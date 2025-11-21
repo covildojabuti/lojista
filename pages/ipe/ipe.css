@@ -1,0 +1,318 @@
+﻿.acordeom {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+}
+
+.acordeom-table {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+    .acordeom-table > div {
+        padding: 15px 20px;
+    }
+
+        .acordeom-table > div:last-child {
+            border-bottom: none;
+        }
+
+
+.acordeom-table-1 {
+    background-color: #d3a303; /* Cor de fundo base para a tabela */
+}
+
+.acordeom-table-2 {
+    background-color: #bb9106; /* Cor de fundo base para a tabela */
+}
+
+.acordeom-table h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+}
+
+.acordeom-table p { /* Este seletor pega o texto descritivo */
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-top: 5px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.acordeom-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 40%;
+}
+
+    .acordeom-image img {
+        max-width: 60%;
+        height: auto;
+        display: block;
+    }
+
+.call-to-action {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.call-to-action-button {
+    display: inline-block;
+    background-color: #1e90ff;
+    color: white;
+    font-size: 18px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+    .call-to-action-button:hover {
+        filter: brightness(1.2); /* Makes the button 10% brighter */
+        color:#fff;
+    }
+
+/* Responsividade para celular */
+@media (max-width: 768px) {
+    .acordeom {
+        flex-direction: column;
+    }
+
+    .acordeom-table,
+    .acordeom-image {
+        flex: none;
+        width: 100%;
+    }
+}
+
+/* CONTAINER PRINCIPAL */
+.process {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+/* BLOCO DOS PASSOS */
+.process-container {
+    flex: 1 1 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "step1 step4"
+        "step2 step3";
+    gap: 1rem;
+}
+
+/* POSICIONAMENTO DOS PASSOS */
+.process-container-step:nth-child(1) .process-container-step-item:nth-child(1) {
+    grid-area: step1;
+}
+
+.process-container-step:nth-child(1) .process-container-step-item:nth-child(2) {
+    grid-area: step2;
+}
+
+.process-container-step:nth-child(2) .process-container-step-item:nth-child(1) {
+    grid-area: step4;
+}
+
+.process-container-step:nth-child(2) .process-container-step-item:nth-child(2) {
+    grid-area: step3;
+}
+
+/* ITEM BASE */
+.process-container-step-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.process-container-step-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* SOBREPOSIÇÃO (CAMADAS DO OVERLAY) */
+.process-container-step-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7); /* camada escura base */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: scale(0.98);
+    cursor:pointer;
+}
+
+.process-container-step-item:hover .process-container-step-item-overlay {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* BORDA INTERNA COM DISTÂNCIA */
+.process-container-step-item-overlay::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid #fff;
+    z-index: 1;
+}
+
+/* TEXTO CENTRAL */
+.process-container-step-item-title {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.4;
+    padding: 1rem;
+}
+
+/* RELATÓRIO */
+.process-report {
+    flex: 1 1 45%;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+}
+
+.process-report-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.process-report-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: scale(0.98);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.process-report:hover .process-report-overlay {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* CAMADA INTERNA DO RELATÓRIO */
+.process-report-overlay::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid #fff;
+    z-index: 1;
+}
+
+.process-report-overlay-title {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .process {
+        flex-direction: column;
+    }
+
+    .process-container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "step1"
+            "step2"
+            "step4"
+            "step3";
+    }
+
+    .process-report {
+        width: 100%;
+    }
+}
+
+/* Oculta os inputs */
+.zoom-checkbox {
+    display: none;
+}
+
+/* Miniatura padrão */
+.zoom-thumb {
+    width: 100%;
+    height: auto;
+    cursor: zoom-in;
+    display: block;
+}
+
+/* Overlay (aparece quando checkbox está marcado) */
+.zoom-checkbox:checked + .zoom-label + .zoom-overlay {
+    display: flex;
+}
+
+.zoom-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Área que recebe o clique para fechar */
+.zoom-container {
+    cursor: zoom-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+/* Imagem ampliada */
+.zoom-image {
+    max-width: 80vw; /* largura máxima de 80% da viewport */
+    max-height: 80vh; /* altura máxima de 80% da viewport */
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+
+
