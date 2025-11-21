@@ -1,0 +1,259 @@
+﻿<html>
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" type="text/css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" type="text/css">
+    <link rel="stylesheet" href="/components/common.css" type="text/css">
+    <script src="/js/register-head.js"></script>
+    <title>Site Simples</title>
+    <link rel="stylesheet" href="/components/header/header.css">
+    <link rel="stylesheet" href="/components/banner-home/banner-home.css">
+    <link rel="stylesheet" href="/components/blog-resumo/blog-resumo.css">
+    <link rel="stylesheet" href="/components/footer/footer.css">
+    <link rel="stylesheet" href="/components/menu-top/menu-top.css">
+    <link rel="stylesheet" href="/components/menu-bottom/menu-bottom.css">
+    <link rel="stylesheet" href="/components/button-start/button-start.css">
+    <link rel="stylesheet" href="/components/button-whatsapp/button-whatsapp.css">
+    <link rel="stylesheet" href="/components/header/header.css">
+    <link rel="stylesheet" href="/components/menu-top/menu-top.css">
+    <link rel="stylesheet" href="/components/banner-home/banner-home.css">
+    <link rel="stylesheet" href="/components/blog-resumo/blog-resumo.css">
+    <link rel="stylesheet" href="/components/footer/footer.css">
+    <link rel="stylesheet" href="/components/menu-bottom/menu-bottom.css">
+    <link rel="stylesheet" href="/components/button-start/button-start.css">
+    <link rel="stylesheet" href="/components/button-whatsapp/button-whatsapp.css">
+    <link rel="stylesheet" href="/components/menu-top/menu-top.css">
+    <link rel="stylesheet" href="/components/menu-bottom/menu-bottom.css">
+    <link rel="stylesheet" href="/components/button-start/button-start.css">
+    <link rel="stylesheet" href="/components/button-whatsapp/button-whatsapp.css">
+</head>
+<body>
+    <!-- Header será injetado aqui -->
+    <header data-include="/components/header/">
+        <button class="hamburger-menu" aria-label="Abrir Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="logo">
+            <a href="/">
+                <img src="https://cdn.bitrix24.com.br/b30384271/landing/2ca/2ca44e330d952f0a685b85873fe7cc33/22_1x_1x.png" alt="Logo da Empresa">
+            </a>
+        </div>
+
+        <!-- Menu aninhado -->
+        <div data-include="/components/menu-top/">
+            <nav class="menu">
+                <ul class="nav-links">
+                    <li class="menu-item has-submenu">
+                        <span class="menu-label">Soluções</span>
+                        <ul class="submenu">
+                            <li class="menu-item "><a href="/pages/afi/" class="menu-link">Antecipar o Futuro com Inovação</a></li>
+                            <li class="menu-item "><a href="/pages/gfa" class="menu-link">Gestão Financeira com Autoridade</a></li>
+                            <li class="menu-item "><a href="/pages/ggc" class="menu-link">Gestão da Governança Corporativa</a></li>
+                            <li class="menu-item "><a href="/pages/gpp" class="menu-link">Gestão de Portifólio de Projetos</a></li>
+                            <li class="menu-item "><a href="/pages/mhc" class="menu-link">Modelo Hexa Comercial</a></li>
+                            <li class="menu-item "><a href="/pages/ipe" class="menu-link">IPE</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item has-submenu">
+                        <span class="menu-label">Seguimentos</span>
+                        <ul class="submenu">
+                            <li class="menu-item "><a href="/pages/v_ia" class="menu-link">Indústria</a></li>
+                            <li class="menu-item "><a href="/pages/v_lg" class="menu-link">Logística</a></li>
+                            <li class="menu-item "><a href="/pages/v_tc" class="menu-link">Telecomunicações</a></li>
+                            <li class="menu-item "><a href="/pages/v_sp" class="menu-link">Varejo</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item has-submenu">
+                        <span class="menu-label">Conteúdo</span>
+                        <ul class="submenu">
+                            <li class="menu-item "><a href="/pages/insights" class="menu-link">Insights (Blog)</a></li>
+                            <li class="menu-item "><a href="/pages/newsletter" class="menu-link">Assine nossa Newsletter</a></li>
+                            <li class="menu-item "><a href="/pages/ebooks" class="menu-link">E-Books</a></li>
+                            <li class="menu-item "><a href="/pages/plancheckdocs" class="menu-link">Planilhas, Checklists e Padrões</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item has-submenu">
+                        <span class="menu-label">Sobre</span>
+                        <ul class="submenu">
+                            <li class="menu-item "><a href="/pages/quemsomos" class="menu-link">Quem Somos</a></li>
+                            <li class="menu-item "><a href="/pages/missao" class="menu-link">O que Fazemos</a></li>
+                            <li class="menu-item "><a href="/pages/sustentabilidade" class="menu-link">Desenvolvimento Sustentável</a></li>
+                            <li class="menu-item "><a href="/pages/faleconosco" class="menu-link">Fale Conosco</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="contact-icon">
+            <a href="https://wa.me/5519999549787?text=Ol%C3%A1,%20vim%20pelo%20site!" aria-label="Contato" target="_blank">
+                <i class="fa-solid fa-phone-volume"></i>
+            </a>
+        </div>
+    </header>
+
+
+    <main>
+        <div data-include="/components/banner-home/">
+            <div id="bannerHome" class="banner-wrapper">
+                <section class="banner-section">
+                    <div class="js-carousel banner-carousel">
+                        <!-- Slide 1 -->
+                        <div class="banner-slide">
+                            <div class="banner-card" style="background-image: url('/images/banner-home-1.png');">
+                                <div class="banner-overlay"></div>
+                                <div class="banner-text-button-container">
+                                    <h2>Título do Banner</h2>
+                                    <p>Descrição ou chamada para ação</p>
+                                    <a href="#" class="cta-button">Saiba Mais</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="banner-slide">
+                            <div class="banner-card" style="background-image: url('/images/banner-home-2.png');">
+                                <div class="banner-overlay"></div>
+                                <div class="banner-text-button-container">
+                                    <h2>Título do Banner</h2>
+                                    <p>Descrição ou chamada para ação</p>
+                                    <a href="#" class="cta-button">Saiba Mais</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div data-include="/components/blog-resumo/">
+            <div class="blogger-wrapper">
+                <div class="blogger-main-content">
+                    <div id="blogger-carousel" class="blogger-carousel">
+                        <div id="main-post" class="blogger-post main"></div>
+                        <div id="secondary-posts" class="secondary-posts-container">
+                            <div class="blogger-post secondary"></div>
+                            <div class="blogger-post secondary"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blogger-sidebar">
+                    <h3>Resultado na Prática</h3>
+                    <ul id="sidebar-posts">
+                    </ul>
+                    <b><a href="/pages/insights">mais notícias</a></b>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer data-include="/components/footer/">
+
+
+        <div data-include="/components/menu-bottom/">
+            <nav class="bottom">
+                <ul class="links-bottom">
+                    <li class="menu-item-bottom">
+                        <span class="menu-label-bottom">Soluções</span>
+                        <ul class="submenu-bottom">
+                            <li class="menu-item-bottom"><a href="/pages/afi/">Antecipar o Futuro com Inovação</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/gfa">Gestão Financeira com Autoridade</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/ggc">Gestão da Governança Corporativa</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/gpp">Gestão de Portifólio de Projetos</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/mhc">Modelo Hexa Comercial</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/ipe">IPE</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-bottom">
+                        <span class="menu-label-bottom">Seguimentos</span>
+                        <ul class="submenu-bottom">
+                            <li class="menu-item-bottom"><a href="/pages/v_ia">Indústria</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/v_lg">Logística</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/v_tc">Telecomunicações</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/v_sp">Varejo</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-bottom">
+                        <span class="menu-label-bottom">Conteúdo</span>
+                        <ul class="submenu-bottom">
+                            <li class="menu-item-bottom"><a href="/pages/insights">Insights (Blog)</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/newsletter">Assine nossa Newsletter</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/ebooks">E-Books</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/plancheckdocs">Planilhas, Checklists e Padrões</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-bottom">
+                        <span class="menu-label-bottom">Sobre</span>
+                        <ul class="submenu-bottom">
+                            <li class="menu-item-bottom"><a href="/pages/quemsomos">Quem Somos</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/missao">O que Fazemos</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/sustentabilidade">Desenvolvimento Sustentável</a></li>
+                            <li class="menu-item-bottom"><a href="/pages/faleconosco">Fale Conosco</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="footer-contact">
+            <a href="tel:+5519999549787" title="Telefone"><i class="fas fa-phone-alt"></i></a>
+            <a href="https://wa.me/5519999549787" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:contato@lightusbrasil.com.br" title="E-mail"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/company/lightusbrasil" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/lightusbrasil" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Lightus. Todos os direitos reservados.</p>
+            <ul>
+                <li><a href="/politica-privacidade.html">Política de Privacidade</a></li>
+                <li><a href="/termos-de-uso.html">Termos de Uso</a></li>
+            </ul>
+        </div>
+        <div data-include="/components/button-start/">
+            <button id="scrollToTopBtn" class="scroll-to-top-btn" aria-label="Voltar ao topo">
+                <img src="/images/logo-button.png" alt="Logo para voltar ao topo">
+            </button>
+        </div>
+        <div data-include="/components/button-whatsapp/">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+            <a href="https://wa.me/5519999549787?text=Olá,%20vim%20pelo%20site!" class="whatsapp-float" target="_blank">
+                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                <span class="tooltip">Fale conosco</span>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Motor de injeção -->
+    <script src="/js/app.js"></script>
+
+    <script src="/components/banner-home/banner-home.js"></script>
+    <script src="/components/blog-resumo/blog-resumo.js"></script>
+    <script src="https://lightusbrasil.blogspot.com/feeds/posts/default?alt=json-in-script&amp;callback=showBloggerPosts&amp;max-results=6&amp;orderby=published&amp;order=desc"></script>
+    <script src="/components/menu-top/menu-top.js"></script>
+    <script src="/components/header/header.js"></script>
+    <script src="/components/menu-bottom/menu-bottom.js"></script>
+    <script src="https://lightusbrasil.blogspot.com/feeds/posts/default?alt=json-in-script&amp;callback=showBloggerPosts&amp;max-results=6&amp;orderby=published&amp;order=desc"></script>
+    <script src="/components/button-start/button-start.js"></script>
+    <script src="/components/button-whatsapp/button-whatsapp.js"></script>
+    <script src="/components/footer/footer.js"></script>
+
+    <script src="/components/menu-top/menu-top.js"></script>
+    <script src="/components/banner-home/banner-home.js"></script>
+    <script src="/components/blog-resumo/blog-resumo.js"></script>
+    <script src="/components/menu-bottom/menu-bottom.js"></script>
+    <script src="/components/button-start/button-start.js"></script>
+    <script src="/components/button-whatsapp/button-whatsapp.js"></script>
+    <script src="/components/menu-top/menu-top.js"></script>
+    <script src="/components/header/header.js"></script>
+    <script src="/components/menu-bottom/menu-bottom.js"></script>
+    <script src="/components/button-start/button-start.js"></script>
+    <script src="/components/button-whatsapp/button-whatsapp.js"></script>
+    <script src="/components/footer/footer.js"></script>
+</body>
+</html>
