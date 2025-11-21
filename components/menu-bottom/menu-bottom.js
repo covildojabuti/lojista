@@ -21,7 +21,7 @@ if (Array.isArray(item.submenu) && item.submenu.length > 0) {
 
 (async function () {
     try {
-        const response = await fetch('/data/navigation.json');
+        const response = await fetch('data/navigation.json');
         const items = await response.json();
         const navLinks = document.querySelector('.links-bottom');
         if (!navLinks) return;

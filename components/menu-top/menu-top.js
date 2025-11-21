@@ -22,7 +22,7 @@
 
 (async function () {
     try {
-        const response = await fetch('/data/navigation.json');
+        const response = await fetch('data/navigation.json');
         const items = await response.json();
         const navLinks = document.querySelector('.nav-links'); /* cite: 4, 3, 2, 5 */
         if (!navLinks) return; /* cite: 4, 3, 2, 5 */

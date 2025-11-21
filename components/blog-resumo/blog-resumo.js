@@ -1,5 +1,5 @@
 // Variáveis globais acessíveis
-const blogUrl = 'https://lightusbrasil.blogspot.com/';
+const blogUrl = 'https://covildojabuti.blogspot.com/';
 // max-results ajustado para 6 para obter os posts necessários
 const feedUrl = blogUrl + 'feeds/posts/default?alt=json-in-script&callback=showBloggerPosts&max-results=6&orderby=published&order=desc';
 const insightsPageUrl = '/pages/insights/';

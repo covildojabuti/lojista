@@ -14,7 +14,7 @@
     try {
         // Assuming your banner-static.json is located relative to the components folder.
         // Adjust this path if your file structure is different.
-        const response = await fetch('/data/banner-static.json'); //
+        const response = await fetch('data/banner-static.json'); //
         const banners = await response.json(); //
 
         // Find the banner object in the array that matches the dataItem 'id'

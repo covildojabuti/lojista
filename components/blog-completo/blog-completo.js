@@ -1,4 +1,4 @@
-﻿const blogUrl = 'https://lightusbrasil.blogspot.com/';
+﻿const blogUrl = 'https://covildojabuti.blogspot.com/';
 let allPosts = [];
 
 function getPostId(post) {
