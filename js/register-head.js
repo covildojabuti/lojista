@@ -3,13 +3,18 @@
 
     // Insere <base href="/lightus/"> se ainda não houver
     if (!document.querySelector('base')) {
+
+
         const base = document.createElement('base');
 
-const isGithub = location.hostname === 'covildojabuti.github.io';
-const project = 'lojista';
+        if (location.pathname.startsWith('/lojista/')) {
+            base.href = '/lojista/';
+        } else {
+            base.href = '/';
+        }
 
-base.href = isGithub ? `/${project}/` : `/${project}/`;
-document.head.appendChild(base);
+
+        document.head.appendChild(base);
     }
 
     // Função para adicionar um recurso ao head, evitando duplicação
