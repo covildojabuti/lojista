@@ -8,7 +8,7 @@
 const isGithub = location.hostname === 'covildojabuti.github.io';
 const project = 'lojista';
 
-base.href = isGithub ? `/${project}/` : '/';
+base.href = isGithub ? `/${project}/` : `/${project}/`;
 document.head.appendChild(base);
     }
 
