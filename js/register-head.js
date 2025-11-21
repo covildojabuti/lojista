@@ -1,7 +1,7 @@
 (function () {
     const head = document.head || document.getElementsByTagName('head')[0];
 
-    // Insere <base href="/lightus/"> se ainda n√£o houver
+    // Insere <base href="/lightus/"> se ainda n„o houver
     if (!document.querySelector('base')) {
         const base = document.createElement('base');
 
@@ -12,13 +12,13 @@ base.href = isGithub ? `/${project}/` : '/';
 document.head.appendChild(base);
     }
 
-    // Fun√ß√£o para adicionar um recurso ao head, evitando duplica√ß√£o
+    // FunÁ„o para adicionar um recurso ao head, evitando duplicaÁ„o
     function addAsset(path) {
         const isCSS = path.endsWith('.css') || path.includes('fonts.googleapis.com');
         const isJS = path.endsWith('.js');
         const isFavicon = path.endsWith('.ico') || path.includes('favicon');
 
-        // Evita duplica√ß√£o
+        // Evita duplicaÁ„o
         const alreadyExists = Array.from(head.children).some(el => {
             return (isCSS && el.tagName === 'LINK' && el.href.includes(path)) ||
                    (isJS && el.tagName === 'SCRIPT' && el.src.includes(path)) ||
@@ -46,7 +46,7 @@ document.head.appendChild(base);
         }
     }
 
-    // Assets globais que sempre ser√£o carregados
+    // Assets globais que sempre ser„o carregados
     const globalAssets = [
         'components/common.css',
         'https://fonts.googleapis.com/css2?family=Manrope:wght@100;200;300;400;500;600;700;800;900&display=swap',
@@ -57,23 +57,21 @@ document.head.appendChild(base);
     // Carrega os assets globais
     globalAssets.forEach(addAsset);
 
-    // Detecta a p√°gina atual e carrega os assets espec√≠ficos
+    // Detecta a p·gina atual e carrega os assets especÌficos
     const currentPath = window.location.pathname;
     
-    // Verifica se estamos em uma p√°gina dentro de /lightus/pages/
+    // Verifica se estamos em uma p·gina dentro de /lightus/pages/
     if (currentPath.includes('/pages/')) {
-        // Extrai o nome da p√°gina (√∫ltimo diret√≥rio antes do index.html)
+        // Extrai o nome da p·gina (˙ltimo diretÛrio antes do index.html)
         const pagePathMatch = currentPath.match(/\/pages\/([^\/]+)/);
         
         if (pagePathMatch && pagePathMatch[1]) {
             const pageName = pagePathMatch[1];
             const pageBasePath = `pages/${pageName}/${pageName}`;
             
-            // Adiciona CSS e JS espec√≠ficos da p√°gina se existirem
+            // Adiciona CSS e JS especÌficos da p·gina se existirem
             addAsset(`${pageBasePath}.css`);
             addAsset(`${pageBasePath}.js`);
         }
     }
-
 })();
-

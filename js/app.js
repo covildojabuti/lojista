@@ -1,11 +1,11 @@
 /**
  * Caminho base para todos os componentes.
- * No GitHub Pages, se seu site estiver em /lightus/, isso Ã© obrigatÃ³rio.
+ * No GitHub Pages, se seu site estiver em /lightus/, isso é obrigatório.
  */
-const basePath = '/lojista/';
+const basePath = '/';
 
 /**
- * FunÃ§Ã£o para injetar componentes com estrutura padronizada
+ * Função para injetar componentes com estrutura padronizada
  * (nomecomponente.css, nomecomponente.html, nomecomponente.js)
  * com recursividade para componentes aninhados
  */
@@ -23,7 +23,7 @@ async function injectComponent(element) {
         const cssLink = document.createElement('link');
         cssLink.rel = 'stylesheet';
         cssLink.href = cssPath;
-        cssLink.onerror = () => console.warn(`CSS nÃ£o encontrado ou erro ao carregar: ${cssPath}`);
+        cssLink.onerror = () => console.warn(`CSS não encontrado ou erro ao carregar: ${cssPath}`);
         document.head.appendChild(cssLink);
 
         // 2. Carrega o HTML
@@ -31,7 +31,7 @@ async function injectComponent(element) {
         const htmlResponse = await fetch(htmlPath);
 
         if (!htmlResponse.ok) {
-            console.warn(`HTML nÃ£o encontrado ou vazio: ${htmlPath}`);
+            console.warn(`HTML não encontrado ou vazio: ${htmlPath}`);
             element.innerHTML = '';
         } else {
             const html = await htmlResponse.text();
@@ -48,7 +48,7 @@ async function injectComponent(element) {
         const jsPath = `${fullComponentPath}/${componentName}.js`;
         const jsScript = document.createElement('script');
         jsScript.src = jsPath;
-        jsScript.onerror = () => console.warn(`JS nÃ£o encontrado ou erro ao carregar: ${jsPath}`);
+        jsScript.onerror = () => console.warn(`JS não encontrado ou erro ao carregar: ${jsPath}`);
         document.body.appendChild(jsScript);
 
     } catch (error) {
@@ -59,7 +59,7 @@ async function injectComponent(element) {
     }
 }
 
-// IniciaÃ§Ã£o quando o DOM estiver pronto
+// Iniciação quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
     const components = document.querySelectorAll('[data-include]');
 
@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('unhandledrejection', (event) => {
-        console.error('Promise rejeitada nÃ£o tratada:', event.reason);
+        console.error('Promise rejeitada não tratada:', event.reason);
     });
 });
-
