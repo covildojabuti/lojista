@@ -1,38 +1,74 @@
-﻿/* Tabela de produtos em destaque */
-.produtos-tabela {
-    width: 100%;
-    border-collapse: collapse;
+﻿/* TÍTULO */
+.produtos-destaque-titulo {
+    text-align: center;
+    font-family: Manrope, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* GRID */
+.produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* mobile */
+    gap: 16px;
+    max-width: 1200px;
     margin: 20px auto;
     font-family: Manrope, sans-serif;
+    padding: 0 10px;
 }
 
-    .produtos-tabela th {
-        text-align: left;
+/* Telas médias */
+@media (min-width: 600px) {
+    .produtos-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+    .produtos-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* CARD */
+.produto-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px 14px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+    /* IMAGEM */
+    .produto-card img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 6px;
+        margin-bottom: 10px;
         background: #f2f2f2;
-        padding: 10px;
     }
 
-    .produtos-tabela td {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-        vertical-align: middle;
-    }
-
-/* Foto 50x50 */
-.produto-img-small {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 6px;
+/* NOME */
+.produto-nome {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
 }
 
-/* Ícone do YouTube */
-.youtube-icon {
-    font-size: 24px;
-    color: red;
-    cursor: pointer;
+/* MOQ */
+.produto-moq {
+    font-size: 13px;
+    color: #555;
 }
 
-    .youtube-icon:hover {
-        opacity: 0.7;
+    .produto-moq span {
+        font-weight: 600;
+        white-space: pre-wrap;
     }
