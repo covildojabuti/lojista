@@ -9,7 +9,7 @@
     try {
         // API original
         const response = await fetch(
-            'https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjTeU-w-TS_0XGRT0t7nDx-oPAwDxwFs12btWC2tZyTjGa-yeXFfQuSBDqNOrHi7KzlmWbDQudV__JQRf3rXrkNnzZNuKd-xJWVwwu6nrw0bITUWPay6g-xfiaagQxfi0F1qsczJDz9Js_rGgEhO5Io6k5g7D_XglBJdgQZxyIqgI8eE1wGBTh_KeEaefQlDFEvJ2DP_zj7gQ-f2bLLeZMhJuBhzngSYbQCnuUdwXRUYtA3h8JzCG3AHKnsD4_yet-8pJFJGHL_PKsdjOSLZdM12hqL0w&lib=MIVoeNtO2B_EZbU58-N4OZFvZJuLBquZd'
+            'https://script.google.com/macros/s/AKfycbyWlXvDNMRxE31A85_EUzJlcDI-1WxSYMxfzv6JRrOcEpvvVZ_S8myUodEaky2xy72w/exec'
         );
 
         const produtos = await response.json();
@@ -35,15 +35,18 @@
             <div class="produtos-grid">
                 ${destaques.map(p => `
                     <div class="produto-card">
-                    <a href="/lojista/pages/produtos/">
+                    
                         <img src="${imagesPath}/${p.URL_IMG}" alt="${p.PRODUTO}">
 
-                        <div class="produto-nome">${p.PRODUTO}</div>
+                        <div class="produto-nome"><a href="/lojista/pages/produtos/">${p.PRODUTO}</a> <a href="${p.URL_VIDEO}" target="_blank"><i class="fab fa-youtube youtube-icon"></i></a></div>
+
+
+                    
 
                         <div class="produto-moq">
-                            A partir de <span>${p.MOQ || ''}</span>
+                            <span>De <span><span style="text-decoration: line-through;">${(p.DE ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }</span> por <span style="font-size:xx-small;">(a partir de) </span><span>${(p.POR ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }</span> 
                         </div>
-                        </a>
+                        
                     </div>
                 `).join('')}
             </div>

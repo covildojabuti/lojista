@@ -35,12 +35,12 @@
 
 .banner-static-title {
     font-size: 30px;
-    color: #ffffff;
+    color: #d3a323;
     margin-bottom: 1.2rem;
     font-weight: 600;
     line-height: 1.1;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    text-transform:uppercase;
+    text-transform: uppercase;
 }
 
 .banner-static-text {

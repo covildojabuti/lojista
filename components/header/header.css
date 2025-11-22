@@ -3,7 +3,7 @@
     justify-content: space-between; /* Distribute space between logo, menu, and contact */
     align-items: center;
     padding: 0 2rem;
-    background-color: #333; /* Inherited from common.css if not specified here */
+    background-color: #170801; /* Inherited from common.css if not specified here */
     position: relative;
     z-index: 10;
 }

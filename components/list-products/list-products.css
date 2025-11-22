@@ -1,8 +1,63 @@
-﻿/* Tabela de produtos */
+﻿/* Layout geral */
+.produtos-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    font-family: Manrope, sans-serif;
+}
+
+/* ------- FILTROS À ESQUERDA ------- */
+
+.produtos-filtros {
+    flex: 0 0 230px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-size: 13px;
+}
+
+    .produtos-filtros h3 {
+        margin: 0 0 10px;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .produtos-filtros label {
+        display: block;
+        margin-top: 8px;
+        margin-bottom: 2px;
+        font-weight: 600;
+        font-size: 12px;
+    }
+
+    .produtos-filtros select,
+    .produtos-filtros input {
+        width: 100%;
+        padding: 6px 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 13px;
+        box-sizing: border-box;
+    }
+
+    .produtos-filtros small {
+        display: block;
+        margin-top: 2px;
+        color: #777;
+    }
+
+/* ------- LISTA (TABELA) ------- */
+
+.produtos-lista {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
 .produtos-tabela {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px auto;
+    margin: 0;
     font-family: Manrope, sans-serif;
 }
 
@@ -10,12 +65,14 @@
         text-align: left;
         background: #f2f2f2;
         padding: 10px;
+        font-size: 13px;
     }
 
     .produtos-tabela td {
         padding: 10px;
         border-bottom: 1px solid #ddd;
         vertical-align: middle;
+        font-size: 13px;
     }
 
 .produto-img-small {
@@ -27,10 +84,132 @@
 
 .youtube-icon {
     font-size: 24px;
-    color: red;
     cursor: pointer;
 }
 
     .youtube-icon:hover {
         opacity: 0.7;
     }
+
+/* destaque visual na linha selecionada */
+.produtos-tabela tbody tr {
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+    .produtos-tabela tbody tr:hover {
+        background: #f9f9f9;
+    }
+
+    .produtos-tabela tbody tr.selecionado {
+        background: #e8f2ff;
+    }
+
+/* linha de detalhes no mobile */
+.produto-detalhes-row td {
+    padding: 0;
+    background: #f8f8f8;
+}
+
+/* ------- CARD DE DETALHES (DESKTOP) ------- */
+
+.produto-detalhes-card {
+    flex: 0 0 360px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    padding: 16px;
+    font-family: Manrope, sans-serif;
+    background: #ffffff;
+}
+
+    .produto-detalhes-card.hidden {
+        display: none;
+    }
+
+.produto-detalhes-header {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+    .produto-detalhes-header img {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+
+.produto-detalhes-titulo {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.produto-detalhes-sub {
+    font-size: 12px;
+    color: #666;
+}
+
+.produto-detalhes-body {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+    .produto-detalhes-body p {
+        margin: 4px 0;
+    }
+
+.produto-detalhes-label {
+    font-weight: 600;
+}
+
+.produto-detalhes-descricao {
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.produto-detalhes-video a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+}
+
+.produto-detalhes-video i {
+    font-size: 18px;
+}
+
+.produto-detalhes-preco {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ------- RESPONSIVIDADE (MOBILE) ------- */
+
+@media (max-width: 767px) {
+    .produtos-wrapper {
+        flex-direction: column;
+    }
+
+    .produtos-filtros {
+        width: 100%;
+        order: 0;
+    }
+
+    .produtos-lista {
+        order: 1;
+    }
+
+    /* card lateral não aparece no mobile;
+       usamos a linha de detalhes abaixo da linha clicada */
+    .produto-detalhes-card {
+        display: none !important;
+    }
+
+    .produtos-tabela th,
+    .produtos-tabela td {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
