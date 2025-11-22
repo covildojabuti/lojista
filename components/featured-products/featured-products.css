@@ -1,0 +1,38 @@
+﻿/* Tabela de produtos em destaque */
+.produtos-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-family: Manrope, sans-serif;
+}
+
+    .produtos-tabela th {
+        text-align: left;
+        background: #f2f2f2;
+        padding: 10px;
+    }
+
+    .produtos-tabela td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        vertical-align: middle;
+    }
+
+/* Foto 50x50 */
+.produto-img-small {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Ícone do YouTube */
+.youtube-icon {
+    font-size: 24px;
+    color: red;
+    cursor: pointer;
+}
+
+    .youtube-icon:hover {
+        opacity: 0.7;
+    }

@@ -46,7 +46,7 @@
     margin-right: 10px;
     transition: transform 0.3s;
     font-size: 0.8em;
-    color: #d3a303;
+    color: #170801;
 }
 
 .expanded .expand-icon {
@@ -58,7 +58,7 @@
 }
 
 .item-count {
-    background: #d3a303;
+    background: #170801;
     color: white;
     border-radius: 12px;
     padding: 2px 8px;
@@ -90,7 +90,7 @@
     }
 
         .post-item a:hover {
-            color: #d3a303;
+            color: #170801;
         }
 
 /* Conteúdo do post */
@@ -204,7 +204,7 @@ h3 i, h4 i {
         }
 
             .most-read-list .post-item a:hover {
-                color: #d3a303;
+                color: #170801;
             }
 
         .most-read-list .post-item i {

@@ -87,7 +87,7 @@
     }
 
     .post-tag.secondary {
-        color: #d3a303;
+        color: #170801;
         bottom: 120px;
     }
 
@@ -101,7 +101,7 @@
 .post-title-link.secondary {
     text-decoration: none;
     line-height: 1.2;
-    color: #d3a303;
+    color: #170801;
 }
 
 .article-below-title.main {
@@ -180,7 +180,7 @@
 
         .blogger-sidebar li a {
             text-decoration: none;
-            color: #d3a303;
+            color: #170801;
             font-size: 14px;
             display: block;
             line-height: 1.4;

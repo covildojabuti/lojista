@@ -22,7 +22,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .banner-static-card {
@@ -52,8 +52,8 @@
 }
 
 .banner-static-button {
-    color: #fff;
-    background-color: #d3a303;
+    color: #000;
+    background-color: #ffd176;
     padding: 0.6rem 1.2rem;
     font-size: 1rem;
     border-radius: 30px;
@@ -65,7 +65,7 @@
 
     .banner-static-button:hover {
         filter: brightness(1.1); /* Makes the button 10% brighter */
-        color:#fff;
+        color: #000;
     }
 
 @media (max-width: 600px) {

@@ -24,7 +24,7 @@
             <th>Foto</th>
             <th>Produto</th>
             <th>MOQ</th>
-            <th>Vídeo</th>
+            <th>Video</th>
         </tr>
     </thead>
     <tbody>

@@ -14,7 +14,7 @@
 
             try {
                 // Adicione '/dev' após 'exec' se estiver testando em desenvolvimento
-                const url = "https://script.google.com/macros/s/AKfycby5IVP3kiQrfZZ6vF7sLk6u0bkeJO_xFHL41F9G7ocg7X4nfmo4nOuUyEaqT5TsZo2f/exec";
+                const url = "https://script.google.com/macros/s/AKfycbzYGSaz5Pp5pD3gr3k-OEUTtPxhlQN3HwuCPpATIE5lg6ZfyuRJ2sLjZM-hSRA9h5M/exec";
 
                 const response = await fetch(url, {
                     method: "POST",

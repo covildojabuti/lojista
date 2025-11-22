@@ -1,0 +1,234 @@
+﻿/* Variáveis de cores */
+:root {
+    --primary: #000;
+    --primary-dark: #d3a303;
+    --accent: #d3a303;
+    --light: #efefef;
+    --dark: #1a202c;
+    --gray: #21222d;
+    --white: #ffffff;
+}
+
+/* Estilos gerais */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--primary-dark);
+    margin-bottom: 1.5rem;
+    position: relative;
+    font-weight: 700;
+}
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: var(--accent);
+        border-radius: 2px;
+    }
+
+/* Seção Nossa Essência */
+.essence-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.essence-text {
+    font-size: 1.1rem;
+    color: var(--gray);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Seção Missão, Visão e Valores */
+.mvw-section {
+    padding: 80px 0;
+    background-color: var(--light);
+}
+
+.mvw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.mvw-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .mvw-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+.mvw-title {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.mvw-text {
+    color: var(--gray);
+    line-height: 1.1;
+    font-weight:400;
+    font-size:1.5rem;
+}
+
+.values-list {
+    list-style: none;
+}
+
+    .values-list li {
+        padding: 8px 0;
+        color: var(--gray);
+        position: relative;
+        padding-left: 25px;
+    }
+
+        .values-list li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+/* Seção Nossa História */
+.history-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.history-text {
+    font-size: 1.1rem;
+    color: var(--gray);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Seção Serviços */
+.services-section {
+    padding: 80px 0;
+    background-color: var(--light);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+}
+
+.services-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.services-title {
+    font-size: 1.8rem;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.services-content {
+    color: var(--gray);
+    line-height: 1.7;
+}
+
+    .services-content p {
+        margin-bottom: 15px;
+    }
+
+/* Seção Junte-se */
+.join-section {
+    padding: 80px 0;
+}
+
+.join-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.join-content {
+    flex: 1;
+}
+
+.join-title {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.join-subtitle {
+    font-size: 1.1rem;
+    color: var(--gray);
+    margin-bottom: 30px;
+    line-height: 1.7;
+}
+
+.highlight-box {
+    background: #efefef;
+    border-left: 4px solid var(--accent);
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 30px;
+}
+
+.highlight-title {
+    font-size: 1.2rem;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.highlight-text {
+    color: var(--gray);
+    line-height: 1.7;
+}
+
+.join-image {
+    flex: 1;
+    text-align: center;
+}
+
+    .join-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .join-container {
+        flex-direction: column;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}

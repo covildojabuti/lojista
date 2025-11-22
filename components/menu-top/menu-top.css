@@ -33,7 +33,7 @@
 }
 
     .menu-label:hover {
-        color: #d3a303;
+        color: #ffd176;
     }
 
 
@@ -82,8 +82,7 @@
         }
 
             .submenu .menu-item a:hover {
-                color: #d3a303; /* Highlight color on hover */
-                
+                color: #170801; /* Highlight color on hover */
             }
 
 /* Responsiveness */

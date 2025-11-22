@@ -1,9 +1,9 @@
 [
-    {
-        "id": "contatokatia",
-        "phrase": "Não deixe de vender nossos dados em seu comércio",
-        "linkText": "Entre em contato conosco AGORA!",
-        "linkUrl": "https://wa.me/+5519999549787?text=testematheus",
-        "target": "_blank"
-    }
+  {
+    "id": "contatokatia",
+    "phrase": "Não deixe de vender nossos produtos em sua empresa!",
+    "linkText": "Entre em contato conosco AGORA!",
+    "linkUrl": "https://wa.me/5519999549787?text=Ol%C3%A1!%20Vim%20do%20site%20do%20Covil%20do%20Jabuti!",
+    "target": "_blank"
+  }
 ]

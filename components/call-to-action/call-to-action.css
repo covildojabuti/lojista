@@ -21,8 +21,8 @@
 .call-to-action-button {
     display: inline-block; /* Permite aplicar padding e margin vertical */
     padding: 15px 30px; /* Espaçamento interno do botão */
-    background-color: #d3a303; /* Cor de fundo do botão (amarelo do tema) */
-    color: #fff; /* Cor do texto do botão */
+    background-color: #ffd176; /* Cor de fundo do botão (amarelo do tema) */
+    color: #000; /* Cor do texto do botão */
     text-decoration: none; /* Remove sublinhado do link */
     border-radius: 50px; /* Cantos bem arredondados para um visual de pílula */
     font-size: 1.1rem; /* Tamanho da fonte do botão */
@@ -31,10 +31,10 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para o botão */
 }
 
-.call-to-action-button:hover {
-    background-color: #bb9106; /* Cor de fundo ao passar o mouse */
-    transform: translateY(-2px); /* Efeito de "levantar" ao passar o mouse */
-}
+    .call-to-action-button:hover {
+        filter: brightness(1.1); /* Makes the button 10% brighter */
+        color: #000;
+    }
 
 /* ---------------------------------------------------- */
 /* RESPONSIVIDADE                                       */

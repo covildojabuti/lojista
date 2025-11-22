@@ -88,8 +88,8 @@
 .submit-btn {
     width: 100%;
     padding: 15px;
-    background-color: #d3a303;
-    color: white;
+    background-color: #170801;
+    color: #fff;
     border: none;
     border-radius: 4px;
     font-size: 1rem;
@@ -105,8 +105,8 @@
 /* Seção do Especialista */
 .specialist-section h2 {
     font-size: 3.5rem;
-    line-height:1.1;
-    color: #d3a303;
+    line-height: 1.1;
+    color: #421a03;
     margin-bottom: 2rem;
 }
 
@@ -123,8 +123,8 @@
 
 .specialist-btn {
     padding: 15px;
-    background-color: #000;
-    color: #d3a303;
+    background-color: #170801;
+    color: #fff;
     border: none;
     border-radius: 30px;
     font-size: 0.8rem;
@@ -134,8 +134,7 @@
 }
 
     .specialist-btn:hover {
-        background-color: #d3a303;
-        color: #000;
+        filter: brightness(1.1); /* Makes the button 10% brighter */
     }
 
 /* Responsividade */

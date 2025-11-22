@@ -23,7 +23,7 @@ function renderPost(post, updateUrl = true) {
 
   const title = post.title.$t;
   const content = post.content.$t;
-  const author = post.author?.[0]?.name?.$t || 'Lightus';
+  const author = post.author?.[0]?.name?.$t || 'Covil do Jabuti';
   const published = new Date(post.published.$t);
   const formattedDate = published.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -81,7 +81,7 @@ function buildSidebar(posts) {
   mostReadList.innerHTML = recentPosts.map(post => `
         <div class="post-item">
           <a href="javascript:void(0);" data-post-id="${getPostId(post)}">
-              <i class="far fa-star" style="color: #d3a303; margin-right: 5px;"></i>
+              <i class="far fa-star" style="color: #170801; margin-right: 5px;"></i>
               ${post.title.$t}
           </a>
         </div>

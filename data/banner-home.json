@@ -1,16 +1,16 @@
 [
   {
-    "title": "Descubra o que está travando o crescimento da sua empresa.",
-    "image-url": "images/banner-home-1.png",
-    "text": "Acesse gratuitamente o IPE (Índice de Produtividade Empresarial). Uma análise precisa que revela gargalos, compara sua operação com o mercado e entrega recomendações prontas para aplicar.",
-    "button": "Quero meu IPE gratuito",
-    "button-url": "pages/ipe"
+    "title": "Aumente sua margem com produtos exclusivos e de alta rotatividade.",
+    "image-url": "images/banner-home-001.png",
+    "text": "O Covil do Jabuti fornece dados premium de RPG com grande aceitação no mercado, preços competitivos e entrega rápida. Garanta produtos diferenciados para atrair novos jogadores, aumentar vendas e fidelizar clientes.",
+    "button": "Ver produtos para lojistas",
+    "button-url": "pages/produtos"
   },
   {
-    "title": "Receba nossas novidades em primeira mão!",
-    "image-url": "images/banner-home-2.png",
-    "text": "Entre no nosso grupo oficial do WhatsApp e fique por dentro de conteúdos exclusivos, novidades, eventos e oportunidades especiais.<br>Sem spam, sem enrolação — só o que realmente importa para você e seu negócio.",
-    "button": "👉 Entrar no Grupo do WhatsApp",
-    "button-url": "https://chat.whatsapp.com/HXb8FJNSbHFFMYNe5XxiIO"
+    "title": "Dados de LED — o produto campeão de vendas no Covil do Jabuti.",
+    "image-url": "images/banner-home-002.png",
+    "text": "O item mais procurado pelos jogadores! Alta margem, forte apelo visual, giro rápido e ideal para quem quer atrair novos clientes e aumentar o ticket médio da loja.",
+    "button": "Ver Dados de LED",
+    "button-url": "pages/produtos#dados-led"
   }
 ]
