@@ -1,4 +1,4 @@
-(async function () {
+Ôªø(async function () {
     const imagesPath = "/lojista/app_produtos";
 
     const produtosContainer = document.querySelector('div[data-include="components/list-products/"]');
@@ -15,9 +15,9 @@
         if (!valorBruto) return NaN;
         let s = String(valorBruto).trim();
 
-        // remove R$, espaÁos e pontos de milhar
+        // remove R$, espa√ßos e pontos de milhar
         s = s.replace(/R\$/i, '').replace(/\./g, '').replace(/\s/g, '');
-        // troca vÌrgula por ponto
+        // troca v√≠rgula por ponto
         s = s.replace(/,/g, '.');
 
         const num = parseFloat(s);
@@ -33,7 +33,7 @@
             return;
         }
 
-        // listas ˙nicas de categoria e subcategoria para os filtros
+        // listas √∫nicas de categoria e subcategoria para os filtros
         const categorias = [...new Set(produtos.map(p => p.CATEGORIA).filter(Boolean))].sort();
         const subcategorias = [...new Set(produtos.map(p => p.SUBCATEGORIA).filter(Boolean))].sort();
 
@@ -53,9 +53,9 @@
           ${subcategorias.map(s => `<option value="${s}">${s}</option>`).join('')}
         </select>
 
-        <label for="filtro-preco-max">Preco maximo</label>
+        <label for="filtro-preco-max">Pre√ßo m√°ximo</label>
         <input id="filtro-preco-max" type="number" min="0" step="0.01" placeholder="Sem limite" />
-        <small>Deixe em branco para nao filtrar por preco.</small>
+        <small>Deixe em branco para n√£o filtrar por pre√ßo.</small>
       </div>
         `;
 
@@ -94,7 +94,7 @@
         const filtroSubcategoria = produtosContainer.querySelector('#filtro-subcategoria');
         const filtroPrecoMax = produtosContainer.querySelector('#filtro-preco-max');
 
-        // Ìndice dos produtos atualmente filtrados (sempre referenciando o array original)
+        // √≠ndice dos produtos atualmente filtrados (sempre referenciando o array original)
         let indicesFiltrados = produtos.map((_, i) => i);
         let linhaSelecionada = null;
 
@@ -113,6 +113,8 @@
             const tamanhoLados = normalizar(p["TAMANHO LADOS (MM)"]);
             const destaque = normalizar(p.DESTAQUE);
             const videoUrl = p.URL_VIDEO || '';
+            const itens_inclusos = normalizar(p.ITENS_INCLUSOS);
+            const caracteristicas = normalizar(p.CARACTERISTICAS);
 
             return `
   <div class="produto-detalhes-header">
@@ -142,15 +144,19 @@
     </div>
 
     <div class="produto-detalhes-descricao">
-      <span class="produto-detalhes-label">Descricao:</span><br>
-      ${descricao}
+      <span class="produto-detalhes-label">Descri√ß√£o:</span><br>
+      ${descricao}<br>
+      <span class="produto-detalhes-label">Itens Inclusos:</span><br>
+      ${itens_inclusos}<br>
+      <span class="produto-detalhes-label">Caracter√≠sticas:</span><br>
+      ${caracteristicas}<br>
     </div>
 
     <div class="produto-detalhes-video" style="margin-top:8px;">
-      <span class="produto-detalhes-label">Video:</span><br>
+      <span class="produto-detalhes-label">V√≠deo:</span><br>
       ${videoUrl
                     ? `<a href="${videoUrl}" target="_blank" rel="noopener noreferrer">
-             <i class="fab fa-youtube"></i> Abrir video
+             <i class="fab fa-youtube"></i> Abrir v√≠deo
            </a>`
                     : 'Nenhum video informado.'
                 }
@@ -169,7 +175,7 @@
                 detalhesRowAnterior.remove();
             }
 
-            // remove seleÁ„o visual
+            // remove sele√ß√£o visual
             linhaSelecionada = null;
 
             const linhasHtml = indicesFiltrados.map(indexOriginal => {
@@ -222,7 +228,7 @@
                         detalhesCard.innerHTML = conteudo;
                         detalhesCard.classList.remove('hidden');
 
-                        // garante que n„o fica detalhe duplicado no mobile
+                        // garante que n√£o fica detalhe duplicado no mobile
                         const detalhesRow = produtosContainer.querySelector('.produto-detalhes-row');
                         if (detalhesRow) detalhesRow.remove();
                     } else {
@@ -263,7 +269,7 @@
                     if (subcategoriaSelecionada && p.SUBCATEGORIA !== subcategoriaSelecionada) {
                         return false;
                     }
-                    // preÁo m·ximo
+                    // pre√ßo m√°ximo
                     if (!isNaN(precoMax)) {
                         const precoPor = parsePreco(p.POR);
                         if (isNaN(precoPor) || precoPor > precoMax) {
@@ -276,7 +282,7 @@
 
             renderTabela();
 
-            // no desktop, j· abre o primeiro produto filtrado
+            // no desktop, j√° abre o primeiro produto filtrado
             const isDesktop = window.innerWidth >= 768;
             if (isDesktop && indicesFiltrados.length > 0) {
                 const primeiraLinha = tabelaBody.querySelector('tr');
@@ -284,7 +290,7 @@
                     primeiraLinha.click();
                 }
             } else {
-                // limpa card lateral se mobile ou se n„o h· itens
+                // limpa card lateral se mobile ou se n√£o h√° itens
                 detalhesCard.classList.add('hidden');
                 detalhesCard.innerHTML = '<p>Selecione um produto na tabela para ver os detalhes.</p>';
             }
@@ -298,7 +304,7 @@
         // render inicial (sem filtros)
         renderTabela();
 
-        // no desktop, j· abre o primeiro produto ao carregar
+        // no desktop, j√° abre o primeiro produto ao carregar
         if (window.innerWidth >= 768 && indicesFiltrados.length > 0) {
             const primeiraLinha = tabelaBody.querySelector('tr');
             if (primeiraLinha) {

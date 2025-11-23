@@ -157,15 +157,18 @@
 
     .produto-detalhes-body p {
         margin: 4px 0;
+        white-space: pre-line;
     }
 
 .produto-detalhes-label {
     font-weight: 600;
+    white-space: pre-line;
 }
 
 .produto-detalhes-descricao {
     margin-top: 8px;
     font-size: 13px;
+    white-space: pre-line;
 }
 
 .produto-detalhes-video a {
