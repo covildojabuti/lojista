@@ -53,9 +53,9 @@
           ${subcategorias.map(s => `<option value="${s}">${s}</option>`).join('')}
         </select>
 
-        <label for="filtro-preco-max">Preço máximo (POR)</label>
+        <label for="filtro-preco-max">Preco maximo</label>
         <input id="filtro-preco-max" type="number" min="0" step="0.01" placeholder="Sem limite" />
-        <small>Deixe em branco para não filtrar por preço.</small>
+        <small>Deixe em branco para nao filtrar por preco.</small>
       </div>
         `;
 
@@ -70,7 +70,7 @@
           <th>Foto</th>
           <th>Produto</th>
           <th>MOQ</th>
-          <th>Vídeo</th>
+          <th>Video</th>
         </tr>
       </thead>
       <tbody>
@@ -142,17 +142,17 @@
     </div>
 
     <div class="produto-detalhes-descricao">
-      <span class="produto-detalhes-label">Descrição:</span><br>
+      <span class="produto-detalhes-label">Descricao:</span><br>
       ${descricao}
     </div>
 
     <div class="produto-detalhes-video" style="margin-top:8px;">
-      <span class="produto-detalhes-label">Vídeo:</span><br>
+      <span class="produto-detalhes-label">Video:</span><br>
       ${videoUrl
                     ? `<a href="${videoUrl}" target="_blank" rel="noopener noreferrer">
-             <i class="fab fa-youtube"></i> Abrir vídeo
+             <i class="fab fa-youtube"></i> Abrir video
            </a>`
-                    : 'Nenhum vídeo informado.'
+                    : 'Nenhum video informado.'
                 }
     </div>
   </div>

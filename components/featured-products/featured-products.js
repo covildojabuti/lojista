@@ -36,7 +36,7 @@
                 ${destaques.map(p => `
                     <div class="produto-card">
                     
-                        <img src="${imagesPath}/${p.URL_IMG}" alt="${p.PRODUTO}">
+                        <a href="/lojista/pages/produtos/"><img src="${imagesPath}/${p.URL_IMG}" alt="${p.PRODUTO}"></a>
 
                         <div class="produto-nome"><a href="/lojista/pages/produtos/">${p.PRODUTO}</a> <a href="${p.URL_VIDEO}" target="_blank"><i class="fab fa-youtube youtube-icon"></i></a></div>
 
@@ -44,7 +44,7 @@
                     
 
                         <div class="produto-moq">
-                            <span>De <span><span style="text-decoration: line-through;">${(p.DE ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }</span> por <span style="font-size:xx-small;">(a partir de) </span><span>${(p.POR ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }</span> 
+                           <a href="/lojista/pages/produtos/"> <span>De <span><span style="text-decoration: line-through;">${(p.DE ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }</span> por <span style="font-size:xx-small;">(a partir de) </span><span>${(p.POR ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }</span> </a>
                         </div>
                         
                     </div>

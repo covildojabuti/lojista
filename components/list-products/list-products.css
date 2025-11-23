@@ -193,12 +193,13 @@
     }
 
     .produtos-filtros {
-        width: 100%;
+        width: 90%;
         order: 0;
     }
 
     .produtos-lista {
         order: 1;
+        width:100%;
     }
 
     /* card lateral não aparece no mobile;
