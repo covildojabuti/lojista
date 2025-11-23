@@ -1,219 +1,182 @@
-﻿/* Layout geral */
-.produtos-wrapper {
+﻿.produtos-wrapper {
     display: flex;
     gap: 20px;
     align-items: flex-start;
-    font-family: Manrope, sans-serif;
+    width: 100%;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
-/* ------- FILTROS À ESQUERDA ------- */
-
+/* ==========================
+   FILTROS
+========================== */
 .produtos-filtros {
-    flex: 0 0 230px;
-    padding: 12px 14px;
-    border-radius: 10px;
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    font-size: 13px;
+    width: 250px;
+    min-width: 250px;
+    background: #f7f7f7;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
 }
 
     .produtos-filtros h3 {
-        margin: 0 0 10px;
-        font-size: 14px;
-        font-weight: 700;
+        margin-top: 0;
+        font-size: 18px;
     }
 
     .produtos-filtros label {
+        margin-top: 10px;
         display: block;
-        margin-top: 8px;
-        margin-bottom: 2px;
-        font-weight: 600;
-        font-size: 12px;
+        font-weight: bold;
     }
 
     .produtos-filtros select,
     .produtos-filtros input {
         width: 100%;
-        padding: 6px 8px;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-        font-size: 13px;
+        margin-top: 5px;
+        padding: 6px;
         box-sizing: border-box;
     }
 
-    .produtos-filtros small {
-        display: block;
-        margin-top: 2px;
-        color: #777;
+    .produtos-filtros button {
+        margin-top: 15px;
+        width: 100%;
+        padding: 8px 0;
+        background-color: #c62828;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
 
-/* ------- LISTA (TABELA) ------- */
+        .produtos-filtros button:hover {
+            background-color: #b71c1c;
+        }
 
+/* ==========================
+   TABELA
+========================== */
 .produtos-lista {
-    flex: 1 1 0;
-    min-width: 0;
+    flex: 1;
+    min-width: 300px;
 }
 
 .produtos-tabela {
     width: 100%;
     border-collapse: collapse;
-    margin: 0;
-    font-family: Manrope, sans-serif;
 }
 
-    .produtos-tabela th {
-        text-align: left;
-        background: #f2f2f2;
+    .produtos-tabela th,
+    .produtos-tabela td {
+        border-bottom: 1px solid #ddd;
         padding: 10px;
-        font-size: 13px;
+        vertical-align: middle;
     }
 
-    .produtos-tabela td {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-        vertical-align: middle;
-        font-size: 13px;
+    .produtos-tabela th {
+        background: #eee;
+    }
+
+    .produtos-tabela tr:hover {
+        background: #f5f5f5;
+        cursor: pointer;
+    }
+
+    .produtos-tabela tr.selecionado {
+        background: #d9edf7 !important;
     }
 
 .produto-img-small {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 4px;
 }
 
-.youtube-icon {
-    font-size: 24px;
-    cursor: pointer;
+/* ==========================
+   DETALHES DO PRODUTO
+========================== */
+#produto-detalhes-card {
+    width: 350px;
+    min-width: 300px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-sizing: border-box;
 }
 
-    .youtube-icon:hover {
-        opacity: 0.7;
-    }
-
-/* destaque visual na linha selecionada */
-.produtos-tabela tbody tr {
-    cursor: pointer;
-    transition: background 0.15s;
-}
-
-    .produtos-tabela tbody tr:hover {
-        background: #f9f9f9;
-    }
-
-    .produtos-tabela tbody tr.selecionado {
-        background: #e8f2ff;
-    }
-
-/* linha de detalhes no mobile */
-.produto-detalhes-row td {
-    padding: 0;
-    background: #f8f8f8;
-}
-
-/* ------- CARD DE DETALHES (DESKTOP) ------- */
-
-.produto-detalhes-card {
-    flex: 0 0 360px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    padding: 16px;
-    font-family: Manrope, sans-serif;
-    background: #ffffff;
-}
-
-    .produto-detalhes-card.hidden {
+    #produto-detalhes-card.hidden {
         display: none;
     }
 
 .produto-detalhes-header {
     display: flex;
-    gap: 12px;
-    margin-bottom: 12px;
+    gap: 15px;
+    align-items: center;
 }
 
     .produto-detalhes-header img {
         width: 80px;
         height: 80px;
-        border-radius: 10px;
         object-fit: cover;
+        border-radius: 6px;
     }
 
 .produto-detalhes-titulo {
-    font-weight: 700;
-    font-size: 16px;
-    margin-bottom: 4px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.produto-detalhes-sub {
-    font-size: 12px;
-    color: #666;
+.produto-detalhes-label {
+    font-weight: bold;
 }
 
 .produto-detalhes-body {
-    font-size: 13px;
-    line-height: 1.4;
-}
-
-    .produto-detalhes-body p {
-        margin: 4px 0;
-        white-space: pre-line;
-    }
-
-.produto-detalhes-label {
-    font-weight: 600;
-    white-space: pre-line;
+    margin-top: 10px;
 }
 
 .produto-detalhes-descricao {
-    margin-top: 8px;
-    font-size: 13px;
+    margin-top: 10px;
     white-space: pre-line;
 }
 
-.produto-detalhes-video a {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 13px;
+/* ==========================
+   DETALHES MOBILE
+========================== */
+.produto-detalhes-row td {
+    background: #fafafa;
+    padding: 15px;
 }
 
-.produto-detalhes-video i {
-    font-size: 18px;
+.produto-list-variacoes {
+    list-style: none;
+    padding-left: 16px;
+    margin: 4px 0 0 0;
+}
+/* ==========================
+   ÍCONE YOUTUBE
+========================== */
+.youtube-icon {
+    font-size: 22px;
+    color: #cc0000;
 }
 
-.produto-detalhes-preco {
-    margin-top: 8px;
-    font-size: 14px;
-    font-weight: 600;
-}
+    .youtube-icon:hover {
+        color: #ff4444;
+    }
 
-/* ------- RESPONSIVIDADE (MOBILE) ------- */
-
-@media (max-width: 767px) {
+/* ==========================
+   RESPONSIVIDADE
+========================== */
+@media (max-width: 768px) {
     .produtos-wrapper {
         flex-direction: column;
+        
     }
 
-    .produtos-filtros {
-        width: 90%;
-        order: 0;
-    }
-
-    .produtos-lista {
-        order: 1;
-        width:100%;
-    }
-
-    /* card lateral não aparece no mobile;
-       usamos a linha de detalhes abaixo da linha clicada */
-    .produto-detalhes-card {
+    #produto-detalhes-card {
         display: none !important;
-    }
-
-    .produtos-tabela th,
-    .produtos-tabela td {
-        font-size: 12px;
-        padding: 8px;
     }
 }
