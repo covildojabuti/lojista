@@ -7,8 +7,8 @@
 
         const base = document.createElement('base');
 
-        if (location.pathname.startsWith('/')) {
-            base.href = '/';
+        if (location.pathname.startsWith('/teste')) {
+            base.href = '/teste/';
         } else {
             base.href = '/';
         }
