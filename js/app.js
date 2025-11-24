@@ -2,7 +2,7 @@
  * Caminho base para todos os componentes.
  * No GitHub Pages, se seu site estiver em /lightus/, isso é obrigatório.
  */
-const basePath = '/lojista/';
+const basePath = '/';
 
 /**
  * Função para injetar componentes com estrutura padronizada

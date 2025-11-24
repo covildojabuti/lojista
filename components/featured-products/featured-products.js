@@ -1,5 +1,4 @@
 ﻿(async function () {
-    const imagesPath = "/lojista/app_produtos";
     // container do componente
     const produtosContainer = document.querySelector('div[data-include="components/featured-products/"]');
     if (!produtosContainer) {
@@ -8,10 +7,7 @@
 
     try {
         // API original
-        const response = await fetch(
-            'https://script.google.com/macros/s/AKfycbxq6BAFL-epHFPDP52rgCYexbRELc9qYbdt6kMq5h8d_ZP57RBbDQV32Uy4tOVuD5Xy/exec'
-        );
-
+        const response = await fetch(Config.APIS.BD_Produtos);
         const produtos = await response.json();
 
         if (!Array.isArray(produtos) || produtos.length === 0) {

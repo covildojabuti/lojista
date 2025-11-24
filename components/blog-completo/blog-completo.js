@@ -1,4 +1,4 @@
-﻿const blogUrl = 'https://covildojabuti.blogspot.com/';
+﻿
 let allPosts = [];
 
 function getPostId(post) {
@@ -7,7 +7,7 @@ function getPostId(post) {
 
 function fetchBlogData(callback) {
   const script = document.createElement('script');
-  script.src = `${blogUrl}feeds/posts/default?alt=json-in-script&callback=${callback}&max-results=1000`; // max-results=1000 posts mais recentes
+    script.src = `${Config.APIS.Blog}feeds/posts/default?alt=json-in-script&callback=${callback}&max-results=1000`; // max-results=1000 posts mais recentes
   document.body.appendChild(script);
 }
 

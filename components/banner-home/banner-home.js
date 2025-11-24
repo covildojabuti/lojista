@@ -95,7 +95,7 @@
 
     // Lógica principal: carregar JSON e iniciar carrossel
     try {
-        const response = await fetch('data/banner-home.json'); // Caminho para o JSON
+        const response = await fetch(Config.COMPONENTS.banner_home.json); // Caminho para o JSON
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
