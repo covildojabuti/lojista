@@ -392,15 +392,18 @@
         <div><span class="produto-detalhes-label">Por:</span> ${porPreco}</div>
       </div>
 
-      ${variacoesHtml}
+      
 
       <div class="produto-detalhes-descricao">
-        <span class="produto-detalhes-label">Descrição:</span><br>
-        ${descricao}<br>
+        
         <span class="produto-detalhes-label">Itens Inclusos:</span><br>
         ${itens_inclusos}<br>
         <span class="produto-detalhes-label">Características:</span><br>
-        ${caracteristicas}<br>
+        ${caracteristicas}<br></div>
+        ${variacoesHtml}
+        <div>
+        <span class="produto-detalhes-label">Descrição:</span><br>
+        ${descricao}<br>
       </div>
 
 

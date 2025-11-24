@@ -32,9 +32,9 @@
                 ${destaques.map(p => `
                     <div class="produto-card">
                     
-                        <a href="/lojista/pages/produtos/"><img src="${p.URL_IMG}" alt="${p.PRODUTO}"></a>
+                        <a href="/pages/produtos/"><img src="${p.URL_IMG}" alt="${p.PRODUTO}"></a>
 
-                        <div class="produto-nome"><a href="/lojista/pages/produtos/">${p.PRODUTO}</a> <a href="${p.URL_VIDEO}" target="_blank"><i class="fab fa-youtube youtube-icon"></i></a></div>
+                        <div class="produto-nome"><a href="/pages/produtos/">${p.PRODUTO}</a> <a href="${p.URL_VIDEO}" target="_blank"><i class="fab fa-youtube youtube-icon"></i></a></div>
 
 
                     

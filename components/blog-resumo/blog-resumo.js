@@ -2,7 +2,7 @@
 const blogUrl = Config.APIS.Blog;
 // max-results ajustado para 6 para obter os posts necessários
 const feedUrl = blogUrl + 'feeds/posts/default?alt=json-in-script&callback=showBloggerPosts&max-results=6&orderby=published&order=desc';
-const insightsPageUrl = '/lojista/pages/insights/';
+const insightsPageUrl = '/pages/insights/';
 
 // Referências aos elementos DOM (assumindo que o script é carregado após o HTML ou que o ambiente lida com isso)
 // ATENÇÃO: 'carousel' neste contexto é o contêiner dos posts do carrossel, NÃO o elemento a ser limpo diretamente.
