@@ -9,7 +9,7 @@
     try {
         // API original
         const response = await fetch(
-            'https://script.google.com/macros/s/AKfycbyWlXvDNMRxE31A85_EUzJlcDI-1WxSYMxfzv6JRrOcEpvvVZ_S8myUodEaky2xy72w/exec'
+            'https://script.google.com/macros/s/AKfycbxq6BAFL-epHFPDP52rgCYexbRELc9qYbdt6kMq5h8d_ZP57RBbDQV32Uy4tOVuD5Xy/exec'
         );
 
         const produtos = await response.json();
@@ -36,7 +36,7 @@
                 ${destaques.map(p => `
                     <div class="produto-card">
                     
-                        <a href="/lojista/pages/produtos/"><img src="${imagesPath}/${p.URL_IMG}" alt="${p.PRODUTO}"></a>
+                        <a href="/lojista/pages/produtos/"><img src="${p.URL_IMG}" alt="${p.PRODUTO}"></a>
 
                         <div class="produto-nome"><a href="/lojista/pages/produtos/">${p.PRODUTO}</a> <a href="${p.URL_VIDEO}" target="_blank"><i class="fab fa-youtube youtube-icon"></i></a></div>
 

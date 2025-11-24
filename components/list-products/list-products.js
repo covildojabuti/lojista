@@ -1,6 +1,6 @@
 ﻿(async function () {
     const IMAGES_BASE_PATH = "/lojista/app_produtos"; // ajuste se precisar
-    const API_BASE_URL = "https://script.google.com/macros/s/AKfycbw99IYs-OQ8ISpw-4D-vkjSqm9zvicovw3dcjKPSOIIrv8JaIjJlCCB_Mxz07wEYts9/exec";
+    const API_BASE_URL = "https://script.google.com/macros/s/AKfycbxq6BAFL-epHFPDP52rgCYexbRELc9qYbdt6kMq5h8d_ZP57RBbDQV32Uy4tOVuD5Xy/exec";
 
     const container = document.querySelector('div[data-include="components/list-products/"]');
     if (!container) return;

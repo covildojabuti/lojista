@@ -1,15 +1,15 @@
 [
   {
-    "title": "Aumente sua margem com produtos exclusivos e de alta rotatividade.",
+    "title": "Aumente sua margem com produtos exclusivos.",
     "image-url": "images/banner-home-001.png",
-    "text": "O Covil do Jabuti fornece dados premium de RPG com grande aceitação no mercado, preços competitivos e entrega rápida. Garanta produtos diferenciados para atrair novos jogadores, aumentar vendas e fidelizar clientes.",
+    "text": "Dados premium de RPG com grande aceitação no mercado e preços competitivos. Garanta produtos diferenciados para atrair novos jogadores, aumentar vendas e fidelizar clientes.",
     "button": "Ver produtos para lojistas",
     "button-url": "pages/produtos"
   },
   {
-    "title": "Dados de LED — o produto campeão de vendas no Covil do Jabuti.",
+    "title": "Dados de LED — o produto campeão de vendas.",
     "image-url": "images/banner-home-002.png",
-    "text": "O item mais procurado pelos jogadores! Alta margem, forte apelo visual, giro rápido e ideal para quem quer atrair novos clientes e aumentar o ticket médio da loja.",
+    "text": "O item mais procurado pelos jogadores! Alta margem, forte apelo visual e giro rápido. Ideal para aumentar o ticket médio da loja.",
     "button": "Ver Dados de LED",
     "button-url": "pages/produtos#dados-led"
   }
