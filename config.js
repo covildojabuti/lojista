@@ -1,6 +1,6 @@
 window.APP_CONFIG = {
     apis: {
-        BD_Produtos: 'https://script.google.com/macros/s/AKfycbxq6BAFL-epHFPDP52rgCYexbRELc9qYbdt6kMq5h8d_ZP57RBbDQV32Uy4tOVuD5Xy/exec',
+        BD_Produtos: 'https://script.google.com/macros/s/AKfycbykdzOpowOXAjIwkzTRVmdl0mstVcY7e8heaYVlLRnp2m7D4kfLP8dISeW7NXqM_jim/exec',
         Blog: 'https://covildojabuti.blogspot.com/',
     },
 
