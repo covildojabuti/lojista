@@ -63,7 +63,7 @@
     }
 
     // ==========================
-    // UI: filtros, tabela, detalhes
+    // UI: filtros, tabela, detalhes, modal
     // ==========================
     class ProductUI {
         constructor(container, service, imagesBasePath) {
@@ -81,6 +81,11 @@
 
             this.filteredIndexes = [];
             this.selectedRow = null;
+
+            // elementos de modal
+            this.modal = null;
+            this.modalImg = null;
+            this.modalClose = null;
 
             // bind de métodos usados em eventos
             this.applyFilters = this.applyFilters.bind(this);
@@ -224,8 +229,81 @@
             }
 
             this.filteredIndexes = products.map((_, i) => i);
+
+            // inicializa modal de imagem
+            this.initImageModal();
         }
 
+        // ==========================
+        // MODAL DE IMAGEM
+        // ==========================
+        initImageModal() {
+            const modalWrapper = document.createElement("div");
+            modalWrapper.innerHTML = `
+        <div class="produto-modal" id="produto-modal">
+          <div class="produto-modal-backdrop"></div>
+          <div class="produto-modal-content" role="dialog" aria-modal="true">
+            <button class="produto-modal-close" type="button" aria-label="Fechar imagem">&times;</button>
+            <img id="produto-modal-img" src="" alt="">
+          </div>
+        </div>
+      `;
+
+            const modal = modalWrapper.firstElementChild;
+            this.container.appendChild(modal);
+
+            this.modal = modal;
+            this.modalImg = modal.querySelector("#produto-modal-img");
+            this.modalClose = modal.querySelector(".produto-modal-close");
+
+            // fecha ao clicar no fundo ou no botão
+            this.modal.addEventListener("click", (e) => {
+                if (
+                    e.target === this.modal ||
+                    e.target.classList.contains("produto-modal-backdrop") ||
+                    e.target === this.modalClose
+                ) {
+                    this.closeImageModal();
+                }
+            });
+
+            // fecha com ESC
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    this.closeImageModal();
+                }
+            });
+
+            // delega clique para qualquer imagem com a classe .js-image-modal-trigger
+            this.container.addEventListener("click", (e) => {
+                const trigger = e.target.closest(".js-image-modal-trigger");
+                if (!trigger) return;
+
+                const src = trigger.getAttribute("data-fullsrc") || trigger.getAttribute("src");
+                const alt = trigger.getAttribute("alt") || "";
+                if (!src) return;
+
+                this.openImageModal(src, alt);
+            });
+        }
+
+        openImageModal(src, alt) {
+            if (!this.modal || !this.modalImg) return;
+            this.modalImg.src = src;
+            this.modalImg.alt = alt || "";
+            this.modal.classList.add("is-open");
+        }
+
+        closeImageModal() {
+            if (!this.modal || !this.modalImg) return;
+            this.modal.classList.remove("is-open");
+            this.modalImg.src = "";
+            this.modalImg.alt = "";
+        }
+
+        // ==========================
+        // FILTROS / TABELA / DETALHES
+        // ==========================
         applyFilters() {
             const products = this.service.products;
             const cat = this.filterCategory.value;
@@ -280,7 +358,7 @@
                 return `
           <tr data-index="${idx}">
             <td>
-              ${imgUrl ? `<img class="produto-img-small" src="${imgUrl}" alt="${p.PRODUTO || ""}">` : ""}
+              ${imgUrl ? `<img class="produto-img-small js-image-modal-trigger" data-fullsrc="${imgUrl}" src="${imgUrl}" alt="${p.PRODUTO || ""}">` : ""}
             </td>
             <td>${(p.PRODUTO || "") + labelVariacoes}</td>
             <td><pre style="white-space: pre-wrap; margin:0">${p.MOQ || ""}</pre></td>
@@ -332,7 +410,7 @@
                 const itensHtml = variacoesDoProduto.map(v => {
                     const imgVarUrl = this.buildVariationImageUrl(v);
                     const imgVar = imgVarUrl
-                        ? `<img src="${imgVarUrl}" alt="${v.VARIACAO || ""}"
+                        ? `<img class="js-image-modal-trigger" data-fullsrc="${imgVarUrl}" src="${imgVarUrl}" alt="${v.VARIACAO || ""}"
                                  style="width:32px;height:32px;object-fit:cover;border-radius:4px;margin-right:4px;">`
                         : "";
                     return `
@@ -356,13 +434,11 @@
 
             return `
     <div class="produto-detalhes-header">
-      ${imgUrl ? `<img src="${imgUrl}" alt="${produtoNome}">` : ""}
+      ${imgUrl ? `<img class="js-image-modal-trigger" data-fullsrc="${imgUrl}" src="${imgUrl}" alt="${produtoNome}">` : ""}
       <div>
         <div class="produto-detalhes-titulo">${produtoNome}</div>
         
-      
         <div class="produto-detalhes-video" style="margin-top:8px;">
-        
         ${videoUrl
                     ? `<a href="${videoUrl}" target="_blank" rel="noopener noreferrer">
              <i class="fab fa-youtube"></i> Abrir vídeo
@@ -385,29 +461,22 @@
       <p><span class="produto-detalhes-label">Tamanho lados (mm):</span> ${tamanhoLados}</p>
       <p><span class="produto-detalhes-label">Destaque:</span> ${destaque}</p>
 
-      
-
       <div class="produto-detalhes-preco">
         <div><span class="produto-detalhes-label">De:</span> ${dePreco}</div>
         <div><span class="produto-detalhes-label">Por:</span> ${porPreco}</div>
       </div>
 
-      
-
       <div class="produto-detalhes-descricao">
-        
         <span class="produto-detalhes-label">Itens Inclusos:</span><br>
         ${itens_inclusos}<br>
         <span class="produto-detalhes-label">Características:</span><br>
-        ${caracteristicas}<br></div>
-        ${variacoesHtml}
-        <div>
+        ${caracteristicas}<br>
+      </div>
+      ${variacoesHtml}
+      <div>
         <span class="produto-detalhes-label">Descrição:</span><br>
         ${descricao}<br>
       </div>
-
-
-      
     </div>
     `;
         }
