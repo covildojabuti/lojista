@@ -172,7 +172,7 @@
               <tr>
                 <th>Foto</th>
                 <th>Produto</th>
-                <th>MOQ</th>
+                <th>Preço Unitário</th>
                 <th>Video</th>
               </tr>
             </thead>
@@ -456,15 +456,14 @@
     </div>
 
     <div class="produto-detalhes-body">
-      <p><span class="produto-detalhes-label">MOQ:</span> ${mqq}</p>
-      <p><span class="produto-detalhes-label">Peso:</span> ${peso}</p>
-      <p><span class="produto-detalhes-label">Tamanho lados (mm):</span> ${tamanhoLados}</p>
-      <p><span class="produto-detalhes-label">Destaque:</span> ${destaque}</p>
-
-      <div class="produto-detalhes-preco">
+     <div class="produto-detalhes-preco">
         <div><span class="produto-detalhes-label">De:</span> ${dePreco}</div>
         <div><span class="produto-detalhes-label">Por:</span> ${porPreco}</div>
       </div>
+      <p><span class="produto-detalhes-label">Preço Unitário:</span> ${mqq}</p>
+      <p><span class="produto-detalhes-label">Peso (g):</span> ${peso}</p>
+
+     
 
       <div class="produto-detalhes-descricao">
         <span class="produto-detalhes-label">Itens Inclusos:</span><br>
