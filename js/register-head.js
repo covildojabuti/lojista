@@ -1,7 +1,7 @@
 (function () {
     const head = document.head || document.getElementsByTagName('head')[0];
 
-    // Insere <base href="/lightus/"> se ainda não houver
+    // Insere <base href="/lightus/"> se ainda nÃ£o houver
     if (!document.querySelector('base')) {
 
 
@@ -17,13 +17,13 @@
         document.head.appendChild(base);
     }
 
-    // Função para adicionar um recurso ao head, evitando duplicação
+    // FunÃ§Ã£o para adicionar um recurso ao head, evitando duplicaÃ§Ã£o
     function addAsset(path) {
         const isCSS = path.endsWith('.css') || path.includes('fonts.googleapis.com');
         const isJS = path.endsWith('.js');
         const isFavicon = path.endsWith('.ico') || path.includes('favicon');
 
-        // Evita duplicação
+        // Evita duplicaÃ§Ã£o
         const alreadyExists = Array.from(head.children).some(el => {
             return (isCSS && el.tagName === 'LINK' && el.href.includes(path)) ||
                    (isJS && el.tagName === 'SCRIPT' && el.src.includes(path)) ||
@@ -51,7 +51,7 @@
         }
     }
 
-    // Assets globais que sempre serão carregados
+    // Assets globais que sempre serÃ£o carregados
     const globalAssets = [
         'config.js',
         'components/common.css',
@@ -63,21 +63,37 @@
     // Carrega os assets globais
     globalAssets.forEach(addAsset);
 
-    // Detecta a página atual e carrega os assets específicos
+    // Detecta a pÃ¡gina atual e carrega os assets especÃ­ficos
     const currentPath = window.location.pathname;
     
-    // Verifica se estamos em uma página dentro de /lightus/pages/
+    // Verifica se estamos em uma pÃ¡gina dentro de /lightus/pages/
     if (currentPath.includes('/pages/')) {
-        // Extrai o nome da página (último diretório antes do index.html)
+        // Extrai o nome da pÃ¡gina (Ãºltimo diretÃ³rio antes do index.html)
         const pagePathMatch = currentPath.match(/\/pages\/([^\/]+)/);
         
         if (pagePathMatch && pagePathMatch[1]) {
             const pageName = pagePathMatch[1];
             const pageBasePath = `pages/${pageName}/${pageName}`;
             
-            // Adiciona CSS e JS específicos da página se existirem
+            // Adiciona CSS e JS especÃ­ficos da pÃ¡gina se existirem
             addAsset(`${pageBasePath}.css`);
             addAsset(`${pageBasePath}.js`);
         }
     }
+    // Google Ads base tag for campaign landing pages.
+    const googleAdsId = 'AW-17697272500';
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', googleAdsId);
+
+    const googleTagUrl = `https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`;
+    const googleTagAlreadyLoaded = Array.from(head.querySelectorAll('script')).some(script => script.src === googleTagUrl);
+    if (!googleTagAlreadyLoaded) {
+        const googleTag = document.createElement('script');
+        googleTag.async = true;
+        googleTag.src = googleTagUrl;
+        head.appendChild(googleTag);
+    }
+
 })();
