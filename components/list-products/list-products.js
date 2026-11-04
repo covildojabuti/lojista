@@ -1,4 +1,4 @@
-﻿(async function () {
+(async function () {
     const IMAGES_BASE_PATH = "/lojista/app_produtos"; // ajuste se precisar
 
     const container = document.querySelector('div[data-include="components/list-products/"]');
@@ -19,15 +19,20 @@
             return String(value || "").trim().toUpperCase();
         }
 
-        async load() {
-            const [prodRes, varRes] = await Promise.all([
-                fetch(this.apiBaseUrl),
-                fetch(this.apiBaseUrl + "?tipo=variacoes"),
-            ]);
+        async loadProducts() {
+            const response = await fetch(this.apiBaseUrl);
+            if (!response.ok) {
+                throw new Error(`Falha ao carregar produtos: HTTP ${response.status}`);
+            }
+            this.products = await response.json();
+        }
 
-            this.products = await prodRes.json();
-            this.variations = await varRes.json();
-
+        async loadVariations() {
+            const response = await fetch(this.apiBaseUrl + "?tipo=variacoes");
+            if (!response.ok) {
+                throw new Error(`Falha ao carregar variações: HTTP ${response.status}`);
+            }
+            this.variations = await response.json();
             this.buildVariationMap();
         }
 
@@ -52,8 +57,6 @@
                 this.variationsBySku[key].push(v);
             });
 
-            console.log("SKUs de produtos:", this.products.map(p => ProductService.skuKey(p.COD_SKU_PAI)));
-            console.log("Mapa de variações por SKU:", this.variationsBySku);
         }
 
         getVariationsForProduct(product) {
@@ -134,8 +137,9 @@
             const subcategorias = [...new Set(products.map(p => p.SUBCATEGORIA).filter(Boolean))].sort();
 
             const filtrosHtml = `
-        <div class="produtos-filtros">
-          <h3>Filtros</h3>
+        <details class="produtos-filtros" open>
+          <summary><h3>Filtros</h3></summary>
+          <div class="produtos-filtros-conteudo">
 
           <label for="filtro-categoria">Categoria</label>
           <select id="filtro-categoria">
@@ -159,7 +163,8 @@
           <input type="text" id="filtro-preco-max" placeholder="Ex: 50,00">
 
           <button id="filtro-limpar">Limpar filtros</button>
-        </div>
+          </div>
+        </details>
       `;
 
             const estruturaHtml = `
@@ -187,6 +192,11 @@
       `;
 
             this.container.innerHTML = estruturaHtml;
+
+            const filtrosDisclosure = this.container.querySelector(".produtos-filtros");
+            if (filtrosDisclosure && window.innerWidth <= 1024) {
+                filtrosDisclosure.open = false;
+            }
 
             this.tableBody = this.container.querySelector("tbody");
             this.detailsCard = this.container.querySelector("#produto-detalhes-card");
@@ -353,14 +363,12 @@
                 const labelVariacoes = qtd > 0 ? ` (${qtd} variações)` : "";
                 const imgUrl = this.buildProductImageUrl(p);
 
-                console.log("Produto", skuKey, "->", qtd, "variações");
-
                 return `
           <tr data-index="${idx}">
             <td>
-              ${imgUrl ? `<img class="produto-img-small js-image-modal-trigger" data-fullsrc="${imgUrl}" src="${imgUrl}" alt="${p.PRODUTO || ""}">` : ""}
+              ${imgUrl ? `<img class="produto-img-small js-image-modal-trigger" data-fullsrc="${imgUrl}" src="${imgUrl}" alt="${p.PRODUTO || ""}" loading="lazy" decoding="async">` : ""}
             </td>
-            <td>${(p.PRODUTO || "") + labelVariacoes}</td>
+            <td><span class="produto-nome">${(p.PRODUTO || "") + labelVariacoes}</span></td>
             <td><pre style="white-space: pre-wrap; margin:0">${p.MOQ || ""}</pre></td>
             <td>
               ${p.URL_VIDEO
@@ -376,6 +384,32 @@
 
             this.tableBody.innerHTML = rowsHtml;
             this.attachRowListeners();
+        }
+
+        refreshVariationData() {
+            const products = this.service.products;
+
+            this.tableBody.querySelectorAll("tr[data-index]").forEach(row => {
+                const product = products[Number(row.dataset.index)];
+                const name = row.querySelector(".produto-nome");
+                if (!product || !name) return;
+
+                const skuKey = ProductService.skuKey(product.COD_SKU_PAI);
+                const variationCount = (this.service.variationsBySku[skuKey] || []).length;
+                name.textContent = (product.PRODUTO || "") + (variationCount ? ` (${variationCount} variações)` : "");
+            });
+
+            if (!this.selectedRow) return;
+            const selectedProduct = products[Number(this.selectedRow.dataset.index)];
+            if (!selectedProduct) return;
+
+            const detailsHtml = this.renderDetails(selectedProduct);
+            if (window.innerWidth < 1100) {
+                const detailsCell = this.container.querySelector(".produto-detalhes-row td");
+                if (detailsCell) detailsCell.innerHTML = detailsHtml;
+            } else if (this.detailsCard && !this.detailsCard.classList.contains("hidden")) {
+                this.detailsCard.innerHTML = detailsHtml;
+            }
         }
 
         renderDetails(product) {
@@ -410,7 +444,7 @@
                 const itensHtml = variacoesDoProduto.map(v => {
                     const imgVarUrl = this.buildVariationImageUrl(v);
                     const imgVar = imgVarUrl
-                        ? `<img class="js-image-modal-trigger" data-fullsrc="${imgVarUrl}" src="${imgVarUrl}" alt="${v.VARIACAO || ""}"
+                        ? `<img class="js-image-modal-trigger" data-fullsrc="${imgVarUrl}" src="${imgVarUrl}" alt="${v.VARIACAO || ""}" loading="lazy" decoding="async"
                                  style="width:32px;height:32px;object-fit:cover;border-radius:4px;margin-right:4px;">`
                         : "";
                     return `
@@ -434,7 +468,7 @@
 
             return `
     <div class="produto-detalhes-header">
-      ${imgUrl ? `<img class="js-image-modal-trigger" data-fullsrc="${imgUrl}" src="${imgUrl}" alt="${produtoNome}">` : ""}
+      ${imgUrl ? `<img class="js-image-modal-trigger" data-fullsrc="${imgUrl}" src="${imgUrl}" alt="${produtoNome}" loading="lazy" decoding="async">` : ""}
       <div>
         <div class="produto-detalhes-titulo">${produtoNome}</div>
         
@@ -494,7 +528,7 @@
                         row.classList.remove("selecionado");
                         this.selectedRow = null;
 
-                        if (window.innerWidth < 768) {
+                        if (window.innerWidth < 1100) {
                             const detalhesRow = this.container.querySelector(".produto-detalhes-row");
                             if (detalhesRow) detalhesRow.remove();
                         } else {
@@ -512,7 +546,7 @@
 
                     const detailsHtml = this.renderDetails(product);
 
-                    if (window.innerWidth < 768) {
+                    if (window.innerWidth < 1100) {
                         const existingDetailsRow = this.container.querySelector(".produto-detalhes-row");
                         if (existingDetailsRow) existingDetailsRow.remove();
 
@@ -548,7 +582,11 @@
     // ==========================
     try {
         const service = new ProductService(Config.APIS.BD_Produtos);
-        await service.load();
+        const variationsPromise = service.loadVariations().catch(err => {
+            console.warn("Não foi possível carregar as variações:", err);
+            return false;
+        });
+        await service.loadProducts();
 
         if (!Array.isArray(service.products) || service.products.length === 0) {
             container.innerHTML = "<p>Nenhum produto encontrado.</p>";
@@ -558,7 +596,13 @@
         const ui = new ProductUI(container, service, IMAGES_BASE_PATH);
         ui.initLayout();
         ui.applyFilters();
-        ui.openFirstProductIfAny();
+        if (window.innerWidth >= 1100) {
+            ui.openFirstProductIfAny();
+        }
+
+        variationsPromise.then(loaded => {
+            if (loaded) ui.refreshVariationData();
+        });
 
     } catch (err) {
         console.error("Erro ao carregar produtos/variações:", err);
