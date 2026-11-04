@@ -1,16 +1,21 @@
-﻿.bottom {
+.bottom {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 60px;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto 30px auto;
+    box-sizing: border-box;
+    padding: 0 16px;
 }
 
 .links-bottom {
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
+    width: 100%;
+    min-width: 0;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -42,6 +47,17 @@
 
 
 /* --- RESPONSIVIDADE --- */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .links-bottom {
+        gap: 16px;
+    }
+
+    .menu-item-bottom {
+        flex: 1 1 130px;
+        min-width: 0;
+    }
+}
+
 @media (max-width: 600px) {
     .bottom {
         flex-direction: column;
