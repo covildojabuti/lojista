@@ -91,7 +91,7 @@
     if (!isLocalPreview) window.gtag('config', googleAdsId);
     window.gtag('config', googleAnalyticsId, isLocalPreview ? { debug_mode: true } : {});
 
-    const googleTagId = isLocalPreview ? googleAnalyticsId : googleAdsId;
+    const googleTagId = googleAnalyticsId;
     const googleTagUrl = `https://www.googletagmanager.com/gtag/js?id=${googleTagId}`;
     const googleTagAlreadyLoaded = Array.from(head.querySelectorAll('script')).some(script => script.src === googleTagUrl);
     if (!googleTagAlreadyLoaded) {
@@ -140,7 +140,7 @@
                 : destination.protocol.replace(':', '');
         }
 
-        window.gtag('event', 'site_click', params);
+        window.gtag('event', 'site_click', { ...params, send_to: googleAnalyticsId });
     }, true);
 
 
