@@ -345,6 +345,13 @@
                 .map(({ index }) => index);
 
             this.renderTable();
+
+            // Filtering clears the selected row; also clear the desktop details card
+            // so it cannot look selected while analytics has no product context.
+            if (this.detailsCard) {
+                this.detailsCard.classList.add("hidden");
+                this.detailsCard.innerHTML = "<p>Selecione um produto na tabela para ver os detalhes.</p>";
+            }
         }
 
         renderTable() {
