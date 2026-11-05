@@ -80,14 +80,19 @@
             addAsset(`${pageBasePath}.js`);
         }
     }
-    // Google Ads base tag for campaign landing pages.
+    // Preview events are marked for DebugView; Google Ads remains production-only.
+    const isLocalPreview = ['localhost', '127.0.0.1'].includes(window.location.hostname);
     const googleAdsId = 'AW-17697272500';
+    const googleAnalyticsId = 'G-QXCH0V4VK2';
+
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
     window.gtag('js', new Date());
-    window.gtag('config', googleAdsId);
+    if (!isLocalPreview) window.gtag('config', googleAdsId);
+    window.gtag('config', googleAnalyticsId, isLocalPreview ? { debug_mode: true } : {});
 
-    const googleTagUrl = `https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`;
+    const googleTagId = isLocalPreview ? googleAnalyticsId : googleAdsId;
+    const googleTagUrl = `https://www.googletagmanager.com/gtag/js?id=${googleTagId}`;
     const googleTagAlreadyLoaded = Array.from(head.querySelectorAll('script')).some(script => script.src === googleTagUrl);
     if (!googleTagAlreadyLoaded) {
         const googleTag = document.createElement('script');
@@ -95,5 +100,48 @@
         googleTag.src = googleTagUrl;
         head.appendChild(googleTag);
     }
+
+    // Delegation covers buttons and links rendered by shared components too.
+    document.addEventListener('click', function (event) {
+        const clickedElement = event.target instanceof Element
+            ? event.target.closest('a[href], button, [role="button"], input[type="button"], input[type="submit"], input[type="reset"], summary')
+            : null;
+
+        if (!clickedElement || clickedElement.matches('[disabled], [aria-disabled="true"]')) return;
+
+        const isPrivateArea = Boolean(clickedElement.closest('.auth-container, [data-private="true"]'));
+        const rawClickText = (
+            clickedElement.getAttribute('aria-label') ||
+            clickedElement.getAttribute('title') ||
+            clickedElement.dataset.analyticsLabel ||
+            clickedElement.dataset.action ||
+            (!isPrivateArea && (clickedElement.innerText || clickedElement.textContent)) ||
+            clickedElement.id ||
+            clickedElement.tagName.toLowerCase()
+        );
+        const clickText = rawClickText
+            .replace(/\s+/g, ' ')
+            .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[email]')
+            .replace(/\+?\d[\d ().-]{7,}\d/g, '[phone]')
+            .trim()
+            .slice(0, 100);
+
+        const params = {
+            click_text: clickText,
+            click_type: clickedElement.tagName.toLowerCase()
+        };
+
+        if (clickedElement.id) params.click_id = clickedElement.id.slice(0, 100);
+
+        if (clickedElement instanceof HTMLAnchorElement) {
+            const destination = new URL(clickedElement.href, window.location.href);
+            params.click_destination = ['http:', 'https:'].includes(destination.protocol)
+                ? `${destination.origin}${destination.pathname}`.slice(0, 100)
+                : destination.protocol.replace(':', '');
+        }
+
+        window.gtag('event', 'site_click', params);
+    }, true);
+
 
 })();
