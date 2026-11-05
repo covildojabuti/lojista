@@ -110,7 +110,15 @@
         if (!clickedElement || clickedElement.matches('[disabled], [aria-disabled="true"]')) return;
 
         const isPrivateArea = Boolean(clickedElement.closest('.auth-container, [data-private="true"]'));
-        const rawClickText = (
+        const clickedDestination = clickedElement instanceof HTMLAnchorElement
+            ? new URL(clickedElement.href, window.location.href)
+            : null;
+        const isWhatsAppDestination = clickedDestination && (
+            clickedDestination.hostname === 'wa.me' ||
+            clickedDestination.hostname === 'whatsapp.com' ||
+            clickedDestination.hostname.endsWith('.whatsapp.com')
+        );
+        const rawClickText = isWhatsAppDestination ? 'WhatsApp' : (
             clickedElement.getAttribute('aria-label') ||
             clickedElement.getAttribute('title') ||
             clickedElement.dataset.analyticsLabel ||
@@ -133,11 +141,16 @@
 
         if (clickedElement.id) params.click_id = clickedElement.id.slice(0, 100);
 
-        if (clickedElement instanceof HTMLAnchorElement) {
-            const destination = new URL(clickedElement.href, window.location.href);
-            params.click_destination = ['http:', 'https:'].includes(destination.protocol)
-                ? `${destination.origin}${destination.pathname}`.slice(0, 100)
-                : destination.protocol.replace(':', '');
+        if (clickedDestination) {
+            params.click_destination = ['http:', 'https:'].includes(clickedDestination.protocol)
+                ? `${clickedDestination.origin}${clickedDestination.pathname}`.slice(0, 100)
+                : clickedDestination.protocol.replace(':', '');
+        }
+
+        const selectedProduct = isWhatsAppDestination ? window.siteAnalyticsSelectedProduct : null;
+        if (selectedProduct) {
+            if (selectedProduct.name) params.selected_product_name = selectedProduct.name.slice(0, 100);
+            if (selectedProduct.sku) params.selected_product_sku = selectedProduct.sku.slice(0, 100);
         }
 
         window.gtag('event', 'site_click', { ...params, send_to: googleAnalyticsId });

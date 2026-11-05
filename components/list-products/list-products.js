@@ -315,6 +315,7 @@
         // FILTROS / TABELA / DETALHES
         // ==========================
         applyFilters() {
+            window.siteAnalyticsSelectedProduct = null;
             const products = this.service.products;
             const cat = this.filterCategory.value;
             const subcat = this.filterSubcategory.value;
@@ -525,6 +526,7 @@
                     if (!product) return;
 
                     if (this.selectedRow === row) {
+                        if (!this.isProgrammaticSelection) window.siteAnalyticsSelectedProduct = null;
                         row.classList.remove("selecionado");
                         this.selectedRow = null;
 
@@ -543,6 +545,33 @@
                     }
                     row.classList.add("selecionado");
                     this.selectedRow = row;
+
+                    // The desktop auto-opens the first row programmatically; do not count that as a user selection.
+                    if (!this.isProgrammaticSelection) {
+                        const item = {
+                            item_id: String(product.COD_SKU_PAI || "").trim(),
+                            item_name: String(product.PRODUTO || "").trim(),
+                            item_brand: "Covil do Jabuti",
+                            item_category: String(product.CATEGORIA || "").trim(),
+                            item_category2: String(product.SUBCATEGORIA || "").trim()
+                        };
+                        Object.keys(item).forEach(key => {
+                            if (!item[key]) delete item[key];
+                        });
+
+                        window.siteAnalyticsSelectedProduct = {
+                            name: item.item_name || "",
+                            sku: item.item_id || ""
+                        };
+
+                        if ((item.item_id || item.item_name) && typeof window.gtag === "function") {
+                            window.gtag("event", "select_item", {
+                                item_list_id: "lojista_catalog",
+                                item_list_name: "Catálogo para lojistas",
+                                items: [item]
+                            });
+                        }
+                    }
 
                     const detailsHtml = this.renderDetails(product);
 
@@ -573,7 +602,14 @@
         openFirstProductIfAny() {
             if (this.filteredIndexes.length === 0) return;
             const firstRow = this.tableBody.querySelector("tr");
-            if (firstRow) firstRow.click();
+            if (!firstRow) return;
+
+            this.isProgrammaticSelection = true;
+            try {
+                firstRow.click();
+            } finally {
+                this.isProgrammaticSelection = false;
+            }
         }
     }
 
