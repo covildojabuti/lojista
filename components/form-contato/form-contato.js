@@ -3,7 +3,7 @@
     if (form) {
         form.addEventListener("submit", async function (e) {
             e.preventDefault();
-            console.log("Enviando formul·rio...");
+            console.log("Enviando formul√°rio...");
 
             const dados = {
                 nome: form.nome.value,
@@ -13,7 +13,7 @@
             };
 
             try {
-                // Adicione '/dev' apÛs 'exec' se estiver testando em desenvolvimento
+                // Adicione '/dev' ap√≥s 'exec' se estiver testando em desenvolvimento
                 const url = "https://script.google.com/macros/s/AKfycbzYGSaz5Pp5pD3gr3k-OEUTtPxhlQN3HwuCPpATIE5lg6ZfyuRJ2sLjZM-hSRA9h5M/exec";
 
                 const response = await fetch(url, {
@@ -26,10 +26,10 @@
                     mode: 'no-cors'
                 });
 
-                // Mesmo com mode: 'no-cors', vocÍ n„o ter· acesso ‡ resposta
-                // Mas a requisiÁ„o ser· enviada
-                console.log("RequisiÁ„o enviada");
-                alert("Formul·rio enviado com sucesso!");
+                // Mesmo com mode: 'no-cors', voc√™ n√£o ter√° acesso √† resposta
+                // Mas a requisi√ß√£o ser√° enviada
+                console.log("Requisi√ß√£o enviada"); if (typeof window.gtag === "function") { window.gtag("event", "generate_lead", { send_to: "G-QXCH0V4VK2", form_id: "lojista_contact", form_name: "Contato para lojistas", page_path: window.location.pathname }); window.gtag("event", "conversion", { send_to: "AW-17697272500/ZMjECLiboLIdELTl2_ZB" }); }
+                alert("Formul√°rio enviado com sucesso!");
                 form.reset();
             } catch (err) {
                 console.error("Erro ao enviar:", err);
