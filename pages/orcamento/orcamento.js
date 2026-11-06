@@ -37,6 +37,14 @@
         return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value);
     }
 
+    function getTierBand(tiers, index) {
+        const firstQuantity = index === 0 ? 1 : tiers[index - 1].quantity + 1;
+        const lastQuantity = tiers[index].quantity;
+        return index === 0
+            ? `0–${lastQuantity}`
+            : `${firstQuantity}–${lastQuantity}`;
+    }
+
     function parsePricing(product, index) {
         const raw = String(product.MOQ || "");
         const groupMatch = raw.match(/Grupo de Quantidade:\s*([^\r\n]+)/i);
@@ -196,8 +204,12 @@
                     ? "Preço por confirmar com a equipe."
                     : `Preço cadastrado: ${formatCurrency(product.pricing.fallbackPrice)} por unidade.`;
             }
-            const tiers = product.pricing.tiers.map(tier => `${tier.quantity}+ ${formatCurrency(tier.price)}`).join(" · ");
-            return `Faixas do grupo: ${tiers} <strong>por unidade</strong>`;
+            const priceBands = product.pricing.tiers.map((tier, index, tiers) =>
+                `${getTierBand(tiers, index)}: ${formatCurrency(tier.price)}`
+            );
+            const lastTier = product.pricing.tiers.at(-1);
+            priceBands.push(`acima de ${lastTier.quantity}: ${formatCurrency(lastTier.price)}`);
+            return `Faixas do grupo por unidade: ${priceBands.join(" · ")}`;
         }
 
         function renderProducts() {
@@ -244,17 +256,21 @@
 
         function getLinePrice(product, quantityInGroup) {
             const tiers = product.pricing.tiers;
-            if (product.pricing.invalid) return { price: null, tier: null, minimum: null };
+            if (product.pricing.invalid) return { price: null, tierRange: null };
             if (!tiers.length) {
                 return product.pricing.fallbackPrice === null
-                    ? { price: null, tier: null, minimum: null }
-                    : { price: product.pricing.fallbackPrice, tier: null, minimum: null };
+                    ? { price: null, tierRange: null }
+                    : { price: product.pricing.fallbackPrice, tierRange: null };
             }
 
-            const matchingTier = tiers.filter(tier => tier.quantity <= quantityInGroup).at(-1);
-            return matchingTier
-                ? { price: matchingTier.price, tier: matchingTier.quantity, minimum: tiers[0].quantity }
-                : { price: null, tier: null, minimum: tiers[0].quantity };
+            const matchingIndex = tiers.findIndex(tier => quantityInGroup <= tier.quantity);
+            const tierIndex = matchingIndex === -1 ? tiers.length - 1 : matchingIndex;
+            const matchingTier = tiers[tierIndex];
+            const tierRange = matchingIndex === -1
+                ? `acima de ${matchingTier.quantity}`
+                : getTierBand(tiers, tierIndex);
+
+            return { price: matchingTier.price, tierRange };
         }
 
         function getCartCalculation() {
@@ -298,14 +314,10 @@
                     let priceDetail;
                     let lineTotal;
                     if (line.price !== null) {
-                        priceDetail = line.tier
-                            ? `Grupo ${escapeHtml(line.product.pricing.groupName)}: ${line.volume} unidades · faixa ${line.tier}+ · ${formatCurrency(line.price)}/un.`
+                        priceDetail = line.tierRange
+                            ? `Grupo ${escapeHtml(line.product.pricing.groupName)}: ${line.volume} unidades · faixa ${line.tierRange} · ${formatCurrency(line.price)}/un.`
                             : `Preço unitário cadastrado: ${formatCurrency(line.price)}.`;
                         lineTotal = formatCurrency(cents(line.price) * line.quantity / 100);
-                    } else if (line.minimum) {
-                        const needed = Math.max(0, line.minimum - line.volume);
-                        priceDetail = `Faixa inicial: ${line.minimum} unidades no grupo ${escapeHtml(line.product.pricing.groupName)}. ${needed ? `Faltam ${needed} para alcançar a primeira faixa.` : "Preço desta faixa precisa ser confirmado."}`;
-                        lineTotal = "A definir";
                     } else if (line.product.pricing.invalid) {
                         priceDetail = "A faixa de preço cadastrada tem dados inválidos. O cálculo foi bloqueado; confirme com a equipe.";
                         lineTotal = "A confirmar";
@@ -359,7 +371,7 @@
                 minimumElement.classList.add("orcamento-minimo--incompleto");
                 minimumMessage.textContent = calculation.lines.some(line => line.product.pricing.invalid)
                     ? "Há uma faixa de preço inválida ou incompleta. O total está bloqueado até a equipe confirmar os dados."
-                    : "Há grupos abaixo da primeira faixa. Ajuste as quantidades para calcular um subtotal completo.";
+                    : "Há produto sem preço cadastrado. O total está bloqueado até a equipe confirmar os dados.";
             } else if (calculation.productCents >= COMMERCIAL_POLICY.minimumOrderCents) {
                 minimumElement.classList.add("orcamento-minimo--atingido");
                 minimumMessage.textContent = "Pedido mínimo atingido. O mínimo considera apenas os produtos.";
@@ -373,7 +385,7 @@
                 quoteNote.textContent = "Os valores são uma simulação com base na tabela atual. A cotação final é confirmada pela equipe antes do pedido.";
             } else if (!calculation.complete) {
                 quoteNote.classList.add("orcamento-observacao--alerta");
-                quoteNote.textContent = "Ainda não há total confiável: a quantidade pode estar abaixo da primeira faixa, ou a tabela pode conter um preço ausente ou inválido. Ajuste as quantidades ou confirme com a equipe.";
+                quoteNote.textContent = "Ainda não há total confiável porque falta um preço válido na tabela. Confirme os dados com a equipe.";
             } else {
                 quoteNote.classList.remove("orcamento-observacao--alerta");
                 quoteNote.textContent = `Simulação baseada na tabela atual. O desconto de ${Math.round(COMMERCIAL_POLICY.pixDiscountRate * 100)}% do PIX foi aplicado aos produtos; o frete não recebe desconto. A cotação final é confirmada pela equipe antes do pedido.`;
@@ -410,12 +422,12 @@
             calculation.lines.forEach(line => {
                 const unit = line.price === null ? "preço a confirmar" : `${formatCurrency(line.price)} por unidade`;
                 lines.push(`• ${line.product.PRODUTO} — ${line.quantity} un. — ${unit}`);
-                lines.push(`  Grupo ${line.product.pricing.groupName}: ${line.volume} unidades${line.tier ? ` (faixa ${line.tier}+)` : ""}`);
+                lines.push(`  Grupo ${line.product.pricing.groupName}: ${line.volume} unidades${line.tierRange ? ` (faixa ${line.tierRange})` : ""}`);
             });
             lines.push("");
 
             if (!calculation.complete) {
-                lines.push("Subtotal e total: aguardando quantidade mínima da faixa ou confirmação de preço.");
+                lines.push("Subtotal e total: aguardando confirmação dos preços cadastrados.");
             } else {
                 lines.push(`Produtos: ${formatCurrency(calculation.productCents / 100)}`);
                 lines.push(`Frete: ${calculation.shippingCents === 0 ? "Grátis" : formatCurrency(calculation.shippingCents / 100)}`);
