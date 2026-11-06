@@ -74,7 +74,9 @@
         if (pagePathMatch && pagePathMatch[1]) {
             const pageName = pagePathMatch[1];
             const pageBasePath = `pages/${pageName}/${pageName}`;
-            const pageAssetVersion = '20261106-orcamento4';
+            const pageAssetVersion = pageName === 'orcamento'
+                ? '20261106-orcamento5'
+                : '20261106-orcamento4';
             
             // Adiciona CSS e JS específicos da página se existirem
             addAsset(`${pageBasePath}.css?v=${pageAssetVersion}`);
