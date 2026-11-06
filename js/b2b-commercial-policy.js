@@ -8,6 +8,7 @@
     });
 
     window.B2B_COMMERCIAL_POLICY = policy;
+    window.B2B_CRM_QUOTE_ENDPOINT = "https://covil-desktop.tail74d850.ts.net/marketing/crm/site-quote";
 
     function formatCurrency(cents) {
         return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(cents / 100);
