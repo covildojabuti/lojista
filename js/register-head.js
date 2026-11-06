@@ -1,7 +1,7 @@
 (function () {
     const head = document.head || document.getElementsByTagName('head')[0];
 
-    // Insere <base href="/lightus/"> se ainda n√£o houver
+    // Insere <base href="/lightus/"> se ainda n„o houver
     if (!document.querySelector('base')) {
 
 
@@ -17,13 +17,13 @@
         document.head.appendChild(base);
     }
 
-    // Fun√ß√£o para adicionar um recurso ao head, evitando duplica√ß√£o
+    // FunÁ„o para adicionar um recurso ao head, evitando duplicaÁ„o
     function addAsset(path) {
-        const isCSS = path.endsWith('.css') || path.includes('fonts.googleapis.com');
-        const isJS = path.endsWith('.js');
+        const isCSS = /\.css(?:\?|$)/.test(path) || path.includes('fonts.googleapis.com');
+        const isJS = /\.js(?:\?|$)/.test(path);
         const isFavicon = path.endsWith('.ico') || path.includes('favicon');
 
-        // Evita duplica√ß√£o
+        // Evita duplicaÁ„o
         const alreadyExists = Array.from(head.children).some(el => {
             return (isCSS && el.tagName === 'LINK' && el.href.includes(path)) ||
                    (isJS && el.tagName === 'SCRIPT' && el.src.includes(path)) ||
@@ -51,7 +51,7 @@
         }
     }
 
-    // Assets globais que sempre ser√£o carregados
+    // Assets globais que sempre ser„o carregados
     const globalAssets = [
         'config.js',
         'components/common.css',
@@ -63,42 +63,55 @@
     // Carrega os assets globais
     globalAssets.forEach(addAsset);
 
-    // Detecta a p√°gina atual e carrega os assets espec√≠ficos
+    // Detecta a p·gina atual e carrega os assets especÌficos
     const currentPath = window.location.pathname;
     
-    // Verifica se estamos em uma p√°gina dentro de /lightus/pages/
+    // Verifica se estamos em uma p·gina dentro de /lightus/pages/
     if (currentPath.includes('/pages/')) {
-        // Extrai o nome da p√°gina (√∫ltimo diret√≥rio antes do index.html)
+        // Extrai o nome da p·gina (˙ltimo diretÛrio antes do index.html)
         const pagePathMatch = currentPath.match(/\/pages\/([^\/]+)/);
         
         if (pagePathMatch && pagePathMatch[1]) {
             const pageName = pagePathMatch[1];
             const pageBasePath = `pages/${pageName}/${pageName}`;
+            const pageAssetVersion = '20261106-homologacao4';
             
-            // Adiciona CSS e JS espec√≠ficos da p√°gina se existirem
-            addAsset(`${pageBasePath}.css`);
-            addAsset(`${pageBasePath}.js`);
+            // Adiciona CSS e JS especÌficos da p·gina se existirem
+            addAsset(`${pageBasePath}.css?v=${pageAssetVersion}`);
+            addAsset(`${pageBasePath}.js?v=${pageAssetVersion}`);
         }
     }
-    // Preview events are marked for DebugView; Google Ads remains production-only.
+    // Keep preview clicks out of the live GA4/Google Ads properties.
     const isLocalPreview = ['localhost', '127.0.0.1'].includes(window.location.hostname);
     const googleAdsId = 'AW-17697272500';
     const googleAnalyticsId = 'G-QXCH0V4VK2';
 
     window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-    window.gtag('js', new Date());
-    if (!isLocalPreview) window.gtag('config', googleAdsId);
-    window.gtag('config', googleAnalyticsId, isLocalPreview ? { debug_mode: true } : {});
+    if (isLocalPreview) {
+        // Record events locally so preview QA cannot pollute production reports.
+        window.sitePreviewAnalytics = window.sitePreviewAnalytics || [];
+        window.gtag = function () {
+            const call = Array.from(arguments);
+            window.dataLayer.push(call);
+            if (call[0] === 'event') {
+                window.sitePreviewAnalytics.push({ event: call[1], params: call[2] || {} });
+            }
+        };
+    } else {
+        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', googleAdsId);
+        window.gtag('config', googleAnalyticsId);
 
-    const googleTagId = googleAnalyticsId;
-    const googleTagUrl = `https://www.googletagmanager.com/gtag/js?id=${googleTagId}`;
-    const googleTagAlreadyLoaded = Array.from(head.querySelectorAll('script')).some(script => script.src === googleTagUrl);
-    if (!googleTagAlreadyLoaded) {
-        const googleTag = document.createElement('script');
-        googleTag.async = true;
-        googleTag.src = googleTagUrl;
-        head.appendChild(googleTag);
+        // Keep GA4 as the primary loader; the Ads destination is configured above.
+        const googleTagUrl = `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`;
+        const googleTagAlreadyLoaded = Array.from(head.querySelectorAll('script')).some(script => script.src === googleTagUrl);
+        if (!googleTagAlreadyLoaded) {
+            const googleTag = document.createElement('script');
+            googleTag.async = true;
+            googleTag.src = googleTagUrl;
+            head.appendChild(googleTag);
+        }
     }
 
     // Delegation covers buttons and links rendered by shared components too.
@@ -155,6 +168,5 @@
 
         window.gtag('event', 'site_click', { ...params, send_to: googleAnalyticsId });
     }, true);
-
 
 })();

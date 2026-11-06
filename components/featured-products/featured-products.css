@@ -72,3 +72,33 @@
         font-weight: 600;
         white-space: pre-wrap;
     }
+
+
+.produto-moq a {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 9px;
+    color: #51463b;
+    text-decoration: none;
+}
+
+.produto-moq a span {
+    font-weight: 500;
+    white-space: normal;
+}
+
+.produto-moq s {
+    color: #796f64;
+}
+
+.produto-moq strong {
+    color: #785516;
+    font-size: 1rem;
+}
+
+.produto-moq small {
+    flex-basis: 100%;
+    color: #74695f;
+    font-size: .72rem;
+}

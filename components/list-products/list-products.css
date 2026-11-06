@@ -1,4 +1,4 @@
-.produtos-wrapper {
+﻿.produtos-wrapper {
     display: flex;
     gap: 20px;
     align-items: flex-start;
@@ -97,6 +97,17 @@
 
 .produtos-tabela tr.selecionado {
     background: #d9edf7 !important;
+}
+
+.produtos-tabela tr[data-index]:focus-visible {
+    outline: 3px solid #a97925;
+    outline-offset: -3px;
+}
+
+.produtos-sem-resultado td {
+    padding: 24px 16px;
+    color: #685d4a;
+    text-align: center;
 }
 
 @media (max-width: 1099px) {
