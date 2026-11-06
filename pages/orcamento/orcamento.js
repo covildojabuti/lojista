@@ -163,6 +163,7 @@
         const COMMERCIAL_POLICY = window.B2B_COMMERCIAL_POLICY;
         root.dataset.orcamentoInicializado = "true";
         let activeSubmissionId = "";
+        let requestSuccessShown = false;
 
         const productsGrid = root.querySelector("[data-products]");
         const catalogStatus = root.querySelector("[data-catalog-status]");
@@ -189,6 +190,13 @@
         const requestForm = root.querySelector("[data-request-form]");
         const requestStatus = root.querySelector("[data-request-status]");
         const requestSummary = root.querySelector("[data-request-summary]");
+        const requestTitle = root.querySelector("[data-request-title]");
+        const requestFields = root.querySelector("[data-request-fields]");
+        const requestNotice = root.querySelector("[data-request-notice]");
+        const requestSuccess = root.querySelector("[data-request-success]");
+        const requestSuccessDetail = root.querySelector("[data-request-success-detail]");
+        const requestSubmitButton = root.querySelector("[data-request-submit]");
+        const requestReturnButton = root.querySelector("[data-request-return]");
         const feedback = root.querySelector("[data-feedback]");
         const mobileSummary = root.querySelector("[data-mobile-summary]");
         const mobileCount = root.querySelector("[data-mobile-count]");
@@ -530,6 +538,7 @@
                 const key = line.product.pricing.groupKey;
                 if (!groups.has(key)) {
                     groups.set(key, {
+                        key,
                         name: line.product.pricing.groupName,
                         volume: line.volume,
                         candidates: []
@@ -543,34 +552,87 @@
                 groups.get(key).candidates.push({
                     quantity: nextQuantity,
                     name: line.product.PRODUTO || "Produto",
-                    price: bands[currentIndex + 1].price
+                    price: bands[currentIndex + 1].price,
+                    currentPrice: line.price,
+                    product: line.product,
+                    productIndex: line.product.index,
+                    productKey: line.product.key
                 });
             });
 
             const messages = [...groups.values()].map(group => {
                 if (!group.candidates.length) {
                     return "<article class=\"orcamento-faixa-progresso__item orcamento-faixa-progresso__item--atingida\"><strong>" +
-                        escapeHtml(group.name) + "</strong><p>Os produtos deste grupo já estão na última faixa cadastrada.</p></article>";
+                        escapeHtml(group.name) + "</strong><p>Este grupo já está na última faixa de preço cadastrada.</p></article>";
                 }
 
                 const nextQuantity = Math.min(...group.candidates.map(candidate => candidate.quantity));
                 const needed = nextQuantity - group.volume;
                 const targets = group.candidates.filter(candidate => candidate.quantity === nextQuantity);
-                const visibleTargets = targets.slice(0, 3).map(candidate =>
-                    "<span>" + escapeHtml(candidate.name) + ": " + formatCurrency(candidate.price) + "/un.</span>"
-                ).join("");
+                const groupLines = calculation.lines.filter(line => line.product.pricing.groupKey === group.key);
+                const visibleTargets = targets.slice(0, 3).map(candidate => {
+                    const hasCurrentPrice = Number.isFinite(candidate.currentPrice);
+                    const priceChanged = hasCurrentPrice && candidate.currentPrice !== candidate.price;
+                    const hasReduction = hasCurrentPrice && candidate.currentPrice > candidate.price;
+                    const previousPrice = priceChanged
+                        ? "<del>" + formatCurrency(candidate.currentPrice) + "</del><span aria-hidden=\"true\">→</span>"
+                        : "";
+                    const reduction = hasReduction
+                        ? "<small class=\"orcamento-faixa-progresso__desconto\">−" +
+                            formatCurrency(candidate.currentPrice - candidate.price) + "/un. na faixa</small>"
+                        : "";
+                    return "<div class=\"orcamento-faixa-progresso__produto\"><span class=\"orcamento-faixa-progresso__nome\">" +
+                        escapeHtml(candidate.name) + "</span><span class=\"orcamento-faixa-progresso__precos\"><span class=\"orcamento-faixa-progresso__preco\">" +
+                        previousPrice + "<strong>" + formatCurrency(candidate.price) + "/un.</strong></span>" + reduction + "</span></div>";
+                }).join("");
                 const additionalTargets = targets.length > 3
-                    ? "<span>e mais " + (targets.length - 3) + " " + (targets.length - 3 === 1 ? "produto" : "produtos") + " deste grupo</span>"
+                    ? "<p class=\"orcamento-faixa-progresso__nota\">e mais " + (targets.length - 3) + " " +
+                        (targets.length - 3 === 1 ? "produto" : "produtos") + " deste grupo</p>"
                     : "";
-                return "<article class=\"orcamento-faixa-progresso__item\"><p>Faltam <strong>" + needed + " " +
-                    (needed === 1 ? "unidade" : "unidades") + "</strong> somadas no grupo <strong>" +
-                    escapeHtml(group.name) + "</strong> para a próxima faixa, a partir de " + nextQuantity + ".</p><div>" +
-                    visibleTargets + additionalTargets + "</div></article>";
+                const progress = Math.min(100, Math.max(0, Math.round((group.volume / nextQuantity) * 100)));
+                const suggestedProduct = targets.find(candidate => {
+                    const currentQuantity = state.cart.get(candidate.productKey)?.quantity || 0;
+                    return candidate.currentPrice > candidate.price && currentQuantity + needed <= MAX_QUANTITY;
+                });
+                let savingsCents = 0;
+                if (suggestedProduct) {
+                    groupLines.forEach(line => {
+                        const nextPrice = getLinePrice(line.product, nextQuantity).price;
+                        if (line.price === null || nextPrice === null) return;
+                        savingsCents += line.quantity * Math.max(0, cents(line.price) - cents(nextPrice));
+                    });
+                    const addedUnitSavings = Math.max(0,
+                        cents(suggestedProduct.currentPrice) - cents(suggestedProduct.price));
+                    savingsCents += needed * addedUnitSavings;
+                }
+                const savings = suggestedProduct && savingsCents > 0
+                    ? "<div class=\"orcamento-faixa-progresso__economia\"><span aria-hidden=\"true\">✓</span><p><strong>Você economizará " +
+                        formatCurrency(savingsCents / 100) + " ao chegar a " + nextQuantity + " unidades</strong><small> no valor dos produtos deste grupo; não inclui frete nem o desconto do PIX.</small></p></div>"
+                    : "";
+                const progressState = progress < 34 ? "inicial" : (progress < 67 ? "medio" : "perto");
+                const action = suggestedProduct
+                    ? "<button type=\"button\" class=\"orcamento-faixa-progresso__cta\" data-tier-add data-product-index=\"" +
+                        Number(suggestedProduct.productIndex) + "\" data-add-quantity=\"" + needed +
+                        "\" aria-label=\"Adicionar " + needed + " unidades de " + escapeHtml(suggestedProduct.name) +
+                        " ao orçamento e alcançar a próxima faixa\">Adicionar +" + needed + " de " +
+                        escapeHtml(suggestedProduct.name) + "</button>"
+                    : "<p class=\"orcamento-faixa-progresso__nota\">Ajuste as quantidades dos produtos deste grupo para chegar à próxima faixa.</p>";
+                return "<article class=\"orcamento-faixa-progresso__item orcamento-faixa-progresso__item--" + progressState + "\"><div class=\"orcamento-faixa-progresso__topo\">" +
+                    "<span class=\"orcamento-faixa-progresso__selo\">Próxima faixa</span><strong class=\"orcamento-faixa-progresso__falta\">Faltam " +
+                    needed + " " + (needed === 1 ? "unidade" : "unidades") + "</strong></div>" +
+                    "<p class=\"orcamento-faixa-progresso__mensagem\">Adicione mais <strong>" + needed + " " +
+                    (needed === 1 ? "unidade" : "unidades") + " ao grupo " + escapeHtml(group.name) +
+                    "</strong> para chegar à faixa de <strong>" + nextQuantity + " unidades</strong>.</p>" +
+                    "<div class=\"orcamento-faixa-progresso__barra\" aria-hidden=\"true\"><span style=\"--progresso:" + progress + "%\"></span></div>" +
+                    "<div class=\"orcamento-faixa-progresso__produtos\">" + visibleTargets + additionalTargets + "</div>" +
+                    "<p class=\"orcamento-faixa-progresso__nota\">O preço indicado vale por unidade ao atingir essa faixa.</p>" +
+                    savings + action + "</article>";
             });
+            const hasNextTier = [...groups.values()].some(group => group.candidates.length);
 
-            tierProgressElement.innerHTML = messages.length
-                ? "<p class=\"orcamento-faixa-progresso__titulo\">Progresso para a próxima faixa</p>" +
-                    "<p class=\"orcamento-faixa-progresso__explicacao\">A contagem soma somente produtos com o mesmo grupo de preço cadastrado.</p>" +
+            tierProgressElement.innerHTML = hasNextTier
+                ? "<p class=\"orcamento-faixa-progresso__titulo\">Chegue à próxima faixa</p>" +
+                    "<p class=\"orcamento-faixa-progresso__explicacao\">A quantidade soma somente produtos que compartilham o grupo de preço indicado.</p>" +
                     messages.join("")
                 : "";
         }
@@ -778,6 +840,21 @@
             emailInput.required = !useWhatsApp;
         }
 
+        function resetRequestSuccess() {
+            if (!requestSuccessShown) return;
+            requestSuccessShown = false;
+            requestTitle.textContent = "Peça para nossa equipe entrar em contato";
+            requestFields.hidden = false;
+            requestNotice.hidden = false;
+            requestStatus.hidden = false;
+            requestSuccess.hidden = true;
+            requestSubmitButton.hidden = false;
+            requestReturnButton.textContent = "Continuar no orçamento";
+            requestReturnButton.classList.remove("orcamento-botao--pedido");
+            requestForm.reset();
+            updateRequestChannel();
+        }
+
         function createSubmissionId() {
             if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
             const bytes = new Uint8Array(16);
@@ -862,12 +939,21 @@
                 });
                 const result = await response.json().catch(() => null);
                 if (!response.ok || result?.ok !== true) throw new Error("A solicitação não foi confirmada pelo CRM.");
-                if (typeof requestDialog.close === "function") requestDialog.close();
-                else requestDialog.removeAttribute("open");
-                feedback.textContent = `Solicitação recebida. Nossa equipe entrará em contato por ${requestForm.elements.channel.value === "email" ? "e-mail" : "WhatsApp"}.`;
+                const preferredChannel = requestForm.elements.channel.value === "email" ? "e-mail" : "WhatsApp";
+                requestSuccessDetail.textContent = "Recebemos seu orçamento e o pedido de contato. Nossa equipe entrará em contato por " + preferredChannel + ".";
+                requestTitle.textContent = "Solicitação enviada com sucesso";
+                requestFields.hidden = true;
+                requestNotice.hidden = true;
+                requestStatus.hidden = true;
+                requestSuccess.hidden = false;
+                requestSubmitButton.hidden = true;
+                requestReturnButton.textContent = "Voltar ao orçamento";
+                requestReturnButton.classList.add("orcamento-botao--pedido");
                 requestForm.reset();
-                activeSubmissionId = "";
                 updateRequestChannel();
+                activeSubmissionId = "";
+                requestSuccessShown = true;
+                requestSuccess.focus({ preventScroll: true });
             } catch (error) {
                 requestStatus.className = "orcamento-pedido-status orcamento-pedido-status--erro";
                 requestStatus.textContent = error.name === "AbortError"
@@ -1050,6 +1136,23 @@
             feedback.textContent = (product?.PRODUTO || "Produto") + " removido do orçamento.";
             renderCart();
         });
+        tierProgressElement.addEventListener("click", event => {
+            const button = event.target.closest("[data-tier-add]");
+            if (!button) return;
+            const productIndex = Number(button.dataset.productIndex);
+            const quantity = Number(button.dataset.addQuantity);
+            const product = findProduct(productIndex);
+            if (!product || !Number.isInteger(quantity) || quantity < 1) return;
+            const addedQuantity = addProduct(productIndex, quantity);
+            if (addedQuantity === null) {
+                feedback.textContent = "Não foi possível adicionar essa quantidade. Ajuste o orçamento manualmente.";
+                return;
+            }
+            feedback.textContent = quantity + " " + (quantity === 1 ? "unidade" : "unidades") +
+                " de " + (product.PRODUTO || "produto") + " adicionadas. Preços e totais atualizados.";
+            const updatedInput = cartItemsElement.querySelector('[data-cart-item][data-product-index="' + productIndex + '"] [data-cart-quantity]');
+            updatedInput?.focus({ preventScroll: true });
+        });
         productDialogContent.addEventListener("click", event => {
             if (event.target.closest("[data-dialog-close]")) {
                 if (typeof productDialog.close === "function") productDialog.close();
@@ -1086,14 +1189,18 @@
         });
         copyButton.addEventListener("click", copyQuote);
         printButton.addEventListener("click", () => window.print());
-        if (requestButton && requestDialog && requestForm && requestStatus && requestSummary) {
+        if (requestButton && requestDialog && requestForm && requestStatus && requestSummary &&
+            requestTitle && requestFields && requestNotice && requestSuccess && requestSuccessDetail &&
+            requestSubmitButton && requestReturnButton) {
             requestButton.addEventListener("click", () => {
+                resetRequestSuccess();
                 const calculation = state.pricing || getCartCalculation();
                 activeSubmissionId = createSubmissionId();
                 const units = calculation.lines.reduce((sum, line) => sum + line.quantity, 0);
                 const amount = calculation.boletoTotalCents === null ? "" : ` · estimativa no boleto ${formatCurrency(calculation.boletoTotalCents / 100)}`;
                 requestSummary.textContent = `${calculation.lines.length} ${calculation.lines.length === 1 ? "produto" : "produtos"}, ${units} ${units === 1 ? "unidade" : "unidades"}${amount}. A equipe confirmará os valores antes do pedido.`;
                 requestStatus.textContent = "";
+                requestStatus.hidden = false;
                 requestStatus.className = "orcamento-pedido-status";
                 if (typeof requestDialog.showModal === "function") requestDialog.showModal();
                 else requestDialog.setAttribute("open", "");

@@ -103,14 +103,40 @@
 .orcamento-produto__ver-imagem { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
 .orcamento-produto__ver-imagem:focus-visible, .orcamento-produto__ver-detalhes:focus-visible { outline: 3px solid rgba(201, 155, 74, .65); outline-offset: -3px; }
 .orcamento-produto__ver-detalhes { align-self: flex-start; margin: -7px 0 10px; padding: 3px 0; border: 0; background: transparent; color: #76551f; cursor: pointer; font: inherit; font-size: 11px; font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
-.orcamento-faixa-progresso { display: grid; gap: 8px; padding: 14px 18px; border-bottom: 1px solid #eee8df; background: #fffaf0; }
+.orcamento-faixa-progresso { display: grid; gap: 10px; padding: 15px 18px; border-bottom: 1px solid #eee8df; background: linear-gradient(135deg, #fff9ec, #fffdfa); }
 .orcamento-faixa-progresso:empty { display: none; }
-.orcamento-faixa-progresso__titulo { color: #422713; font-size: 12px; font-weight: 900; }
-.orcamento-faixa-progresso__explicacao { color: #776b60; font-size: 10px; line-height: 1.45; }
-.orcamento-faixa-progresso__item { display: grid; gap: 5px; padding: 9px 10px; border: 1px solid #efe1c3; border-radius: 8px; background: #fff; color: #564330; font-size: 11px; line-height: 1.45; }
+.orcamento-faixa-progresso__titulo { color: #422713; font-size: 14px; font-weight: 900; letter-spacing: -.01em; }
+.orcamento-faixa-progresso__explicacao { margin-top: -7px; color: #776b60; font-size: 11px; line-height: 1.45; }
+.orcamento-faixa-progresso__item { display: grid; gap: 9px; padding: 13px; border: 1px solid #e1c483; border-radius: 11px; background: #fff; box-shadow: 0 4px 13px rgba(103, 73, 27, .08); color: #564330; font-size: 12px; line-height: 1.45; }
 .orcamento-faixa-progresso__item strong { color: #342418; }
-.orcamento-faixa-progresso__item > div { display: grid; gap: 2px; color: #426444; font-size: 10px; }
-.orcamento-faixa-progresso__item--atingida { background: #f4f8f2; border-color: #dbe7d7; }
+.orcamento-faixa-progresso__topo { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.orcamento-faixa-progresso__selo { color: #85601f; font-size: 9px; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
+.orcamento-faixa-progresso__falta { padding: 5px 9px; border-radius: 999px; background: #f4e4bd; color: #553b17; font-size: 11px; font-weight: 900; white-space: nowrap; }
+.orcamento-faixa-progresso__mensagem { color: #58432a; }
+.orcamento-faixa-progresso__barra { height: 7px; overflow: hidden; border-radius: 99px; background: #f0e8da; }
+.orcamento-faixa-progresso__barra span { display: block; width: 100%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #c64e46 0%, #e4b83e 52%, #4b9860 100%); clip-path: inset(0 calc(100% - var(--progresso, 0%)) 0 0 round 99px); transition: clip-path .25s ease; }
+.orcamento-faixa-progresso__produtos { display: grid; gap: 6px; }
+.orcamento-faixa-progresso__produto { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding-top: 7px; border-top: 1px solid #f1eadc; }
+.orcamento-faixa-progresso__nome { min-width: 0; color: #4f4235; font-size: 10px; line-height: 1.35; }
+.orcamento-faixa-progresso__preco { display: flex; align-items: center; justify-content: flex-end; gap: 5px; color: #766c60; font-size: 10px; white-space: nowrap; }
+.orcamento-faixa-progresso__preco del { color: #93877b; }
+.orcamento-faixa-progresso__preco strong { color: #2f633b; font-size: 12px; }
+.orcamento-faixa-progresso__desconto { display: block; color: #2f633b; font-size: 9px; font-weight: 800; text-align: right; }
+.orcamento-faixa-progresso__nota { color: #796d5f; font-size: 10px; line-height: 1.4; }
+.orcamento-faixa-progresso__item--inicial { border-color: #e5b8b2; background: linear-gradient(145deg, #fff8f7, #fff); }
+.orcamento-faixa-progresso__item--medio { border-color: #e1c483; background: linear-gradient(145deg, #fffaf0, #fff); }
+.orcamento-faixa-progresso__item--perto { border-color: #a9cda9; background: linear-gradient(145deg, #f3faf1, #fff); }
+.orcamento-faixa-progresso__item--inicial .orcamento-faixa-progresso__falta { background: #f7e2df; color: #8e3028; }
+.orcamento-faixa-progresso__item--medio .orcamento-faixa-progresso__falta { background: #fff0c9; color: #805511; }
+.orcamento-faixa-progresso__item--perto .orcamento-faixa-progresso__falta { background: #e1f1df; color: #2f713d; }
+.orcamento-faixa-progresso__economia { display: flex; align-items: center; gap: 9px; padding: 10px 11px; border: 1px solid #acd0a8; border-radius: 9px; background: linear-gradient(135deg, #eff9ec, #dff1dd); color: #245d35; }
+.orcamento-faixa-progresso__economia > span { display: grid; flex: 0 0 25px; place-items: center; width: 25px; height: 25px; border-radius: 50%; background: #367544; color: #fff; font-size: 14px; font-weight: 900; }
+.orcamento-faixa-progresso__economia p { display: grid; gap: 2px; margin: 0; }
+.orcamento-faixa-progresso__economia strong { color: #245d35 !important; font-size: 13px; line-height: 1.25; }
+.orcamento-faixa-progresso__economia small { color: #496c4b; font-size: 10px; line-height: 1.35; }
+.orcamento-faixa-progresso__cta { min-height: 46px; padding: 10px 12px; border: 1px solid #28623a; border-radius: 8px; background: linear-gradient(135deg, #438650, #28623a); box-shadow: 0 5px 13px rgba(49, 112, 64, .22); color: #fff; cursor: pointer; font: inherit; font-size: 12px; font-weight: 900; line-height: 1.25; transition: transform .16s ease, box-shadow .16s ease, background .16s ease; }
+.orcamento-faixa-progresso__cta:hover, .orcamento-faixa-progresso__cta:focus-visible { transform: translateY(-1px); background: #205530; box-shadow: 0 7px 17px rgba(49, 112, 64, .3); outline: 3px solid rgba(61, 139, 80, .3); outline-offset: 2px; }
+.orcamento-faixa-progresso__item--atingida { background: #f4f8f2; border-color: #dbe7d7; box-shadow: none; }
 .orcamento-produto-dialog { width: min(780px, calc(100vw - 28px)); max-width: none; max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); margin: auto; padding: 0; overflow: hidden; border: 1px solid #e5dbcc; border-radius: 16px; background: #fffdfa; color: var(--quote-ink); box-shadow: 0 24px 80px rgba(31, 19, 10, .3); }
 .orcamento-produto-dialog::backdrop { background: rgba(28, 18, 11, .64); backdrop-filter: blur(3px); }
 .orcamento-produto-dialog [data-product-dialog-content] { max-height: min(86vh, 820px); max-height: min(86dvh, 820px); overflow-y: auto; overscroll-behavior: contain; padding: 22px; }
@@ -207,6 +233,13 @@
 .orcamento-pedido-armadilha { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 .orcamento-pedido-status { min-height: 18px; margin: 0; color: #426444; font-size: 13px; }
 .orcamento-pedido-status--erro { color: #a02e26; }
+.orcamento-pedido-sucesso { display: grid; justify-items: center; gap: 10px; padding: 20px 16px; border: 1px solid #c9ddc6; border-radius: 12px; background: linear-gradient(145deg, #f3f9f1, #fff); text-align: center; }
+.orcamento-pedido-sucesso[hidden] { display: none; }
+.orcamento-pedido-sucesso__icone { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #367544; color: #fff; font-size: 25px; font-weight: 900; box-shadow: 0 5px 13px rgba(54, 117, 68, .2); }
+.orcamento-pedido-sucesso h3 { margin: 0; color: #285936; font-size: 18px; line-height: 1.3; }
+.orcamento-pedido-sucesso p { max-width: 390px; margin: 0; color: #435c46; font-size: 13px; line-height: 1.55; }
+.orcamento-pedido-sucesso__nota { color: #6a6259 !important; font-size: 11px !important; }
+.orcamento-pedido-acoes [hidden] { display: none !important; }
 .orcamento-pedido-acoes { display: grid; gap: 8px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .orcamento-mobile-resumo { display: none; }
@@ -258,6 +291,10 @@
     .orcamento-produto-dialog__imagem img { width: 100%; height: 100%; }
     .orcamento-produto-dialog [data-product-dialog-content] { padding: 17px; }
     .orcamento-faixa-progresso { padding: 13px 14px; }
+    .orcamento-faixa-progresso__item { padding: 12px; }
+    .orcamento-faixa-progresso__produto { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    .orcamento-faixa-progresso__preco { justify-content: flex-start; }
+    .orcamento-faixa-progresso__desconto { text-align: left; }
     .orcamento-pedido-form { padding: 19px; }
     .orcamento-pedido-dialog__cabecalho h2 { font-size: 20px; }
     .orcamento-pedido-canal { display: grid; }

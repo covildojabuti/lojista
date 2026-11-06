@@ -6,7 +6,7 @@
     <meta name="description" content="Monte uma simulação de orçamento para lojistas do Covil do Jabuti, com preços por faixa, frete e pagamento via PIX.">
     <title>Monte seu orçamento | Covil do Jabuti</title>
     <script src="/js/b2b-commercial-policy.js?v=20261106-orcamento5"></script>
-    <script src="/js/register-head.js?v=20261106-orcamento16"></script>
+    <script src="/js/register-head.js?v=20261106-orcamento18"></script>
 </head>
 <body class="pagina-orcamento">
     <header data-include="components/header/"></header>
@@ -121,11 +121,11 @@
         <dialog class="orcamento-pedido-dialog" data-request-dialog aria-labelledby="orcamento-pedido-titulo">
             <form class="orcamento-pedido-form" data-request-form novalidate>
                 <div class="orcamento-pedido-dialog__cabecalho">
-                    <div><p class="orcamento-eyebrow orcamento-eyebrow--dark">Próximo passo</p><h2 id="orcamento-pedido-titulo">Peça para nossa equipe entrar em contato</h2></div>
+                    <div><p class="orcamento-eyebrow orcamento-eyebrow--dark">Próximo passo</p><h2 id="orcamento-pedido-titulo" data-request-title>Peça para nossa equipe entrar em contato</h2></div>
                     <button type="button" class="orcamento-produto-dialog__fechar" data-request-close aria-label="Fechar">×</button>
                 </div>
                 <p class="orcamento-pedido-resumo" data-request-summary></p>
-                <div class="orcamento-pedido-campos">
+                <div class="orcamento-pedido-campos" data-request-fields>
                     <label>Seu nome<input name="name" maxlength="160" autocomplete="name" required></label>
                     <label>Nome da loja (opcional)<input name="store" maxlength="160" autocomplete="organization"></label>
                     <fieldset class="orcamento-pedido-canal"><legend>Por onde prefere receber o contato?</legend>
@@ -138,11 +138,17 @@
                     <label class="orcamento-pedido-consentimento"><input type="checkbox" name="contactAllowed" value="1" required> Autorizo a equipe do Covil do Jabuti a entrar em contato sobre este orçamento pelo canal escolhido.</label>
                     <label class="orcamento-pedido-armadilha" aria-hidden="true">Não preencha este campo<input name="website" tabindex="-1" autocomplete="off"></label>
                 </div>
-                <p class="orcamento-pedido-aviso">Esta é uma solicitação de retorno, não um pedido fechado. Preços, disponibilidade, frete e condições serão confirmados pela equipe.</p>
+                <div class="orcamento-pedido-sucesso" data-request-success hidden role="status" aria-live="polite" tabindex="-1">
+                    <span class="orcamento-pedido-sucesso__icone" aria-hidden="true">✓</span>
+                    <h3>Solicitação enviada com sucesso!</h3>
+                    <p data-request-success-detail>Seu orçamento chegou para nossa equipe. Entraremos em contato pelo canal escolhido.</p>
+                    <p class="orcamento-pedido-sucesso__nota">Este envio pede um retorno; ainda não confirma a compra. Nossa equipe vai confirmar preços, disponibilidade, frete e condições.</p>
+                </div>
+                <p class="orcamento-pedido-aviso" data-request-notice>Esta é uma solicitação de retorno, não um pedido fechado. Preços, disponibilidade, frete e condições serão confirmados pela equipe.</p>
                 <p class="orcamento-pedido-status" data-request-status role="status" aria-live="polite"></p>
                 <div class="orcamento-pedido-acoes">
                     <button type="submit" class="orcamento-botao orcamento-botao--pedido" data-request-submit>Enviar solicitação</button>
-                    <button type="button" class="orcamento-botao orcamento-botao--secundario" data-request-close>Continuar no orçamento</button>
+                    <button type="button" class="orcamento-botao orcamento-botao--secundario" data-request-close data-request-return>Continuar no orçamento</button>
                 </div>
             </form>
         </dialog>
