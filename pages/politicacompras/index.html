@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Consulte as condições de compra, pagamento, frete, envio e devolução para lojistas do Covil do Jabuti.">
     <title>Política de compras para lojistas | Covil do Jabuti</title>
-    <script src="/js/register-head.js?v=20261106-homologacao4"></script>
+    <script src="/js/b2b-commercial-policy.js?v=20261106-orcamento4"></script>
+    <script src="/js/register-head.js?v=20261106-orcamento4"></script>
 </head>
 <body class="pagina-politica">
     <header data-include="components/header/"></header>
@@ -35,8 +36,8 @@
                 </article>
                 <article class="policy-highlight">
                     <span class="policy-highlight__label">Pagamento via PIX</span>
-                    <strong>2% de desconto</strong>
-                    <span>na condição de lojista</span>
+                    <strong data-commercial-policy="pix-label"></strong>
+                    <span data-commercial-policy="pix-detail"></span>
                 </article>
                 <article class="policy-highlight">
                     <span class="policy-highlight__label">Prazo de envio</span>
@@ -114,7 +115,7 @@
                         <h2 id="titulo-pagamento">Formas de pagamento</h2>
                         <p>A condição padrão da tabela é <strong>boleto em 15/30 dias</strong>, sem desconto.</p>
                         <ul>
-                            <li><strong>PIX:</strong> 2% de desconto.</li>
+                            <li><strong>PIX:</strong> <span data-commercial-policy="pix-full"></span></li>
                             <li><strong>Boleto em 15/30 dias:</strong> preço de tabela, sem desconto.</li>
                             <li><strong>Outras condições:</strong> podem ter ajuste financeiro, informado na cotação.</li>
                         </ul>
@@ -229,7 +230,7 @@
                             <li><span>Frete fixo</span><strong>R$ 100,00</strong></li>
                             <li><span>Frete grátis</span><strong>Acima de R$ 3.000,00</strong></li>
                             <li><span>Retirada no local</span><strong>Grátis, com combinação prévia</strong></li>
-                            <li><span>PIX</span><strong>2% de desconto</strong></li>
+                            <li><span>PIX</span><strong data-commercial-policy="pix-summary"></strong></li>
                             <li><span>Boleto 15/30 dias</span><strong>Preço de tabela</strong></li>
                             <li><span>Confirmação de pagamento</span><strong>Até 2 dias úteis</strong></li>
                             <li><span>Envio</span><strong>Até 3 dias úteis após confirmação</strong></li>
