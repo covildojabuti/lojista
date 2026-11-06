@@ -856,7 +856,7 @@
                     method: "POST",
                     mode: "cors",
                     credentials: "omit",
-                    headers: { "Content-Type": "application/json" },
+                    headers: { "Content-Type": "text/plain;charset=UTF-8" },
                     body: JSON.stringify(buildQuoteRequest()),
                     signal: controller.signal
                 });
