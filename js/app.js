@@ -3,7 +3,7 @@
  * No GitHub Pages, se seu site estiver em /lightus/, isso é obrigatório.
  */
 const basePath = '/';
-const componentScriptVersion = '20261106-homologacao4';
+const componentScriptVersion = '20261106-site-rework3';
 
 /**
  * Função para injetar componentes com estrutura padronizada

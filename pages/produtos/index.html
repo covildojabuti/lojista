@@ -1,62 +1,161 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Explore o catálogo, preços unitários e condições para lojistas do Covil do Jabuti.">
-    <title>Catálogo para lojistas | Covil do Jabuti</title>
-
-    <script src="/js/b2b-commercial-policy.js?v=20261106-orcamento4"></script>
-    <script src="/js/register-head.js?v=20261106-orcamento4"></script>
-
+    <meta name="description" content="Monte uma simulação de orçamento para lojistas do Covil do Jabuti, com preços por faixa, frete e pagamento via PIX.">
+    <title>Monte seu orçamento | Covil do Jabuti</title>
+    <script src="/js/b2b-commercial-policy.js?v=20261106-orcamento5"></script>
+    <script src="/js/register-head.js?v=20261106-orcamento20"></script>
 </head>
-<body class="pagina-produtos">
-    <!-- Header será injetado aqui -->
+<body class="pagina-orcamento pagina-produtos-orcamento">
     <header data-include="components/header/"></header>
 
-
-    <main>
-        <div data-include="components/banner-static/" data-item="produto"></div>
-
-        <section class="produtos-condicoes" aria-label="Condições para lojistas">
-            <article class="produto-condicao">
-                <span aria-hidden="true">🚚</span>
-                <h2>Frete grátis</h2>
-                <p data-commercial-policy="shipping"></p>
-            </article>
-            <article class="produto-condicao">
-                <span aria-hidden="true">💰</span>
-                <h2>Pedido mínimo</h2>
-                <p data-commercial-policy="minimum"></p>
-            </article>
-            <article class="produto-condicao">
-                <span aria-hidden="true">📦</span>
-                <h2>Desconto por volume</h2>
-                <p>Quanto maior a quantidade por grupo de produto, melhor pode ficar o valor unitário.</p>
-            </article>
-            <article class="produto-condicao">
-                <span aria-hidden="true">💳</span>
-                <h2>Condição de pagamento</h2>
-                <p data-commercial-policy="payment"></p>
-            </article>
-        </section>
-
-        <section class="orcamento-atalho" aria-labelledby="orcamento-atalho-titulo">
-            <div>
-                <p class="orcamento-atalho__eyebrow">Prefere montar seu pedido sozinho?</p>
-                <h2 id="orcamento-atalho-titulo">Simule seu orçamento na hora</h2>
-                <p>Escolha os produtos, informe as quantidades e veja as faixas por grupo, frete e total estimado.</p>
+    <main data-orcamento-root>
+        <section class="orcamento-hero" aria-labelledby="orcamento-titulo">
+            <div class="orcamento-hero__inner">
+                <a class="orcamento-voltar" href="/">← Voltar ao site</a>
+                <p class="orcamento-eyebrow">Simulador para lojistas</p>
+                <h1 id="orcamento-titulo">Monte seu orçamento na hora</h1>
+                <p>Cada número da tabela é o limite superior da faixa: de 0 até o primeiro limite vale o primeiro preço; a próxima faixa começa na unidade seguinte. Produtos do mesmo grupo somam para definir a faixa, e cada produto mantém seu preço unitário. Acima do último limite, vale o último preço cadastrado.</p>
+                <div class="orcamento-hero__note"><span aria-hidden="true">✓</span> A simulação fica no navegador; só vai ao CRM se você pedir contato.</div>
+                <a class="orcamento-ir-catalogo" href="/pages/produtos/#orcamento-catalogo-titulo">Escolher produtos <span aria-hidden="true">↓</span></a>
             </div>
-            <a href="/pages/orcamento/" class="orcamento-atalho__link">Montar meu orçamento <span aria-hidden="true">→</span></a>
         </section>
 
-        <div id="b001" data-include="components/list-products/"></div>
-        <div id="b004" data-include="components/call-to-action/" data-item="contatokatia"></div>
+        <section class="orcamento-regras orcamento-regras--politica" aria-label="Condições comerciais para lojistas">
+            <article><span aria-hidden="true">🚚</span><div><strong>Frete grátis</strong><p>Frete fixo de R$ 100,00; grátis em compras acima de R$ 3.000,00.</p></div></article>
+            <article><span aria-hidden="true">🧾</span><div><strong>Pedido mínimo</strong><p>Pedido mínimo de R$ 500,00 em produtos; frete calculado à parte.</p></div></article>
+            <article><span aria-hidden="true">📦</span><div><strong>Desconto por volume</strong><p>Quanto maior a quantidade por grupo de produto, melhor pode ficar o valor unitário.</p></div></article>
+            <article><span aria-hidden="true">💳</span><div><strong>Condição de pagamento</strong><p>Boleto 15/30 dias. PIX com 2% de desconto nos produtos; frete sem desconto.</p></div></article>
+        </section>
+
+        <div class="orcamento-workspace">
+            <section class="orcamento-catalogo" aria-labelledby="orcamento-catalogo-titulo">
+                <div class="orcamento-section-heading">
+                    <div>
+                        <p class="orcamento-eyebrow orcamento-eyebrow--dark">Produtos para revenda</p>
+                        <h2 id="orcamento-catalogo-titulo">Escolha os itens</h2>
+                    </div>
+                    <span class="orcamento-catalogo-count" data-product-count>Carregando…</span>
+                </div>
+
+                <div class="orcamento-filtros">
+                    <label class="orcamento-busca">
+                        <span class="sr-only">Buscar produto</span>
+                        <span aria-hidden="true">⌕</span>
+                        <input type="search" data-search placeholder="Buscar produto ou SKU" autocomplete="off">
+                    </label>
+                    <label class="sr-only" for="orcamento-categoria">Filtrar por categoria</label>
+                    <select id="orcamento-categoria" data-category>
+                        <option value="">Todas as categorias</option>
+                    </select>
+                </div>
+
+                <p class="orcamento-status" data-catalog-status role="status" aria-live="polite">Carregando produtos e faixas de preço…</p>
+                <div class="orcamento-produtos-grid" data-products></div>
+                <dialog class="orcamento-produto-dialog" data-product-dialog aria-labelledby="orcamento-produto-dialog-titulo">
+                    <div data-product-dialog-content></div>
+                </dialog>
+            </section>
+
+            <aside class="orcamento-resumo" aria-labelledby="orcamento-resumo-titulo" tabindex="-1">
+                <div class="orcamento-resumo__conteudo" role="region" aria-label="Detalhes do orçamento" tabindex="0">
+                <div class="orcamento-resumo__header">
+                    <div>
+                        <p class="orcamento-eyebrow orcamento-eyebrow--dark">Sua simulação</p>
+                        <h2 id="orcamento-resumo-titulo">Meu orçamento</h2>
+                    </div>
+                    <span class="orcamento-cart-count" data-cart-count>0 itens</span>
+                </div>
+
+                <div class="orcamento-itens" data-cart-items aria-live="polite">
+                        <div class="orcamento-vazio"><span aria-hidden="true">＋</span><p>Adicione produtos para começar seu orçamento.</p></div>
+                    </div>
+                    <div class="orcamento-faixa-progresso" data-tier-progress aria-live="polite"></div>
+
+                    <fieldset class="orcamento-entrega">
+                        <legend>Como prefere receber?</legend>
+                        <label><input type="radio" name="orcamento-entrega" value="entrega" checked> <span><strong>Entrega</strong><small>Frete fixo conforme a política</small></span></label>
+                        <label><input type="radio" name="orcamento-entrega" value="retirada"> <span><strong>Retirada no local</strong><small>Grátis, combinada com a equipe</small></span></label>
+                    </fieldset>
+
+                    <div class="orcamento-minimo" data-minimum>
+                        <div class="orcamento-minimo__label"><span>Pedido mínimo</span><strong data-minimum-label></strong></div>
+                        <div class="orcamento-progresso" aria-hidden="true"><span data-minimum-progress></span></div>
+                        <p data-minimum-message>Adicione produtos para ver o progresso do pedido mínimo.</p>
+                    </div>
+
+                    <div class="orcamento-totais" data-totals>
+                        <div><span>Produtos</span><strong data-subtotal>R$ 0,00</strong></div>
+                        <div><span>Frete</span><strong data-shipping>—</strong></div>
+                        <div class="orcamento-total"><span>Total no boleto</span><strong data-total-boleto>—</strong></div>
+                        <div class="orcamento-total orcamento-total--pix"><span>Total no PIX <small data-policy-pix-detail></small></span><strong data-total-pix>—</strong></div>
+                    </div>
+
+                    <div class="orcamento-print-cabecalho">
+                        <strong>Covil do Jabuti</strong>
+                        <span>Simulação de orçamento para lojista</span>
+                    </div>
+                    <p class="orcamento-print-context" data-print-context></p>
+                    <p class="orcamento-observacao" data-quote-note>Os valores são uma simulação com base na tabela atual. A cotação final é confirmada pela equipe antes do pedido.</p>
+                    <div class="orcamento-acoes">
+                        <button type="button" class="orcamento-botao orcamento-botao--primario" data-copy disabled>Copiar orçamento</button>
+                        <button type="button" class="orcamento-botao orcamento-botao--secundario" data-print disabled>Imprimir ou salvar PDF</button>
+                        <button type="button" class="orcamento-botao orcamento-botao--pedido" data-request-quote disabled>Pedir contato para finalizar</button>
+                        <a href="https://wa.me/5519999549787?text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20um%20or%C3%A7amento%20para%20lojista." target="_blank" rel="noopener noreferrer" class="orcamento-falar">Prefere ajuda? Fale com a equipe</a>
+                        <p class="orcamento-feedback" data-feedback role="status" aria-live="polite"></p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <aside class="orcamento-mobile-resumo" data-mobile-summary hidden aria-label="Resumo rápido do orçamento" aria-live="polite">
+            <div>
+                <span data-mobile-count>0 unidades</span>
+                <small data-mobile-label>Total no boleto</small>
+                <strong data-mobile-total>R$ 0,00</strong>
+            </div>
+            <button type="button" data-view-quote>Ver orçamento</button>
+        </aside>
+
+        <dialog class="orcamento-pedido-dialog" data-request-dialog aria-labelledby="orcamento-pedido-titulo">
+            <form class="orcamento-pedido-form" data-request-form novalidate>
+                <div class="orcamento-pedido-dialog__cabecalho">
+                    <div><p class="orcamento-eyebrow orcamento-eyebrow--dark">Próximo passo</p><h2 id="orcamento-pedido-titulo" data-request-title>Peça para nossa equipe entrar em contato</h2></div>
+                    <button type="button" class="orcamento-produto-dialog__fechar" data-request-close aria-label="Fechar">×</button>
+                </div>
+                <p class="orcamento-pedido-resumo" data-request-summary></p>
+                <div class="orcamento-pedido-campos" data-request-fields>
+                    <label>Seu nome<input name="name" maxlength="160" autocomplete="name" required></label>
+                    <label>Nome da loja (opcional)<input name="store" maxlength="160" autocomplete="organization"></label>
+                    <fieldset class="orcamento-pedido-canal"><legend>Por onde prefere receber o contato?</legend>
+                        <label><input type="radio" name="channel" value="whatsapp" checked> WhatsApp</label>
+                        <label><input type="radio" name="channel" value="email"> E-mail</label>
+                    </fieldset>
+                    <label data-request-whatsapp>WhatsApp com DDD<input name="whatsapp" type="tel" maxlength="40" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999"></label>
+                    <label data-request-email hidden>E-mail<input name="email" type="email" maxlength="254" inputmode="email" autocomplete="email" placeholder="voce@loja.com.br"></label>
+                    <label>Cidade e estado (opcional)<input name="cityState" maxlength="160" autocomplete="address-level2"></label>
+                    <label class="orcamento-pedido-consentimento"><input type="checkbox" name="contactAllowed" value="1" required> Autorizo a equipe do Covil do Jabuti a entrar em contato sobre este orçamento pelo canal escolhido.</label>
+                    <label class="orcamento-pedido-armadilha" aria-hidden="true">Não preencha este campo<input name="website" tabindex="-1" autocomplete="off"></label>
+                </div>
+                <div class="orcamento-pedido-sucesso" data-request-success hidden role="status" aria-live="polite" tabindex="-1">
+                    <span class="orcamento-pedido-sucesso__icone" aria-hidden="true">✓</span>
+                    <h3>Solicitação enviada com sucesso!</h3>
+                    <p data-request-success-detail>Seu orçamento chegou para nossa equipe. Entraremos em contato pelo canal escolhido.</p>
+                    <p class="orcamento-pedido-sucesso__nota">Este envio pede um retorno; ainda não confirma a compra. Nossa equipe vai confirmar preços, disponibilidade, frete e condições.</p>
+                </div>
+                <p class="orcamento-pedido-aviso" data-request-notice>Esta é uma solicitação de retorno, não um pedido fechado. Preços, disponibilidade, frete e condições serão confirmados pela equipe.</p>
+                <p class="orcamento-pedido-status" data-request-status role="status" aria-live="polite"></p>
+                <div class="orcamento-pedido-acoes">
+                    <button type="submit" class="orcamento-botao orcamento-botao--pedido" data-request-submit>Enviar solicitação</button>
+                    <button type="button" class="orcamento-botao orcamento-botao--secundario" data-request-close data-request-return>Continuar no orçamento</button>
+                </div>
+            </form>
+        </dialog>
     </main>
 
     <footer data-include="components/footer/"></footer>
-
-    <!-- Motor de injeção -->
-    <script src="/js/app.js?v=20261106-homologacao4"></script>
+    <script src="/js/app.js?v=20261106-site-rework3"></script>
 </body>
 </html>

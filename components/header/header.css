@@ -37,7 +37,7 @@
 }
 
 /* Responsive adjustments for header */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     header {
         flex-wrap: wrap;
         justify-content: space-between;

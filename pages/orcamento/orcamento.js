@@ -224,10 +224,16 @@
             const freeShippingLimit = formatCurrency(COMMERCIAL_POLICY.freeShippingCents / 100);
             const standardShipping = formatCurrency(COMMERCIAL_POLICY.standardShippingCents / 100);
             const pixPercent = Math.round(COMMERCIAL_POLICY.pixDiscountRate * 100);
-            root.querySelector("[data-policy-minimum]").textContent = `${minimum} em produtos`;
-            root.querySelector("[data-policy-shipping]").textContent = `${standardShipping} · grátis acima de ${freeShippingLimit}`;
-            root.querySelector("[data-policy-payment]").textContent = `Boleto ${COMMERCIAL_POLICY.boletoTerm} ou ${pixPercent}% de desconto no PIX sobre os produtos; frete sem desconto`;
-            root.querySelector("[data-policy-pix-detail]").textContent = `(${pixPercent}% nos produtos)`;
+            const policyCopy = [
+                ["[data-policy-minimum]", `${minimum} em produtos`],
+                ["[data-policy-shipping]", `${standardShipping} · grátis acima de ${freeShippingLimit}`],
+                ["[data-policy-payment]", `Boleto ${COMMERCIAL_POLICY.boletoTerm} ou ${pixPercent}% de desconto no PIX sobre os produtos; frete sem desconto`],
+                ["[data-policy-pix-detail]", `(${pixPercent}% nos produtos)`]
+            ];
+            policyCopy.forEach(([selector, text]) => {
+                const element = root.querySelector(selector);
+                if (element) element.textContent = text;
+            });
             minimumLabel.textContent = minimum;
         }
 

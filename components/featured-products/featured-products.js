@@ -71,10 +71,10 @@
                     const video = safeExternalUrl(p.URL_VIDEO);
                     return `
                     <div class="produto-card">
-                        ${image ? `<a href="/pages/produtos/" aria-label="Ver ${name} no catálogo"><img src="${escapeHtml(image)}" alt="${name}" loading="lazy" decoding="async"></a>` : ''}
-                        <div class="produto-nome"><a href="/pages/produtos/">${name}</a>${video ? ` <a href="${escapeHtml(video)}" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo de ${name}"><i class="fab fa-youtube youtube-icon" aria-hidden="true"></i></a>` : ''}</div>
+                        ${image ? `<a href="/pages/produtos/#orcamento-catalogo-titulo" aria-label="Escolher ${name} para o orçamento"><img src="${escapeHtml(image)}" alt="${name}" loading="lazy" decoding="async"></a>` : ''}
+                        <div class="produto-nome"><a href="/pages/produtos/#orcamento-catalogo-titulo">${name}</a>${video ? ` <a href="${escapeHtml(video)}" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo de ${name}"><i class="fab fa-youtube youtube-icon" aria-hidden="true"></i></a>` : ''}</div>
                         <div class="produto-moq">
-                            <a href="/pages/produtos/" aria-label="Consultar ${name} no catálogo">
+                            <a href="/pages/produtos/#orcamento-catalogo-titulo" aria-label="Simular ${name} para revenda">
                                 <span>De <s>${formatCurrency(p.DE)}</s></span>
                                 <span>Por <strong>${formatCurrency(p.POR)}</strong></span>
                                 <small>A partir do preço unitário</small>

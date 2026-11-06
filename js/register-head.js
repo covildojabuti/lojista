@@ -73,10 +73,15 @@
         
         if (pagePathMatch && pagePathMatch[1]) {
             const pageName = pagePathMatch[1];
-            const pageBasePath = `pages/${pageName}/${pageName}`;
-            const pageAssetVersion = pageName === 'orcamento'
-                ? '20261106-orcamento18'
-                : '20261106-orcamento4';
+            // The products entry point now reuses the quote builder.
+            // The former catalog is preserved at /pages/catalogo-anterior/.
+            const assetPageName = pageName === 'produtos' ? 'orcamento' : pageName;
+            const pageBasePath = `pages/${assetPageName}/${assetPageName}`;
+            const pageAssetVersion = assetPageName === 'orcamento'
+                ? '20261106-orcamento20'
+                : assetPageName === 'quemsomos'
+                    ? '20261106-quemsomos2'
+                    : '20261106-orcamento4';
             
             // Adiciona CSS e JS específicos da página se existirem
             addAsset(`${pageBasePath}.css?v=${pageAssetVersion}`);
