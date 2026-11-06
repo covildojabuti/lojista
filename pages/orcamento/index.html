@@ -6,7 +6,7 @@
     <meta name="description" content="Monte uma simulação de orçamento para lojistas do Covil do Jabuti, com preços por faixa, frete e pagamento via PIX.">
     <title>Monte seu orçamento | Covil do Jabuti</title>
     <script src="/js/b2b-commercial-policy.js?v=20261106-orcamento4"></script>
-    <script src="/js/register-head.js?v=20261106-orcamento5"></script>
+    <script src="/js/register-head.js?v=20261106-orcamento11"></script>
 </head>
 <body class="pagina-orcamento">
     <header data-include="components/header/"></header>
@@ -53,9 +53,13 @@
 
                 <p class="orcamento-status" data-catalog-status role="status" aria-live="polite">Carregando produtos e faixas de preço…</p>
                 <div class="orcamento-produtos-grid" data-products></div>
+                <dialog class="orcamento-produto-dialog" data-product-dialog aria-labelledby="orcamento-produto-dialog-titulo">
+                    <div data-product-dialog-content></div>
+                </dialog>
             </section>
 
             <aside class="orcamento-resumo" aria-labelledby="orcamento-resumo-titulo" tabindex="-1">
+                <div class="orcamento-resumo__conteudo" role="region" aria-label="Detalhes do orçamento" tabindex="0">
                 <div class="orcamento-resumo__header">
                     <div>
                         <p class="orcamento-eyebrow orcamento-eyebrow--dark">Sua simulação</p>
@@ -65,39 +69,41 @@
                 </div>
 
                 <div class="orcamento-itens" data-cart-items aria-live="polite">
-                    <div class="orcamento-vazio"><span aria-hidden="true">＋</span><p>Adicione produtos para começar seu orçamento.</p></div>
-                </div>
+                        <div class="orcamento-vazio"><span aria-hidden="true">＋</span><p>Adicione produtos para começar seu orçamento.</p></div>
+                    </div>
+                    <div class="orcamento-faixa-progresso" data-tier-progress aria-live="polite"></div>
 
-                <fieldset class="orcamento-entrega">
-                    <legend>Como prefere receber?</legend>
-                    <label><input type="radio" name="orcamento-entrega" value="entrega" checked> <span><strong>Entrega</strong><small>Frete fixo conforme a política</small></span></label>
-                    <label><input type="radio" name="orcamento-entrega" value="retirada"> <span><strong>Retirada no local</strong><small>Grátis, combinada com a equipe</small></span></label>
-                </fieldset>
+                    <fieldset class="orcamento-entrega">
+                        <legend>Como prefere receber?</legend>
+                        <label><input type="radio" name="orcamento-entrega" value="entrega" checked> <span><strong>Entrega</strong><small>Frete fixo conforme a política</small></span></label>
+                        <label><input type="radio" name="orcamento-entrega" value="retirada"> <span><strong>Retirada no local</strong><small>Grátis, combinada com a equipe</small></span></label>
+                    </fieldset>
 
-                <div class="orcamento-minimo" data-minimum>
-                    <div class="orcamento-minimo__label"><span>Pedido mínimo</span><strong data-minimum-label></strong></div>
-                    <div class="orcamento-progresso" aria-hidden="true"><span data-minimum-progress></span></div>
-                    <p data-minimum-message>Adicione produtos para ver o progresso do pedido mínimo.</p>
-                </div>
+                    <div class="orcamento-minimo" data-minimum>
+                        <div class="orcamento-minimo__label"><span>Pedido mínimo</span><strong data-minimum-label></strong></div>
+                        <div class="orcamento-progresso" aria-hidden="true"><span data-minimum-progress></span></div>
+                        <p data-minimum-message>Adicione produtos para ver o progresso do pedido mínimo.</p>
+                    </div>
 
-                <div class="orcamento-totais" data-totals>
-                    <div><span>Produtos</span><strong data-subtotal>R$ 0,00</strong></div>
-                    <div><span>Frete</span><strong data-shipping>—</strong></div>
-                    <div class="orcamento-total"><span>Total no boleto</span><strong data-total-boleto>—</strong></div>
-                    <div class="orcamento-total orcamento-total--pix"><span>Total no PIX <small data-policy-pix-detail></small></span><strong data-total-pix>—</strong></div>
-                </div>
+                    <div class="orcamento-totais" data-totals>
+                        <div><span>Produtos</span><strong data-subtotal>R$ 0,00</strong></div>
+                        <div><span>Frete</span><strong data-shipping>—</strong></div>
+                        <div class="orcamento-total"><span>Total no boleto</span><strong data-total-boleto>—</strong></div>
+                        <div class="orcamento-total orcamento-total--pix"><span>Total no PIX <small data-policy-pix-detail></small></span><strong data-total-pix>—</strong></div>
+                    </div>
 
-                <div class="orcamento-print-cabecalho">
-                    <strong>Covil do Jabuti</strong>
-                    <span>Simulação de orçamento para lojista</span>
-                </div>
-                <p class="orcamento-print-context" data-print-context></p>
-                <p class="orcamento-observacao" data-quote-note>Os valores são uma simulação com base na tabela atual. A cotação final é confirmada pela equipe antes do pedido.</p>
-                <div class="orcamento-acoes">
-                    <button type="button" class="orcamento-botao orcamento-botao--primario" data-copy disabled>Copiar orçamento</button>
-                    <button type="button" class="orcamento-botao orcamento-botao--secundario" data-print disabled>Imprimir ou salvar PDF</button>
-                    <a href="https://wa.me/5519999549787?text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20um%20or%C3%A7amento%20para%20lojista." target="_blank" rel="noopener noreferrer" class="orcamento-falar">Prefere ajuda? Fale com a equipe</a>
-                    <p class="orcamento-feedback" data-feedback role="status" aria-live="polite"></p>
+                    <div class="orcamento-print-cabecalho">
+                        <strong>Covil do Jabuti</strong>
+                        <span>Simulação de orçamento para lojista</span>
+                    </div>
+                    <p class="orcamento-print-context" data-print-context></p>
+                    <p class="orcamento-observacao" data-quote-note>Os valores são uma simulação com base na tabela atual. A cotação final é confirmada pela equipe antes do pedido.</p>
+                    <div class="orcamento-acoes">
+                        <button type="button" class="orcamento-botao orcamento-botao--primario" data-copy disabled>Copiar orçamento</button>
+                        <button type="button" class="orcamento-botao orcamento-botao--secundario" data-print disabled>Imprimir ou salvar PDF</button>
+                        <a href="https://wa.me/5519999549787?text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20um%20or%C3%A7amento%20para%20lojista." target="_blank" rel="noopener noreferrer" class="orcamento-falar">Prefere ajuda? Fale com a equipe</a>
+                        <p class="orcamento-feedback" data-feedback role="status" aria-live="polite"></p>
+                    </div>
                 </div>
             </aside>
         </div>

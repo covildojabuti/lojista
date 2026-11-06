@@ -37,12 +37,48 @@
         return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value);
     }
 
-    function getTierBand(tiers, index) {
-        const firstQuantity = index === 0 ? 1 : tiers[index - 1].quantity + 1;
-        const lastQuantity = tiers[index].quantity;
-        return index === 0
-            ? `0–${lastQuantity}`
-            : `${firstQuantity}–${lastQuantity}`;
+    function getPricingBands(tiers) {
+        const bands = tiers.map((tier, index) => ({
+            firstQuantity: index === 0 ? 0 : tiers[index - 1].quantity + 1,
+            lastQuantity: tier.quantity,
+            price: tier.price,
+            openEnded: index === tiers.length - 1
+        }));
+
+        return bands.reduce((merged, band) => {
+            const previous = merged.at(-1);
+            if (previous && cents(previous.price) === cents(band.price)) {
+                previous.lastQuantity = band.lastQuantity;
+                previous.openEnded = band.openEnded;
+            } else {
+                merged.push({ ...band });
+            }
+            return merged;
+        }, []);
+    }
+
+    function getPricingBandLabel(band) {
+        if (band.firstQuantity === 0 && band.openEnded) return "Todas as quantidades";
+        if (band.openEnded) return `${band.firstQuantity} ou mais`;
+        if (band.firstQuantity === 0) return `0–${band.lastQuantity}`;
+        return `${band.firstQuantity}–${band.lastQuantity}`;
+    }
+
+    function getTextMarkup(value) {
+        const text = String(value ?? "").trim();
+        return text ? escapeHtml(text).replace(/\r?\n/g, "<br>") : "Não informado.";
+    }
+
+    function safeExternalUrl(value) {
+        try {
+            const raw = String(value || "").trim();
+            if (!raw) return "";
+            const candidate = /^(?:www\.)?[^/\s]+\.[a-z]{2,}(?:\/|$)/i.test(raw) ? `https://${raw}` : raw;
+            const url = new URL(candidate, window.location.origin);
+            return ["http:", "https:"].includes(url.protocol) ? url.href : "";
+        } catch {
+            return "";
+        }
     }
 
     function parsePricing(product, index) {
@@ -74,6 +110,7 @@
             groupName,
             groupKey: groupName.normalize("NFKC").trim().toLocaleLowerCase("pt-BR").replace(/\s+/g, " "),
             tiers,
+            bands: getPricingBands(tiers),
             invalid,
             fallbackPrice: fallbackPrice !== null && fallbackPrice > 0 ? fallbackPrice : null
         };
@@ -132,6 +169,9 @@
         const searchInput = root.querySelector("[data-search]");
         const categorySelect = root.querySelector("[data-category]");
         const cartItemsElement = root.querySelector("[data-cart-items]");
+        const tierProgressElement = root.querySelector("[data-tier-progress]");
+        const productDialog = root.querySelector("[data-product-dialog]");
+        const productDialogContent = root.querySelector("[data-product-dialog-content]");
         const cartCountElement = root.querySelector("[data-cart-count]");
         const minimumElement = root.querySelector("[data-minimum]");
         const minimumProgress = root.querySelector("[data-minimum-progress]");
@@ -179,6 +219,10 @@
 
         const state = {
             products: [],
+            variationsBySku: Object.create(null),
+            variationsLoaded: false,
+            variationsFailed: false,
+            variationsPromise: null,
             cart: new Map(),
             search: "",
             category: "",
@@ -204,12 +248,166 @@
                     ? "Preço por confirmar com a equipe."
                     : `Preço cadastrado: ${formatCurrency(product.pricing.fallbackPrice)} por unidade.`;
             }
-            const priceBands = product.pricing.tiers.map((tier, index, tiers) =>
-                `${getTierBand(tiers, index)}: ${formatCurrency(tier.price)}`
+            const priceBands = product.pricing.bands.map(band =>
+                `${getPricingBandLabel(band)}: ${formatCurrency(band.price)}`
             );
-            const lastTier = product.pricing.tiers.at(-1);
-            priceBands.push(`acima de ${lastTier.quantity}: ${formatCurrency(lastTier.price)}`);
             return `Faixas do grupo por unidade: ${priceBands.join(" · ")}`;
+        }
+
+        function normalizedFacet(value) {
+            return String(value || "").trim().normalize("NFKC").toLocaleLowerCase("pt-BR");
+        }
+
+        function loadProductVariations() {
+            if (state.variationsLoaded) return Promise.resolve();
+            if (state.variationsPromise) return state.variationsPromise;
+
+            state.variationsPromise = (async () => {
+                const apiUrl = await waitForApiConfig();
+                const variationsUrl = new URL(apiUrl, window.location.origin);
+                variationsUrl.searchParams.set("tipo", "variacoes");
+                const controller = new AbortController();
+                const timeoutId = window.setTimeout(() => controller.abort(), CATALOG_TIMEOUT_MS);
+                try {
+                    const response = await fetch(variationsUrl, { signal: controller.signal });
+                    if (!response.ok) throw new Error(`Falha ao carregar variações (HTTP ${response.status}).`);
+                    const variations = await response.json();
+                    if (!Array.isArray(variations)) throw new Error("A lista de variações não veio como uma lista.");
+
+                    const variationsBySku = Object.create(null);
+                    variations.forEach(variation => {
+                        const sku = String(variation.COD_SKU_PAI || "").trim().toLocaleUpperCase("pt-BR");
+                        if (!sku || !String(variation.VARIACAO || "").trim()) return;
+                        (variationsBySku[sku] ||= []).push(variation);
+                    });
+                    state.variationsBySku = variationsBySku;
+                    state.variationsLoaded = true;
+                } finally {
+                    window.clearTimeout(timeoutId);
+                }
+            })().catch(error => {
+                console.warn("Não foi possível carregar as variações do produto:", error);
+                state.variationsFailed = true;
+                state.variationsLoaded = true;
+            });
+
+            return state.variationsPromise;
+        }
+
+        function renderVariations(product) {
+            if (!state.variationsLoaded) return "<p>Carregando variações…</p>";
+            if (state.variationsFailed) return "<p>Não foi possível carregar as variações agora.</p>";
+
+            const sku = String(product.COD_SKU_PAI || "").trim().toLocaleUpperCase("pt-BR");
+            const variations = state.variationsBySku[sku] || [];
+            if (!variations.length) return "<p>Nenhuma variação cadastrada.</p>";
+
+            return "<ul class=\"orcamento-produto-dialog__variacoes\">" + variations.map(variation => {
+                const image = productImageUrl(variation.URL_IMG);
+                const name = String(variation.VARIACAO || "").trim();
+                const type = String(variation.TIPO_VARIACAO || "Variação").trim();
+                const imageMarkup = image
+                    ? "<img src=\"" + escapeHtml(image) + "\" alt=\"\" loading=\"lazy\" decoding=\"async\">"
+                    : "";
+                const skuMarkup = String(variation.COD_SKU || "").trim()
+                    ? "<small>SKU " + escapeHtml(variation.COD_SKU) + "</small>"
+                    : "";
+                return "<li>" + imageMarkup + "<span><strong>" + escapeHtml(type) + ":</strong> " + escapeHtml(name) + skuMarkup + "</span></li>";
+            }).join("") + "</ul>";
+        }
+
+        function openProductDialog(index) {
+            const product = findProduct(index);
+            if (!product || !productDialog || !productDialogContent) return;
+
+            const image = productImageUrl(product.URL_IMG);
+            const imageMarkup = image
+                ? "<img src=\"" + escapeHtml(image) + "\" alt=\"" + escapeHtml(product.PRODUTO || "Produto") + "\" decoding=\"async\">"
+                : "<span class=\"orcamento-produto__sem-imagem\" aria-hidden=\"true\">◇</span>";
+            const details = [
+                ["Categoria", product.CATEGORIA],
+                ["Subcategoria", product.SUBCATEGORIA],
+                ["SKU Pai", product.COD_SKU_PAI],
+                ["De", product.DE],
+                ["Por", product.POR],
+                ["Peso (g)", product.PESO],
+                ["Grupo de preço", product.pricing.groupName]
+            ];
+            const detailMarkup = details.map(([label, value]) =>
+                "<div><dt>" + escapeHtml(label) + "</dt><dd>" + getTextMarkup(value) + "</dd></div>"
+            ).join("");
+            const tierMarkup = product.pricing.invalid
+                ? "<p class=\"orcamento-produto-dialog__pendente\">A tabela deste produto precisa ser confirmada pela equipe.</p>"
+                : product.pricing.tiers.length
+                    ? "<ul class=\"orcamento-produto-dialog__faixas\">" + product.pricing.bands.map(band =>
+                        "<li><span>" + escapeHtml(getPricingBandLabel(band)) + " unidades</span><strong>" + formatCurrency(band.price) + " / un.</strong></li>"
+                    ).join("") + "</ul>"
+                    : "<p>" + (product.pricing.fallbackPrice === null ? "Preço a confirmar com a equipe." : "Preço cadastrado: " + formatCurrency(product.pricing.fallbackPrice) + " por unidade.") + "</p>";
+            const videoUrl = safeExternalUrl(product.URL_VIDEO);
+            const descriptionMarkup = [
+                ["Itens inclusos", product.ITENS_INCLUSOS],
+                ["Características", product.CARACTERISTICAS],
+                ["Descrição", product.DESCRICAO]
+            ].map(([label, value]) =>
+                "<section class=\"orcamento-produto-dialog__texto\"><h3>" + escapeHtml(label) + "</h3><p>" + getTextMarkup(value) + "</p></section>"
+            ).join("");
+            const subcategory = normalizedFacet(product.SUBCATEGORIA);
+            const category = normalizedFacet(product.CATEGORIA);
+            const relatedProducts = subcategory
+                ? state.products.filter(candidate =>
+                    candidate.key !== product.key &&
+                    normalizedFacet(candidate.CATEGORIA) === category &&
+                    normalizedFacet(candidate.SUBCATEGORIA) === subcategory
+                )
+                : [];
+            const relatedMarkup = relatedProducts.length
+                ? "<section class=\"orcamento-produto-dialog__relacionados\" aria-labelledby=\"orcamento-produto-dialog-modelos\"><h3 id=\"orcamento-produto-dialog-modelos\">Outros modelos desta subcategoria</h3><div>" + relatedProducts.map(candidate => {
+                    const candidateImage = productImageUrl(candidate.URL_IMG);
+                    return "<button type=\"button\" data-view-product data-product-index=\"" + candidate.index + "\" aria-label=\"Ver " + escapeHtml(candidate.PRODUTO || "produto") + "\">" +
+                        (candidateImage ? "<img src=\"" + escapeHtml(candidateImage) + "\" alt=\"\" loading=\"lazy\" decoding=\"async\">" : "") +
+                        "<span>" + escapeHtml(candidate.PRODUTO || "Produto") + "</span></button>";
+                }).join("") + "</div></section>"
+                : "<p class=\"orcamento-produto-dialog__sem-relacionados\">Confira a categoria e a subcategoria para comparar este modelo com o catálogo.</p>";
+
+            productDialogContent.innerHTML =
+                "<div class=\"orcamento-produto-dialog__cabecalho\">" +
+                    "<p class=\"orcamento-eyebrow orcamento-eyebrow--dark\">Detalhes do produto</p>" +
+                    "<button type=\"button\" class=\"orcamento-produto-dialog__fechar\" data-dialog-close aria-label=\"Fechar detalhes\">×</button>" +
+                "</div>" +
+                "<div class=\"orcamento-produto-dialog__principal\">" +
+                    "<div class=\"orcamento-produto-dialog__imagem\">" + imageMarkup + "</div>" +
+                    "<div class=\"orcamento-produto-dialog__informacoes\">" +
+                        "<h2 id=\"orcamento-produto-dialog-titulo\">" + escapeHtml(product.PRODUTO || "Produto") + "</h2>" +
+                        "<dl>" + detailMarkup + "</dl>" +
+                        "<section class=\"orcamento-produto-dialog__moq\"><h3>Preço unitário / MOQ informado</h3><p>" + getTextMarkup(product.MOQ) + "</p></section>" +
+                        "<section aria-labelledby=\"orcamento-produto-dialog-faixas\">" +
+                            "<h3 id=\"orcamento-produto-dialog-faixas\">Preços por faixa</h3>" +
+                            "<p class=\"orcamento-produto-dialog__nota\">A faixa considera o total de unidades do grupo " + escapeHtml(product.pricing.groupName) + ".</p>" +
+                            tierMarkup +
+                        "</section>" +
+                        "<div class=\"orcamento-produto-dialog__descricoes\">" + descriptionMarkup + "</div>" +
+                        "<section class=\"orcamento-produto-dialog__variacoes-secao\"><h3>Variações</h3><div data-product-variations>" + renderVariations(product) + "</div></section>" +
+                        "<p class=\"orcamento-produto-dialog__video\">" + (videoUrl
+                            ? "<a href=\"" + escapeHtml(videoUrl) + "\" target=\"_blank\" rel=\"noopener noreferrer\">▶ Assistir ao vídeo do produto</a>"
+                            : "Nenhum vídeo informado.") + "</p>" +
+                        "<div class=\"orcamento-produto-dialog__adicionar\">" +
+                            "<button type=\"button\" class=\"orcamento-adicionar\" data-dialog-add-product data-product-index=\"" + product.index + "\">Adicionar 1 ao orçamento <span aria-hidden=\"true\">＋</span></button>" +
+                            "<p data-dialog-feedback role=\"status\" aria-live=\"polite\"></p>" +
+                        "</div>" +
+                    "</div>" +
+                "</div>" + relatedMarkup;
+            productDialogContent.dataset.productIndex = String(product.index);
+            if (!productDialog.open && typeof productDialog.showModal === "function") productDialog.showModal();
+            else if (!productDialog.open) productDialog.setAttribute("open", "");
+            productDialogContent.querySelector("[data-dialog-close]")?.focus();
+
+            if (!state.variationsLoaded) {
+                loadProductVariations().then(() => {
+                    if (productDialogContent.dataset.productIndex !== String(product.index)) return;
+                    const variationsSlot = productDialogContent.querySelector("[data-product-variations]");
+                    if (variationsSlot) variationsSlot.innerHTML = renderVariations(product);
+                });
+            }
         }
 
         function renderProducts() {
@@ -248,6 +446,30 @@
                         </div>
                     </article>`;
             }).join("");
+
+            productsGrid.querySelectorAll("[data-product-card]").forEach(card => {
+                const product = findProduct(card.dataset.productIndex);
+                const imageContainer = card.querySelector(".orcamento-produto__imagem");
+                if (!product || !imageContainer) return;
+
+                const imageButton = document.createElement("button");
+                imageButton.type = "button";
+                imageButton.className = "orcamento-produto__ver-imagem";
+                imageButton.dataset.viewProduct = "";
+                imageButton.dataset.productIndex = String(product.index);
+                imageButton.setAttribute("aria-label", "Ver detalhes de " + (product.PRODUTO || "produto"));
+                imageContainer.replaceWith(imageButton);
+                imageButton.append(imageContainer);
+
+                const heading = card.querySelector("h3");
+                const detailsButton = document.createElement("button");
+                detailsButton.type = "button";
+                detailsButton.className = "orcamento-produto__ver-detalhes";
+                detailsButton.dataset.viewProduct = "";
+                detailsButton.dataset.productIndex = String(product.index);
+                detailsButton.textContent = "Ver detalhes e modelos";
+                heading?.after(detailsButton);
+            });
         }
 
         function groupQuantity(groupKey) {
@@ -255,22 +477,18 @@
         }
 
         function getLinePrice(product, quantityInGroup) {
-            const tiers = product.pricing.tiers;
+            const bands = product.pricing.bands;
             if (product.pricing.invalid) return { price: null, tierRange: null };
-            if (!tiers.length) {
+            if (!bands.length) {
                 return product.pricing.fallbackPrice === null
                     ? { price: null, tierRange: null }
                     : { price: product.pricing.fallbackPrice, tierRange: null };
             }
 
-            const matchingIndex = tiers.findIndex(tier => quantityInGroup <= tier.quantity);
-            const tierIndex = matchingIndex === -1 ? tiers.length - 1 : matchingIndex;
-            const matchingTier = tiers[tierIndex];
-            const tierRange = matchingIndex === -1
-                ? `acima de ${matchingTier.quantity}`
-                : getTierBand(tiers, tierIndex);
-
-            return { price: matchingTier.price, tierRange };
+            const matchingBand = bands.find(band => band.openEnded || quantityInGroup <= band.lastQuantity);
+            return matchingBand
+                ? { price: matchingBand.price, tierRange: getPricingBandLabel(matchingBand) }
+                : { price: null, tierRange: null };
         }
 
         function getCartCalculation() {
@@ -297,6 +515,58 @@
                 boletoTotalCents: productCents === null || shippingCents === null ? null : productCents + shippingCents,
                 pixTotalCents: productCents === null || shippingCents === null ? null : productCents - discountCents + shippingCents
             };
+        }
+
+        function renderTierProgress(calculation) {
+            const groups = new Map();
+            calculation.lines.forEach(line => {
+                if (line.product.pricing.invalid || line.product.pricing.bands.length < 2) return;
+                const key = line.product.pricing.groupKey;
+                if (!groups.has(key)) {
+                    groups.set(key, {
+                        name: line.product.pricing.groupName,
+                        volume: line.volume,
+                        candidates: []
+                    });
+                }
+
+                const bands = line.product.pricing.bands;
+                const currentIndex = bands.findIndex(band => band.openEnded || line.volume <= band.lastQuantity);
+                if (currentIndex < 0 || currentIndex >= bands.length - 1) return;
+                const nextQuantity = bands[currentIndex + 1].firstQuantity;
+                groups.get(key).candidates.push({
+                    quantity: nextQuantity,
+                    name: line.product.PRODUTO || "Produto",
+                    price: bands[currentIndex + 1].price
+                });
+            });
+
+            const messages = [...groups.values()].map(group => {
+                if (!group.candidates.length) {
+                    return "<article class=\"orcamento-faixa-progresso__item orcamento-faixa-progresso__item--atingida\"><strong>" +
+                        escapeHtml(group.name) + "</strong><p>Os produtos deste grupo já estão na última faixa cadastrada.</p></article>";
+                }
+
+                const nextQuantity = Math.min(...group.candidates.map(candidate => candidate.quantity));
+                const needed = nextQuantity - group.volume;
+                const targets = group.candidates.filter(candidate => candidate.quantity === nextQuantity);
+                const visibleTargets = targets.slice(0, 3).map(candidate =>
+                    "<span>" + escapeHtml(candidate.name) + ": " + formatCurrency(candidate.price) + "/un.</span>"
+                ).join("");
+                const additionalTargets = targets.length > 3
+                    ? "<span>e mais " + (targets.length - 3) + " " + (targets.length - 3 === 1 ? "produto" : "produtos") + " deste grupo</span>"
+                    : "";
+                return "<article class=\"orcamento-faixa-progresso__item\"><p>Faltam <strong>" + needed + " " +
+                    (needed === 1 ? "unidade" : "unidades") + "</strong> somadas no grupo <strong>" +
+                    escapeHtml(group.name) + "</strong> para a próxima faixa, a partir de " + nextQuantity + ".</p><div>" +
+                    visibleTargets + additionalTargets + "</div></article>";
+            });
+
+            tierProgressElement.innerHTML = messages.length
+                ? "<p class=\"orcamento-faixa-progresso__titulo\">Progresso para a próxima faixa</p>" +
+                    "<p class=\"orcamento-faixa-progresso__explicacao\">A contagem soma somente produtos com o mesmo grupo de preço cadastrado.</p>" +
+                    messages.join("")
+                : "";
         }
 
         function renderCart() {
@@ -340,6 +610,34 @@
                 }).join("");
             }
 
+            cartItemsElement.querySelectorAll("[data-cart-item]").forEach(card => {
+                const quantityInput = card.querySelector("[data-cart-quantity]");
+                const name = card.querySelector(".orcamento-item__nome")?.textContent || "produto";
+                const quantity = quantityInput?.valueAsNumber || 1;
+                if (!quantityInput) return;
+
+                const decreaseButton = document.createElement("button");
+                decreaseButton.type = "button";
+                decreaseButton.className = "orcamento-item__ajuste";
+                decreaseButton.dataset.adjustCart = "menos";
+                decreaseButton.disabled = quantity <= 1;
+                decreaseButton.setAttribute("aria-label", "Diminuir quantidade de " + name);
+                decreaseButton.textContent = "−";
+                quantityInput.before(decreaseButton);
+
+                const increaseButton = document.createElement("button");
+                increaseButton.type = "button";
+                increaseButton.className = "orcamento-item__ajuste";
+                increaseButton.dataset.adjustCart = "mais";
+                increaseButton.disabled = quantity >= MAX_QUANTITY;
+                increaseButton.setAttribute("aria-label", "Aumentar quantidade de " + name);
+                increaseButton.textContent = "+";
+                quantityInput.after(increaseButton);
+
+                const removeButton = card.querySelector("[data-remove-product]");
+                if (removeButton) removeButton.textContent = "Remover";
+            });
+            renderTierProgress(calculation);
             updateTotals(calculation);
         }
 
@@ -527,8 +825,19 @@
             renderProducts();
         });
         productsGrid.addEventListener("click", event => {
+            const detailButton = event.target.closest("[data-view-product]");
+            if (detailButton) {
+                openProductDialog(detailButton.dataset.productIndex);
+                return;
+            }
             const button = event.target.closest("[data-add-product]");
-            if (!button) return;
+            if (!button) {
+                const card = event.target.closest("[data-product-card]");
+                if (card && !event.target.closest("button, input, select, a, label")) {
+                    openProductDialog(card.dataset.productIndex);
+                }
+                return;
+            }
             const card = button.closest("[data-product-card]");
             const quantityInput = card?.querySelector("[data-add-quantity]");
             const quantity = quantityInput?.valueAsNumber;
@@ -592,13 +901,59 @@
             updatedInput?.focus({ preventScroll: true });
         });
         cartItemsElement.addEventListener("click", event => {
+            const adjustButton = event.target.closest("[data-adjust-cart]");
+            if (adjustButton) {
+                const card = adjustButton.closest("[data-cart-item]");
+                const product = findProduct(card?.dataset.productIndex);
+                const currentQuantity = product ? state.cart.get(product.key)?.quantity : 0;
+                const nextQuantity = currentQuantity + (adjustButton.dataset.adjustCart === "mais" ? 1 : -1);
+                if (!product || nextQuantity < 1 || nextQuantity > MAX_QUANTITY) return;
+
+                state.cart.set(product.key, { product, quantity: nextQuantity });
+                renderCart();
+                feedback.textContent = "Quantidade de " + (product.PRODUTO || "produto") + " atualizada.";
+                const updatedCard = cartItemsElement.querySelector("[data-cart-item][data-product-index=\"" + product.index + "\"]");
+                const nextFocus = adjustButton.dataset.adjustCart === "menos" && nextQuantity === 1
+                    ? updatedCard?.querySelector("[data-cart-quantity]")
+                    : updatedCard?.querySelector("[data-adjust-cart=\"" + adjustButton.dataset.adjustCart + "\"]");
+                nextFocus?.focus({ preventScroll: true });
+                return;
+            }
+
             const button = event.target.closest("[data-remove-product]");
             if (!button) return;
             const card = button.closest("[data-cart-item]");
             const product = findProduct(card?.dataset.productIndex);
             if (product) state.cart.delete(product.key);
-            feedback.textContent = "Produto removido do orçamento.";
+            feedback.textContent = (product?.PRODUTO || "Produto") + " removido do orçamento.";
             renderCart();
+        });
+        productDialogContent.addEventListener("click", event => {
+            if (event.target.closest("[data-dialog-close]")) {
+                if (typeof productDialog.close === "function") productDialog.close();
+                else productDialog.removeAttribute("open");
+                return;
+            }
+            const detailButton = event.target.closest("[data-view-product]");
+            if (detailButton) {
+                openProductDialog(detailButton.dataset.productIndex);
+                return;
+            }
+            const addButton = event.target.closest("[data-dialog-add-product]");
+            if (!addButton) return;
+            const addedQuantity = addProduct(addButton.dataset.productIndex, 1);
+            const dialogFeedback = productDialogContent.querySelector("[data-dialog-feedback]");
+            const product = findProduct(addButton.dataset.productIndex);
+            if (dialogFeedback) {
+                dialogFeedback.textContent = addedQuantity === null
+                    ? "O limite deste produto foi atingido. Reduza a quantidade no orçamento para adicionar mais."
+                    : (product?.PRODUTO || "Produto") + " adicionado. Ajuste a quantidade no orçamento quando quiser.";
+            }
+        });
+        productDialog.addEventListener("click", event => {
+            if (event.target !== productDialog) return;
+            if (typeof productDialog.close === "function") productDialog.close();
+            else productDialog.removeAttribute("open");
         });
         root.querySelectorAll('input[name="orcamento-entrega"]').forEach(input => {
             input.addEventListener("change", () => {
