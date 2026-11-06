@@ -33,6 +33,64 @@
     margin: 0;
 }
 
+.orcamento-atalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: min(1200px, calc(100% - 32px));
+    margin: 0 auto 28px;
+    padding: 22px 26px;
+    border: 1px solid #e9dfcf;
+    border-radius: 14px;
+    background: linear-gradient(115deg, #fffaf0, #f7f1e7);
+    box-sizing: border-box;
+}
+
+.orcamento-atalho__eyebrow {
+    margin-bottom: 4px;
+    color: #8a6826;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.orcamento-atalho h2 {
+    margin-bottom: 5px;
+    color: #24160f;
+    font-size: clamp(18px, 2vw, 23px);
+}
+
+.orcamento-atalho p:last-child {
+    color: #63584c;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.orcamento-atalho__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    gap: 10px;
+    min-height: 46px;
+    padding: 0 20px;
+    border-radius: 999px;
+    background: #321b10;
+    color: #fff8eb;
+    font-size: 14px;
+    font-weight: 800;
+    transition: background-color .2s ease, transform .2s ease;
+}
+
+.orcamento-atalho__link:hover,
+.orcamento-atalho__link:focus-visible {
+    background: #70421f;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
 @media (max-width: 1024px) {
     .produtos-condicoes {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -55,6 +113,20 @@
 
     .produto-condicao h2 {
         font-size: 12px;
+    }
+
+    .orcamento-atalho {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 16px;
+        width: calc(100% - 24px);
+        margin-bottom: 20px;
+        padding: 18px;
+    }
+
+    .orcamento-atalho__link {
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 
