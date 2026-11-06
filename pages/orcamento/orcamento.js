@@ -162,6 +162,7 @@
         }
         const COMMERCIAL_POLICY = window.B2B_COMMERCIAL_POLICY;
         root.dataset.orcamentoInicializado = "true";
+        let activeSubmissionId = "";
 
         const productsGrid = root.querySelector("[data-products]");
         const catalogStatus = root.querySelector("[data-catalog-status]");
@@ -183,6 +184,11 @@
         const quoteNote = root.querySelector("[data-quote-note]");
         const copyButton = root.querySelector("[data-copy]");
         const printButton = root.querySelector("[data-print]");
+        const requestButton = root.querySelector("[data-request-quote]");
+        const requestDialog = root.querySelector("[data-request-dialog]");
+        const requestForm = root.querySelector("[data-request-form]");
+        const requestStatus = root.querySelector("[data-request-status]");
+        const requestSummary = root.querySelector("[data-request-summary]");
         const feedback = root.querySelector("[data-feedback]");
         const mobileSummary = root.querySelector("[data-mobile-summary]");
         const mobileCount = root.querySelector("[data-mobile-count]");
@@ -576,6 +582,7 @@
             cartCountElement.textContent = `${unitCount} ${unitCount === 1 ? "unidade" : "unidades"}`;
             copyButton.disabled = calculation.lines.length === 0;
             printButton.disabled = calculation.lines.length === 0;
+            if (requestButton) requestButton.disabled = calculation.lines.length === 0 || !calculation.complete;
 
             if (!calculation.lines.length) {
                 cartItemsElement.innerHTML = `<div class="orcamento-vazio"><span aria-hidden="true">＋</span><p>Adicione produtos para começar seu orçamento.</p></div>`;
@@ -755,6 +762,121 @@
                 const copied = document.execCommand("copy");
                 helper.remove();
                 feedback.textContent = copied ? "Orçamento copiado. Você pode colar onde quiser." : "Não foi possível copiar. Tente imprimir ou salvar em PDF.";
+            }
+        }
+
+        function updateRequestChannel() {
+            const channel = requestForm.elements.channel.value;
+            const whatsappField = requestForm.querySelector("[data-request-whatsapp]");
+            const emailField = requestForm.querySelector("[data-request-email]");
+            const whatsappInput = requestForm.elements.whatsapp;
+            const emailInput = requestForm.elements.email;
+            const useWhatsApp = channel === "whatsapp";
+            whatsappField.hidden = !useWhatsApp;
+            emailField.hidden = useWhatsApp;
+            whatsappInput.required = useWhatsApp;
+            emailInput.required = !useWhatsApp;
+        }
+
+        function createSubmissionId() {
+            if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
+            const bytes = new Uint8Array(16);
+            crypto.getRandomValues(bytes);
+            bytes[6] = (bytes[6] & 0x0f) | 0x40;
+            bytes[8] = (bytes[8] & 0x3f) | 0x80;
+            const hex = [...bytes].map(value => value.toString(16).padStart(2, "0")).join("");
+            return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+        }
+
+        function getAttribution() {
+            const params = new URLSearchParams(window.location.search);
+            return Object.fromEntries(["gclid", "utm_source", "utm_medium", "utm_campaign"].map(key => [key, params.get(key) || ""]));
+        }
+
+        function buildQuoteRequest() {
+            const calculation = state.pricing || getCartCalculation();
+            return {
+                submissionId: activeSubmissionId || (activeSubmissionId = createSubmissionId()),
+                customer: {
+                    name: requestForm.elements.name.value.trim(),
+                    store: requestForm.elements.store.value.trim(),
+                    whatsapp: requestForm.elements.whatsapp.value.trim(),
+                    email: requestForm.elements.email.value.trim(),
+                    cityState: requestForm.elements.cityState.value.trim(),
+                    channel: requestForm.elements.channel.value
+                },
+                contactAllowed: requestForm.elements.contactAllowed.checked,
+                consentText: "Autorizo a equipe do Covil do Jabuti a entrar em contato sobre este orçamento pelo canal escolhido.",
+                honeypot: requestForm.elements.website.value,
+                attribution: getAttribution(),
+                quote: {
+                    shippingMethod: state.shippingMethod,
+                    policy: {
+                        minimumOrderCents: COMMERCIAL_POLICY.minimumOrderCents,
+                        freeShippingCents: COMMERCIAL_POLICY.freeShippingCents,
+                        standardShippingCents: COMMERCIAL_POLICY.standardShippingCents,
+                        pixDiscountBasisPoints: Math.round(COMMERCIAL_POLICY.pixDiscountRate * 10000),
+                        boletoTerm: COMMERCIAL_POLICY.boletoTerm
+                    },
+                    items: calculation.lines.map(line => ({
+                        name: String(line.product.PRODUTO || "Produto"),
+                        sku: String(line.product.COD_SKU_PAI || ""),
+                        category: String(line.product.CATEGORIA || ""),
+                        group: String(line.product.pricing.groupName || ""),
+                        groupQuantity: line.volume,
+                        priceBand: String(line.tierRange || ""),
+                        quantity: line.quantity,
+                        unitPriceCents: cents(line.price)
+                    }))
+                }
+            };
+        }
+
+        async function submitQuoteRequest(event) {
+            event.preventDefault();
+            updateRequestChannel();
+            if (!requestForm.reportValidity()) return;
+
+            const endpoint = window.B2B_CRM_QUOTE_ENDPOINT;
+            if (!endpoint) {
+                requestStatus.className = "orcamento-pedido-status orcamento-pedido-status--erro";
+                requestStatus.textContent = "O envio ao CRM não está configurado. Fale com a equipe pelo WhatsApp.";
+                return;
+            }
+
+            const submitButton = requestForm.querySelector("[data-request-submit]");
+            const controller = new AbortController();
+            const timeout = window.setTimeout(() => controller.abort(), 15000);
+            submitButton.disabled = true;
+            submitButton.textContent = "Enviando…";
+            requestStatus.className = "orcamento-pedido-status";
+            requestStatus.textContent = "Enviando sua solicitação com o resumo do orçamento…";
+            try {
+                const response = await fetch(endpoint, {
+                    method: "POST",
+                    mode: "cors",
+                    credentials: "omit",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(buildQuoteRequest()),
+                    signal: controller.signal
+                });
+                const result = await response.json().catch(() => null);
+                if (!response.ok || result?.ok !== true) throw new Error("A solicitação não foi confirmada pelo CRM.");
+                if (typeof requestDialog.close === "function") requestDialog.close();
+                else requestDialog.removeAttribute("open");
+                feedback.textContent = `Solicitação recebida. Nossa equipe entrará em contato por ${requestForm.elements.channel.value === "email" ? "e-mail" : "WhatsApp"}.`;
+                requestForm.reset();
+                activeSubmissionId = "";
+                updateRequestChannel();
+            } catch (error) {
+                requestStatus.className = "orcamento-pedido-status orcamento-pedido-status--erro";
+                requestStatus.textContent = error.name === "AbortError"
+                    ? "O envio demorou mais que o esperado. Tente novamente; seu orçamento continua na tela."
+                    : "Não foi possível enviar agora. Seu orçamento continua salvo nesta tela; tente novamente ou fale com a equipe pelo WhatsApp.";
+            } finally {
+                window.clearTimeout(timeout);
+                submitButton.disabled = false;
+                submitButton.textContent = "Enviar solicitação";
             }
         }
 
@@ -964,6 +1086,34 @@
         });
         copyButton.addEventListener("click", copyQuote);
         printButton.addEventListener("click", () => window.print());
+        if (requestButton && requestDialog && requestForm && requestStatus && requestSummary) {
+            requestButton.addEventListener("click", () => {
+                const calculation = state.pricing || getCartCalculation();
+                activeSubmissionId = createSubmissionId();
+                const units = calculation.lines.reduce((sum, line) => sum + line.quantity, 0);
+                const amount = calculation.boletoTotalCents === null ? "" : ` · estimativa no boleto ${formatCurrency(calculation.boletoTotalCents / 100)}`;
+                requestSummary.textContent = `${calculation.lines.length} ${calculation.lines.length === 1 ? "produto" : "produtos"}, ${units} ${units === 1 ? "unidade" : "unidades"}${amount}. A equipe confirmará os valores antes do pedido.`;
+                requestStatus.textContent = "";
+                requestStatus.className = "orcamento-pedido-status";
+                if (typeof requestDialog.showModal === "function") requestDialog.showModal();
+                else requestDialog.setAttribute("open", "");
+                requestForm.elements.name.focus();
+            });
+            requestForm.addEventListener("change", event => {
+                if (event.target.matches('input[name="channel"]')) updateRequestChannel();
+            });
+            requestForm.addEventListener("submit", submitQuoteRequest);
+            requestDialog.querySelectorAll("[data-request-close]").forEach(button => button.addEventListener("click", () => {
+                if (typeof requestDialog.close === "function") requestDialog.close();
+                else requestDialog.removeAttribute("open");
+            }));
+            requestDialog.addEventListener("click", event => {
+                if (event.target !== requestDialog) return;
+                if (typeof requestDialog.close === "function") requestDialog.close();
+                else requestDialog.removeAttribute("open");
+            });
+            updateRequestChannel();
+        }
         viewQuoteButton.addEventListener("click", () => {
             quoteSummary.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
             quoteSummary.focus({ preventScroll: true });
