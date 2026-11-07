@@ -3,7 +3,7 @@
  * No GitHub Pages, se seu site estiver em /lightus/, isso È obrigatÛrio.
  */
 const basePath = '/';
-const componentScriptVersion = '20261106-site-rework3';
+const componentScriptVersion = '20261107-home-polish10';
 
 /**
  * FunÁ„o para injetar componentes com estrutura padronizada
@@ -28,7 +28,7 @@ async function injectComponent(element) {
         document.head.appendChild(cssLink);
 
         // 2. Carrega o HTML
-        const htmlPath = `${fullComponentPath}/${componentName}.html`;
+        const htmlPath = `${fullComponentPath}/${componentName}.html?v=${componentScriptVersion}`;
         const htmlResponse = await fetch(htmlPath);
 
         if (!htmlResponse.ok) {
@@ -37,6 +37,27 @@ async function injectComponent(element) {
         } else {
             const html = await htmlResponse.text();
             element.innerHTML = html;
+
+            if (element.classList.contains("home-contact")) {
+                const contactHeading = element.querySelector(".contact-header h1");
+                if (contactHeading) {
+                    const sectionHeading = document.createElement("h2");
+                    sectionHeading.id = contactHeading.id;
+                    sectionHeading.className = contactHeading.className;
+                    sectionHeading.textContent = "Fale com a nossa equipe";
+                    contactHeading.replaceWith(sectionHeading);
+                }
+                const formDescription = element.querySelector(".contact-header p");
+                if (formDescription) formDescription.textContent = "Conte o que a sua loja precisa. A equipe do Covil do Jabuti entrar√° em contato.";
+                const specialistTitle = element.querySelector(".specialist-section h2");
+                if (specialistTitle) specialistTitle.textContent = "Prefere conversar com algu√©m?";
+                const specialistHeading = element.querySelector(".specialist-section h3");
+                if (specialistHeading) specialistHeading.textContent = "A gente ajuda a montar o seu pedido.";
+                const specialistDescription = element.querySelector(".specialist-section p");
+                if (specialistDescription) specialistDescription.textContent = "Tire d√∫vidas sobre produtos, faixas de pre√ßo e condi√ß√µes para lojistas pelo WhatsApp. Sem compromisso.";
+                const specialistLink = element.querySelector(".specialist-section .specialist-btn");
+                if (specialistLink) specialistLink.textContent = "Conversar no WhatsApp";
+            }
 
             // Processa componentes aninhados
             const nestedComponents = element.querySelectorAll('[data-include]');

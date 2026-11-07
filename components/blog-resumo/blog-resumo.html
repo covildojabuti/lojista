@@ -1,17 +1,22 @@
-﻿<div class="blogger-wrapper">
-    <div class="blogger-main-content">
-        <div id="blogger-carousel" class="blogger-carousel">
-            <div id="main-post" class="blogger-post main"></div>
-            <div id="secondary-posts" class="secondary-posts-container">
-                <div class="blogger-post secondary"></div>
-                <div class="blogger-post secondary"></div>
+<section class="blogger-section" aria-labelledby="blogger-section-title">
+    <div class="blogger-section__heading">
+        <p class="blogger-section__eyebrow">Ideias para sua próxima aventura</p>
+        <h2 id="blogger-section-title">Histórias, dicas e inspiração</h2>
+    </div>
+    <div class="blogger-wrapper">
+        <div class="blogger-main-content">
+            <div id="blogger-carousel" class="blogger-carousel">
+                <article id="main-post" class="blogger-post main"></article>
+                <div id="secondary-posts" class="secondary-posts-container" aria-label="Mais artigos">
+                    <article class="blogger-post secondary"></article>
+                    <article class="blogger-post secondary"></article>
+                </div>
             </div>
         </div>
+        <aside class="blogger-sidebar" aria-labelledby="blogger-sidebar-title">
+            <h3 id="blogger-sidebar-title">Mais histórias e dicas</h3>
+            <ul id="sidebar-posts"></ul>
+            <b><a href="/pages/insights">Ver todos os artigos <span aria-hidden="true">→</span></a></b>
+        </aside>
     </div>
-    <div class="blogger-sidebar">
-        <h3>Resultado na Prática</h3>
-        <ul id="sidebar-posts">
-        </ul>
-        <b><a href="/pages/insights">mais notícias</a></b>
-    </div>
-</div>
+</section>

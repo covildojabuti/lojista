@@ -1,167 +1,288 @@
-﻿/* banner-home.css */
 .banner-wrapper {
     width: 100%;
     overflow: hidden;
-    position: relative;
+    background: #170801;
 }
 
 .banner-section {
     position: relative;
+    isolation: isolate;
 }
 
 .banner-carousel {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .banner-slide {
     flex: 0 0 100%;
-    min-width: 100%;
-    height: auto; /* Ajuste conforme necessário */
+    min-width: 0;
 }
 
 .banner-card {
     position: relative;
-    height: 300px; /* Altura fixa para os slides, ajuste conforme necessário */
+    display: flex;
+    align-items: center;
+    min-height: clamp(390px, 39vw, 500px);
+    overflow: hidden;
+    background-color: #241107;
     background-size: cover;
-    background-position: center;
+    background-position: center right;
     background-repeat: no-repeat;
+    isolation: isolate;
 }
 
 .banner-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.2);
+    inset: 0;
+    z-index: 0;
+    background:
+        linear-gradient(90deg, rgba(23, 8, 1, .99) 0%, rgba(23, 8, 1, .94) 35%, rgba(23, 8, 1, .68) 65%, rgba(23, 8, 1, .20) 100%),
+        linear-gradient(0deg, rgba(23, 8, 1, .32), transparent 55%);
 }
 
-
+.banner-card--led .banner-overlay {
+    background:
+        linear-gradient(90deg, rgba(23, 8, 1, .99) 0%, rgba(23, 8, 1, .93) 40%, rgba(23, 8, 1, .46) 78%, rgba(23, 8, 1, .24) 100%),
+        linear-gradient(0deg, rgba(23, 8, 1, .34), transparent 55%);
+}
 
 .banner-text-button-container {
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    transform: translateY(-50%);
-    width: 50%; /* Ocupa metade da largura da tela */
-    color: white;
-    z-index: 2;
+    position: relative;
+    z-index: 1;
+    width: min(calc(100% - 10vw), 1220px);
+    margin: 0 auto;
+    padding: 58px 0 76px;
+    color: #fffaf1;
     text-align: left;
 }
 
-    .banner-text-button-container h2 {
-        font-size: 42px;
-        color: #d3a323;
-        margin-bottom: 1.2rem;
-        font-weight: 600;
-        line-height: 1.1;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    }
-
-    .banner-text-button-container p {
-        font-size: 13px;
-        color: #f0f0f0;
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-        text-shadow: 0 2px 3px rgba(0, 0, 0, 0.6) 0 0 10px rgba(255, 255, 255, 0.2);
-        
-    }
-
-
-.cta-button {
-    color: #fff;
-    background-color: transparent;
-    border: 1px solid #fff;
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 30px;
-    font-weight: 700;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    text-transform: uppercase;
-    transition: background-color 0.3s ease, color 0.3s ease;
+.banner-fallback {
+    display: grid;
+    min-height: 390px;
+    place-content: center;
+    justify-items: center;
+    gap: 18px;
+    padding: 28px;
+    color: #fffaf1;
+    text-align: center;
 }
 
-    .cta-button:hover {
-        background-color: #ffd176;
-        color: #222;
-    }
+.banner-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    color: #f1cb7e;
+    font: 700 12px/1.3 Manrope, sans-serif;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
 
+.banner-eyebrow::before {
+    width: 25px;
+    height: 1px;
+    background: currentColor;
+    content: "";
+}
+
+.banner-text-button-container h1 {
+    max-width: 680px;
+    margin: 0 0 18px;
+    color: #fffaf1;
+    font: 600 clamp(2.35rem, 5vw, 4.25rem)/1.04 Georgia, "Times New Roman", serif;
+    letter-spacing: -.035em;
+    text-wrap: balance;
+}
+
+.banner-text-button-container p {
+    max-width: 570px;
+    margin: 0 0 28px;
+    color: rgba(255, 250, 241, .86);
+    font: 400 16px/1.7 Manrope, sans-serif;
+}
+
+.cta-button {
+    display: inline-flex;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 22px;
+    border: 1px solid #f1d18d;
+    border-radius: 999px;
+    background: #f1d18d;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
+    color: #211106;
+    font: 800 12px/1 Manrope, sans-serif;
+    letter-spacing: .07em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.cta-button::after {
+    content: "→";
+    font-size: 18px;
+    line-height: 1;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    background: #ffdf9f;
+}
+
+.cta-button:focus-visible,
+.carousel-nav button:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
 
 .carousel-nav {
     position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: max(5vw, calc((100vw - 1220px) / 2));
+    bottom: 24px;
+    z-index: 2;
     display: flex;
     align-items: center;
-    z-index: 3; /* Para garantir que os botões de navegação e dots fiquem acima do overlay */
+    gap: 8px;
 }
 
-    .carousel-nav button {
-        background: none;
-        border: none;
-        font-size: 20px;
-        color: white;
-        cursor: pointer;
-        padding: 5px 10px;
-        opacity: 0.8;
+.carousel-nav button {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 250, 241, .34);
+    border-radius: 50%;
+    background: rgba(23, 8, 1, .48);
+    color: #fffaf1;
+    cursor: pointer;
+    font-size: 17px;
+    transition: background-color .2s ease, border-color .2s ease;
+}
+
+.carousel-nav button:hover {
+    border-color: #f1d18d;
+    background: rgba(23, 8, 1, .82);
+}
+
+.carousel-nav .dots {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 0 2px;
+}
+
+.carousel-nav .dots button {
+    display: grid;
+    width: 32px;
+    height: 38px;
+    place-items: center;
+    border: 0;
+    background: transparent;
+    opacity: 1;
+}
+
+.carousel-nav .dots button::before {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #fffaf1;
+    content: "";
+    opacity: .58;
+    transition: width .2s ease, background-color .2s ease, opacity .2s ease;
+}
+
+.carousel-nav .dots button.active::before {
+    width: 20px;
+    background: #f1d18d;
+    opacity: 1;
+}
+
+@media (max-width: 760px) {
+    .banner-card {
+        min-height: 455px;
+        align-items: flex-end;
+        background-position: 70% center;
     }
 
-        .carousel-nav button:hover {
-            opacity: 1;
-        }
-
-    .carousel-nav .dots {
-        display: flex;
-        margin: 0 10px;
+    .banner-overlay {
+        background: linear-gradient(90deg, rgba(23, 8, 1, .97), rgba(23, 8, 1, .76)),
+            linear-gradient(0deg, rgba(23, 8, 1, .52), transparent 65%);
     }
 
-        .carousel-nav .dots button {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: white;
-            opacity: 0.5;
-            margin: 0 5px;
-            padding: 0;
-        }
+    .banner-card--led {
+        background-position: 82% center;
+    }
 
-            .carousel-nav .dots button.active {
-                opacity: 1;
-            }
+    .banner-card--led .banner-overlay {
+        background: linear-gradient(90deg, rgba(23, 8, 1, .97) 0%, rgba(23, 8, 1, .90) 54%, rgba(23, 8, 1, .30) 100%),
+            linear-gradient(0deg, rgba(23, 8, 1, .48), transparent 70%);
+    }
 
-@media (max-width: 600px) {
     .banner-text-button-container {
-        position: absolute;
-        top: 45%;
-        left: 0;
-        transform: translateY(-50%);
-        width: 85%;
-        padding: 0 5%;
-        text-align: center;
+        width: auto;
+        margin: 0;
+        padding: 38px 24px 88px;
     }
 
-        .banner-text-button-container h2 {
-            font-size: 2rem;
-        }
+    .banner-card--led .banner-text-button-container {
+        box-sizing: border-box;
+        width: 83%;
+        padding-right: 0;
+    }
 
-        .banner-text-button-container p {
-            font-size: 1rem;
-            line-height: 1rem;
-        }
+    .banner-eyebrow {
+        margin-bottom: 13px;
+        font-size: 11px;
+    }
+
+    .banner-text-button-container h1 {
+        max-width: 560px;
+        margin-bottom: 14px;
+        font-size: clamp(2.35rem, 9vw, 3.4rem);
+    }
+
+    .banner-text-button-container p {
+        max-width: 540px;
+        margin-bottom: 22px;
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .carousel-nav {
+        right: 22px;
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 380px) {
+    .banner-card {
+        min-height: 480px;
+    }
+
+    .banner-text-button-container {
+        padding-right: 19px;
+        padding-left: 19px;
+    }
+
+    .banner-text-button-container h1 {
+        font-size: 2.25rem;
+    }
 
     .cta-button {
-        font-size: 0.9rem;
-        padding: 0.5rem 1rem;
+        min-height: 46px;
+        padding: 0 16px;
+        font-size: 11px;
     }
-    .carousel-nav {
-        position: absolute;
-        bottom: 1%;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        align-items: center;
-        z-index: 1; /* abaixo do CTA */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .banner-carousel,
+    .cta-button,
+    .carousel-nav button {
+        transition: none;
     }
 }

@@ -1,16 +1,16 @@
 [
   {
-    "title": "Aumente sua margem com produtos exclusivos.",
+    "title": "Dados de RPG e acessórios para a sua loja.",
     "image-url": "images/banner-home-001.png",
-    "text": "Dados premium de RPG com grande aceitação no mercado e preços competitivos. Garanta produtos diferenciados para atrair novos jogadores, aumentar vendas e fidelizar clientes.",
-    "button": "Ver produtos para lojistas",
-    "button-url": "pages/produtos"
+    "text": "Explore diferentes estilos de dados e simule seu orçamento online. Confira os preços por faixa de quantidade e as condições para lojistas.",
+    "button": "Explorar catálogo",
+    "button-url": "/pages/produtos/#orcamento-catalogo-titulo"
   },
   {
-    "title": "Dados de LED — o produto campeão de vendas.",
+    "title": "Dados de LED para destacar seu catálogo.",
     "image-url": "images/banner-home-002.png",
-    "text": "O item mais procurado pelos jogadores! Alta margem, forte apelo visual e giro rápido. Ideal para aumentar o ticket médio da loja.",
-    "button": "Ver Dados de LED",
-    "button-url": "pages/produtos#dados-led"
+    "text": "Conheça as opções de dados de LED e confira detalhes, preços e condições para lojistas no catálogo.",
+    "button": "Explorar catálogo",
+    "button-url": "/pages/produtos/#orcamento-catalogo-titulo"
   }
 ]
