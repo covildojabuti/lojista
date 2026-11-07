@@ -1,3 +1,6 @@
+const bannerScriptUrl = new URL(document.currentScript?.src || window.location.href);
+const bannerDataVersion = bannerScriptUrl.searchParams.get('v');
+
 (async function () {
     const section = document.querySelector('.banner-section');
     const carouselContainer = section?.querySelector('.banner-carousel');
@@ -151,7 +154,9 @@
     updateAutoToggle();
 
     try {
-        const response = await fetch(Config.COMPONENTS.banner_home.json);
+        const bannerDataUrl = new URL(Config.COMPONENTS.banner_home.json, window.location.href);
+        if (bannerDataVersion) bannerDataUrl.searchParams.set('v', bannerDataVersion);
+        const response = await fetch(bannerDataUrl.toString());
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const bannerData = await response.json();
         if (!Array.isArray(bannerData) || !bannerData.length) throw new Error('Banner sem slides.');
