@@ -1,12 +1,12 @@
 /**
  * Caminho base para todos os componentes.
- * No GitHub Pages, se seu site estiver em /lightus/, isso � obrigat�rio.
+ * No GitHub Pages, se seu site estiver em /lightus/, isso é obrigatório.
  */
 const basePath = '/';
-const componentScriptVersion = '20261107-home-polish11';
+const componentScriptVersion = '20261107-blog-layout4';
 
 /**
- * Fun��o para injetar componentes com estrutura padronizada
+ * Função para injetar componentes com estrutura padronizada
  * (nomecomponente.css, nomecomponente.html, nomecomponente.js)
  * com recursividade para componentes aninhados
  */
@@ -24,7 +24,7 @@ async function injectComponent(element) {
         const cssLink = document.createElement('link');
         cssLink.rel = 'stylesheet';
         cssLink.href = cssPath;
-        cssLink.onerror = () => console.warn(`CSS n�o encontrado ou erro ao carregar: ${cssPath}`);
+        cssLink.onerror = () => console.warn(`CSS não encontrado ou erro ao carregar: ${cssPath}`);
         document.head.appendChild(cssLink);
 
         // 2. Carrega o HTML
@@ -32,7 +32,7 @@ async function injectComponent(element) {
         const htmlResponse = await fetch(htmlPath);
 
         if (!htmlResponse.ok) {
-            console.warn(`HTML n�o encontrado ou vazio: ${htmlPath}`);
+            console.warn(`HTML não encontrado ou vazio: ${htmlPath}`);
             element.innerHTML = '';
         } else {
             const html = await htmlResponse.text();
@@ -48,13 +48,13 @@ async function injectComponent(element) {
                     contactHeading.replaceWith(sectionHeading);
                 }
                 const formDescription = element.querySelector(".contact-header p");
-                if (formDescription) formDescription.textContent = "Conte o que a sua loja precisa. A equipe do Covil do Jabuti entrará em contato.";
+                if (formDescription) formDescription.textContent = "Conte o que a sua loja precisa. A equipe do Covil do Jabuti entrarÃ¡ em contato.";
                 const specialistTitle = element.querySelector(".specialist-section h2");
-                if (specialistTitle) specialistTitle.textContent = "Prefere conversar com alguém?";
+                if (specialistTitle) specialistTitle.textContent = "Prefere conversar com alguÃ©m?";
                 const specialistHeading = element.querySelector(".specialist-section h3");
                 if (specialistHeading) specialistHeading.textContent = "A gente ajuda a montar o seu pedido.";
                 const specialistDescription = element.querySelector(".specialist-section p");
-                if (specialistDescription) specialistDescription.textContent = "Tire dúvidas sobre produtos, faixas de preço e condições para lojistas pelo WhatsApp. Sem compromisso.";
+                if (specialistDescription) specialistDescription.textContent = "Tire dÃºvidas sobre produtos, faixas de preÃ§o e condiÃ§Ãµes para lojistas pelo WhatsApp. Sem compromisso.";
                 const specialistLink = element.querySelector(".specialist-section .specialist-btn");
                 if (specialistLink) specialistLink.textContent = "Conversar no WhatsApp";
             }
@@ -70,7 +70,7 @@ async function injectComponent(element) {
         const jsPath = `${fullComponentPath}/${componentName}.js?v=${componentScriptVersion}`;
         const jsScript = document.createElement('script');
         jsScript.src = jsPath;
-        jsScript.onerror = () => console.warn(`JS n�o encontrado ou erro ao carregar: ${jsPath}`);
+        jsScript.onerror = () => console.warn(`JS não encontrado ou erro ao carregar: ${jsPath}`);
         document.body.appendChild(jsScript);
 
     } catch (error) {
@@ -81,7 +81,7 @@ async function injectComponent(element) {
     }
 }
 
-// Inicia��o quando o DOM estiver pronto
+// Iniciação quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
     const components = document.querySelectorAll('[data-include]');
 
@@ -94,6 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('unhandledrejection', (event) => {
-        console.error('Promise rejeitada n�o tratada:', event.reason);
+        console.error('Promise rejeitada não tratada:', event.reason);
     });
 });

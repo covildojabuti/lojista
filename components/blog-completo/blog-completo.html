@@ -1,35 +1,69 @@
-﻿<div class="blog-container">
-    <!-- Coluna Esquerda - Tags -->
-    <div class="blog-column" id="blog-tags">
-        <h3><i class="fas fa-tags"></i> Categorias</h3>
-        <div class="tags-list"></div>
-    </div>
-
-    <!-- Coluna Central - Conteúdo -->
-    <div class="blog-column" id="blog-content">
-        <div class="post-header">
-            <h2 class="post-title"></h2>
-            <div class="post-meta"></div>
-        </div>
-        <div class="post-body-container">
-            <div class="post-body"></div>
-        </div>
-        <div class="post-footer">
-            <div class="social-share">
-                <button class="share-btn in"><i class="fab fa-linkedin-in"></i></button>
-                <button class="share-btn wa"><i class="fab fa-whatsapp"></i></button>
+<section class="blog-page" aria-labelledby="blog-page-title">
+    <div class="blog-page__hero">
+        <div class="blog-page__hero-inner">
+            <div>
+                <p class="blog-page__eyebrow"><span aria-hidden="true"></span> Ideias para sua próxima aventura</p>
+                <h1 id="blog-page-title">Histórias que começam à mesa.</h1>
+                <p class="blog-page__intro">Dicas, curiosidades e inspiração para quem vive o RPG — e para quem ajuda cada grupo a jogar melhor.</p>
+            </div>
+            <div class="blog-page__seal" aria-hidden="true">
+                <span class="blog-page__seal-icon"><i class="fas fa-dice-d20"></i></span>
+                <span>ROLAGENS<br>& BOAS HISTÓRIAS</span>
             </div>
         </div>
     </div>
 
-    <!-- Coluna Direita - Arquivo -->
-   
+    <div class="blog-container">
+        <aside class="blog-column blog-sidebar" id="blog-tags" aria-labelledby="blog-categories-title">
+            <div class="blog-sidebar__heading">
+                <span class="blog-sidebar__icon" aria-hidden="true"><i class="fas fa-layer-group"></i></span>
+                <div>
+                    <p class="blog-sidebar__eyebrow">Explore por assunto</p>
+                    <h2 id="blog-categories-title">Categorias</h2>
+                </div>
+            </div>
+            <div class="tags-list" aria-live="polite"></div>
+        </aside>
 
-    <div class="blog-column" id="blog-archive">
-        <h3><i class="fas fa-star"></i> Mais Lidos</h3>
-        <div class="most-read-list"></div>
-        <h3><i class="fas fa-calendar-alt"></i> Arquivo</h3>
-        <div class="month-list"></div>
+        <article class="blog-column blog-article" id="blog-content" aria-labelledby="blog-post-title">
+            <div class="blog-article__topline"><span>Leitura em destaque</span><span class="blog-article__ornament" aria-hidden="true">✦</span></div>
+            <header class="post-header">
+                <h2 class="post-title" id="blog-post-title">Preparando os pergaminhos…</h2>
+                <div class="post-meta" aria-label="Informações do artigo"></div>
+            </header>
+            <div class="post-body-container">
+                <div class="post-body" aria-live="polite"><p class="blog-state">Carregando artigos do blog…</p></div>
+            </div>
+            <footer class="post-footer">
+                <span class="post-footer__label">Gostou da leitura? Compartilhe:</span>
+                <div class="social-share" aria-label="Compartilhar artigo">
+                    <button class="share-btn in" type="button" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i><span>LinkedIn</span></button>
+                    <button class="share-btn wa" type="button" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span></button>
+                </div>
+            </footer>
+        </article>
+
+        <aside class="blog-column blog-sidebar blog-sidebar--right" id="blog-archive" aria-label="Mais artigos e arquivo">
+            <section aria-labelledby="blog-recent-title">
+                <div class="blog-sidebar__heading">
+                    <span class="blog-sidebar__icon" aria-hidden="true"><i class="fas fa-book-open"></i></span>
+                    <div>
+                        <p class="blog-sidebar__eyebrow">Continue explorando</p>
+                        <h2 id="blog-recent-title">Publicações recentes</h2>
+                    </div>
+                </div>
+                <div class="most-read-list" aria-live="polite"></div>
+            </section>
+            <section class="blog-archive-section" aria-labelledby="blog-archive-title">
+                <div class="blog-sidebar__heading">
+                    <span class="blog-sidebar__icon" aria-hidden="true"><i class="far fa-calendar-alt"></i></span>
+                    <div>
+                        <p class="blog-sidebar__eyebrow">Do nosso acervo</p>
+                        <h2 id="blog-archive-title">Arquivo</h2>
+                    </div>
+                </div>
+                <div class="month-list" aria-live="polite"></div>
+            </section>
+        </aside>
     </div>
-</div>
-
+</section>

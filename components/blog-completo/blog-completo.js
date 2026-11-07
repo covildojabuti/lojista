@@ -1,205 +1,227 @@
-﻿
 let allPosts = [];
+let blogFeedTimeout;
 
 function getPostId(post) {
-  return post.id.$t.split('.post-')[1];
+  return post?.id?.$t?.match(/\.post-(\d+)/)?.[1] || "";
 }
 
-function fetchBlogData(callback) {
-  const script = document.createElement('script');
-    script.src = `${Config.APIS.Blog}feeds/posts/default?alt=json-in-script&callback=${callback}&max-results=1000`; // max-results=1000 posts mais recentes
+function escapeBlogText(value) {
+  return String(value ?? "").replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[character]);
+}
+
+function formatBlogDate(value, options = { day: "numeric", month: "long", year: "numeric" }) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString("pt-BR", options);
+}
+
+function getBlogPostUrl(postId) {
+  const url = new URL("/pages/insights/", window.location.origin);
+  url.searchParams.set("post", postId);
+  return `${url.pathname}${url.search}`;
+}
+
+function showBlogError(message = "Não foi possível carregar os artigos agora. Atualize a página para tentar novamente.") {
+  window.clearTimeout(blogFeedTimeout);
+  const title = document.querySelector(".post-title");
+  const body = document.querySelector(".post-body");
+  const meta = document.querySelector(".post-meta");
+  const share = document.querySelector(".social-share");
+
+  if (title) title.textContent = "Os artigos estão descansando um instante";
+  if (meta) meta.textContent = "";
+  if (body) body.innerHTML = `<p class="blog-empty-state">${escapeBlogText(message)}</p>`;
+  if (share) share.hidden = true;
+}
+
+function fetchBlogData() {
+  const script = document.createElement("script");
+  const feedUrl = new URL("feeds/posts/default", Config.APIS.Blog);
+  feedUrl.searchParams.set("alt", "json-in-script");
+  feedUrl.searchParams.set("callback", "showBlog");
+  feedUrl.searchParams.set("max-results", "1000");
+  script.src = feedUrl.href;
+  script.async = true;
+  script.dataset.blogFeed = "true";
+  script.onerror = () => showBlogError();
   document.body.appendChild(script);
+
+  blogFeedTimeout = window.setTimeout(() => {
+    if (!window.blogFeedLoaded) showBlogError();
+  }, 15000);
 }
 
-function renderPost(post, updateUrl = true) {
+function renderPost(post, updateUrl = false) {
+  const titleElement = document.querySelector(".post-title");
+  const metaElement = document.querySelector(".post-meta");
+  const bodyElement = document.querySelector(".post-body");
+  const shareElement = document.querySelector(".social-share");
+
   if (!post) {
-    console.error("renderPost: Tentativa de renderizar um post nulo ou indefinido.");
-    document.querySelector('.post-title').textContent = "Post não encontrado";
-    document.querySelector('.post-meta').innerHTML = "";
-    document.querySelector('.post-body').innerHTML = "<p>O post que você está tentando acessar não pôde ser carregado ou não existe.</p>";
-    document.querySelector('.social-share').style.display = 'none';
+    if (titleElement) titleElement.textContent = "Post não encontrado";
+    if (metaElement) metaElement.textContent = "";
+    if (bodyElement) bodyElement.innerHTML = '<p class="blog-empty-state">O artigo que você está tentando acessar não foi encontrado.</p>';
+    if (shareElement) shareElement.hidden = true;
     return;
   }
 
-  const title = post.title.$t;
-  const content = post.content.$t;
-  const author = post.author?.[0]?.name?.$t || 'Covil do Jabuti';
-  const published = new Date(post.published.$t);
-  const formattedDate = published.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+  const postId = getPostId(post);
+  const title = post.title?.$t || "Artigo do Covil do Jabuti";
+  const published = post.published?.$t;
+  const author = post.author?.[0]?.name?.$t || "Covil do Jabuti";
 
-  document.querySelector('.post-title').textContent = title;
-  document.querySelector('.post-meta').innerHTML = `
-    <i class="far fa-calendar-alt"></i> ${formattedDate} |
-    <i class="far fa-user"></i> ${author}
-  `;
-  document.querySelector('.post-body').innerHTML = content;
+  titleElement.textContent = title;
+  metaElement.replaceChildren();
 
+  const dateMeta = document.createElement("span");
+  dateMeta.innerHTML = '<i class="far fa-calendar-alt" aria-hidden="true"></i>';
+  dateMeta.append(document.createTextNode(formatBlogDate(published)));
+
+  const authorMeta = document.createElement("span");
+  authorMeta.innerHTML = '<i class="far fa-user" aria-hidden="true"></i>';
+  authorMeta.append(document.createTextNode(author));
+  metaElement.append(dateMeta, authorMeta);
+  bodyElement.innerHTML = post.content?.$t || '<p class="blog-empty-state">Este artigo ainda não tem conteúdo.</p>';
+
+  const shareUrl = new URL(getBlogPostUrl(postId), window.location.origin);
   const shareText = encodeURIComponent(`Confira este post: ${title}`);
-  const shareUrl = `${window.location.origin}${window.location.pathname}?post=${getPostId(post)}`;
 
-  document.querySelector('.share-btn.in').onclick = () => {
-    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank');
+  document.querySelector(".share-btn.in").onclick = () => {
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl.href)}`, "_blank", "noopener,noreferrer");
   };
-  document.querySelector('.share-btn.wa').onclick = () => {
-    window.open(`https://wa.me/?text=${shareText}%20${encodeURIComponent(shareUrl)}`, '_blank');
+  document.querySelector(".share-btn.wa").onclick = () => {
+    window.open(`https://wa.me/?text=${shareText}%20${encodeURIComponent(shareUrl.href)}`, "_blank", "noopener,noreferrer");
   };
-  document.querySelector('.social-share').style.display = 'flex';
+  shareElement.hidden = false;
 
-  if (updateUrl) {
-    history.replaceState(null, '', `?post=${getPostId(post)}`);
-    console.log("URL ATUALIZADA para:", `?post=${getPostId(post)}`); // DEBUG
-  } else {
-    console.log("URL NÃO ATUALIZADA (post da URL não encontrado no feed)."); // DEBUG
+  if (updateUrl && postId) {
+    history.replaceState(null, "", getBlogPostUrl(postId));
   }
+
+  document.title = `${title} | Blog Covil do Jabuti`;
 }
 
 function buildSidebar(posts) {
-  const tagsList = document.querySelector('.tags-list');
-  const monthList = document.querySelector('.month-list');
-  const mostReadList = document.querySelector('.most-read-list');
-
-  const tagsMap = {};
-  const monthsMap = {};
+  const tagsList = document.querySelector(".tags-list");
+  const monthList = document.querySelector(".month-list");
+  const recentList = document.querySelector(".most-read-list");
+  const tagsMap = new Map();
+  const monthsMap = new Map();
 
   posts.forEach(post => {
-    const date = new Date(post.published.$t);
+    const dateValue = post.published?.$t;
+    const date = new Date(dateValue);
     const monthKey = `${date.getFullYear()}-${date.getMonth()}`;
-    const monthLabel = date.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+    const monthLabel = formatBlogDate(dateValue, { month: "long", year: "numeric" });
 
-    if (!monthsMap[monthKey]) monthsMap[monthKey] = { name: monthLabel, posts: [] };
-    monthsMap[monthKey].posts.push(post);
+    if (!monthsMap.has(monthKey)) monthsMap.set(monthKey, { name: monthLabel, date, posts: [] });
+    monthsMap.get(monthKey).posts.push(post);
 
-    if (post.category) {
-      post.category.forEach(cat => {
-        if (!tagsMap[cat.term]) tagsMap[cat.term] = [];
-        tagsMap[cat.term].push(post);
-      });
-    }
-  });
-
-  const recentPosts = getMostRecentPosts(posts);
-  mostReadList.innerHTML = recentPosts.map(post => `
-        <div class="post-item">
-          <a href="javascript:void(0);" data-post-id="${getPostId(post)}">
-              <i class="far fa-star" style="color: #170801; margin-right: 5px;"></i>
-              ${post.title.$t}
-          </a>
-        </div>
-    `).join('');
-
-  tagsList.innerHTML = Object.entries(tagsMap).map(([tag, posts]) => `
-    <div class="expandable-item">
-      <span class="expand-icon">▶</span>
-      <span class="item-title">${tag}</span>
-      <span class="item-count">${posts.length}</span>
-    </div>
-    <div class="post-list">
-      ${posts.map(p => `
-        <div class="post-item">
-          <a href="javascript:void(0);" data-post-id="${getPostId(p)}">${p.title.$t}</a>
-        </div>
-      `).join('')}
-    </div>
-  `).join('');
-
-  monthList.innerHTML = Object.values(monthsMap).reverse().map(({ name, posts }) => `
-    <div class="expandable-item">
-      <span class="expand-icon">▶</span>
-      <span class="item-title">${name}</span>
-      <span class="item-count">${posts.length}</span>
-    </div>
-    <div class="post-list">
-      ${posts.map(p => `
-        <div class="post-item">
-          <a href="javascript:void(0);" data-post-id="${getPostId(p)}">${p.title.$t}</a>
-        </div>
-      `).join('')}
-    </div>
-  `).join('');
-}
-
-function getMostRecentPosts(posts) {
-    return [...posts]
-        .sort((a, b) => new Date(b.published.$t) - new Date(a.published.$t))
-        .slice(0, 3);
-}
-
-function setupInteractions() {
-  document.querySelectorAll('.expandable-item').forEach(item => {
-    item.addEventListener('click', function () {
-      const isExpanded = this.classList.toggle('expanded');
-      const list = this.nextElementSibling;
-      list.style.maxHeight = isExpanded ? list.scrollHeight + 'px' : '0';
+    (post.category || []).forEach(category => {
+      const label = String(category?.term || "").trim();
+      if (!label) return;
+      if (!tagsMap.has(label)) tagsMap.set(label, []);
+      tagsMap.get(label).push(post);
     });
   });
 
-  document.querySelectorAll('.post-item a').forEach(link => {
-    link.addEventListener('click', (event) => {
+  const recentPosts = getMostRecentPosts(posts);
+  recentList.innerHTML = recentPosts.map(post => `
+    <div class="post-item">
+      <a href="${escapeBlogText(getBlogPostUrl(getPostId(post)))}" data-post-id="${escapeBlogText(getPostId(post))}">
+        ${escapeBlogText(post.title?.$t || "Artigo do blog")}
+        <span class="recent-post-date">${escapeBlogText(formatBlogDate(post.published?.$t, { day: "numeric", month: "short", year: "numeric" }))}</span>
+      </a>
+    </div>
+  `).join("") || '<p class="blog-empty-state">Novos artigos aparecerão aqui.</p>';
+
+  tagsList.innerHTML = [...tagsMap.entries()].sort(([a], [b]) => a.localeCompare(b, "pt-BR")).map(([tag, tagPosts]) => `
+    <button class="expandable-item" type="button" aria-expanded="false">
+      <span class="expand-icon" aria-hidden="true">▶</span>
+      <span class="item-title">${escapeBlogText(tag)}</span>
+      <span class="item-count">${tagPosts.length}</span>
+    </button>
+    <div class="post-list" aria-hidden="true">
+      ${tagPosts.map(post => `
+        <div class="post-item">
+          <a href="${escapeBlogText(getBlogPostUrl(getPostId(post)))}" data-post-id="${escapeBlogText(getPostId(post))}">${escapeBlogText(post.title?.$t || "Artigo do blog")}</a>
+        </div>
+      `).join("")}
+    </div>
+  `).join("") || '<p class="blog-empty-state">As categorias serão exibidas quando houver artigos publicados.</p>';
+
+  const sortedMonths = [...monthsMap.values()].sort((a, b) => b.date - a.date);
+  monthList.innerHTML = sortedMonths.map(({ name, posts: monthPosts }) => `
+    <button class="expandable-item" type="button" aria-expanded="false">
+      <span class="expand-icon" aria-hidden="true">▶</span>
+      <span class="item-title">${escapeBlogText(name)}</span>
+      <span class="item-count">${monthPosts.length}</span>
+    </button>
+    <div class="post-list" aria-hidden="true">
+      ${monthPosts.map(post => `
+        <div class="post-item">
+          <a href="${escapeBlogText(getBlogPostUrl(getPostId(post)))}" data-post-id="${escapeBlogText(getPostId(post))}">${escapeBlogText(post.title?.$t || "Artigo do blog")}</a>
+        </div>
+      `).join("")}
+    </div>
+  `).join("") || '<p class="blog-empty-state">O arquivo será preenchido com as próximas publicações.</p>';
+}
+
+function getMostRecentPosts(posts) {
+  return [...posts]
+    .sort((a, b) => new Date(b.published?.$t || 0) - new Date(a.published?.$t || 0))
+    .slice(0, 3);
+}
+
+function setupInteractions() {
+  document.querySelectorAll(".expandable-item").forEach(button => {
+    const list = button.nextElementSibling;
+    button.addEventListener("click", () => {
+      const isExpanded = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", String(!isExpanded));
+      button.classList.toggle("expanded", !isExpanded);
+      list.setAttribute("aria-hidden", String(isExpanded));
+      list.style.maxHeight = isExpanded ? "0" : `${list.scrollHeight}px`;
+    });
+  });
+
+  document.querySelectorAll(".post-item a[data-post-id]").forEach(link => {
+    link.addEventListener("click", event => {
       event.preventDefault();
-      const postId = link.getAttribute('data-post-id');
-      const post = allPosts.find(p => getPostId(p) === postId);
-      if (post) {
-        renderPost(post, true); // Passa 'true' porque cliques internos DEVEM atualizar a URL
-        document.querySelector('#blog-content').scrollIntoView({ behavior: 'smooth' });
-      } else {
-        console.warn(`Clique interno: Post com ID '${postId}' não encontrado na lista de posts.`);
-      }
+      const postId = link.getAttribute("data-post-id");
+      const post = allPosts.find(candidate => getPostId(candidate) === postId);
+      if (!post) return;
+
+      renderPost(post, true);
+      document.querySelector("#blog-content").scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 }
 
 function showBlog(data) {
-  allPosts = data.feed.entry || [];
+  window.blogFeedLoaded = true;
+  window.clearTimeout(blogFeedTimeout);
+  allPosts = data?.feed?.entry || [];
+
+  if (!allPosts.length) {
+    showBlogError("Ainda não há artigos disponíveis. Volte em breve para novas histórias e dicas.");
+    return;
+  }
+
   buildSidebar(allPosts);
+  const postIdFromUrl = new URLSearchParams(window.location.search).get("post");
+  const postFromUrl = postIdFromUrl ? allPosts.find(post => getPostId(post) === postIdFromUrl) : null;
+  const initialPost = postFromUrl || getMostRecentPosts(allPosts)[0];
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const postIdFromUrl = urlParams.get('post');
-
-  console.log("--- INÍCIO DEBUG showBlog ---");
-  console.log("1. ID do post na URL (postIdFromUrl):", postIdFromUrl);
-
-  let initialPost = null;
-  let postFoundFromUrl = false;
-
-  if (postIdFromUrl) {
-    initialPost = allPosts.find(p => {
-      const postActualId = getPostId(p);
-      // DEBUG: MUITO IMPORTANTE! Verifique esta saída no console.
-      console.log(`2. Comparando IDs: Feed:'${postActualId}' vs URL:'${postIdFromUrl}'`);
-      return postActualId === postIdFromUrl;
-    });
-
-    if (initialPost) {
-      postFoundFromUrl = true;
-      console.log("3. Post da URL ENCONTRADO no feed:", initialPost.title.$t);
-    } else {
-      console.warn(`4. Post da URL '${postIdFromUrl}' NÃO ENCONTRADO no feed. (Pode ser muito antigo ou ID incorreto)`);
-    }
-  } else {
-    console.log("5. Nenhum 'post' ID na URL. Exibindo o último post.");
-  }
-
-  // Se o post NÃO foi encontrado via URL OU se a URL não tinha ID, renderiza o último post
-  if (!initialPost && allPosts.length > 0) {
-    initialPost = allPosts[0]; // Isso sempre será o último post se o 'find' acima falhou.
-    console.log("6. Fallback: Renderizando o ÚLTIMO post do feed:", initialPost.title.$t);
-    postFoundFromUrl = false; // Garante que a URL não será atualizada para o último post
-  } else if (!initialPost && allPosts.length === 0) {
-      console.warn("7. Nenhum post disponível no feed para renderizar. O feed pode estar vazio ou com problemas.");
-      document.querySelector('.post-title').textContent = "Nenhum post disponível";
-      document.querySelector('.post-meta').innerHTML = "";
-      document.querySelector('.post-body').innerHTML = "<p>Não foi possível carregar nenhum post do blog.</p>";
-      document.querySelector('.social-share').style.display = 'none';
-      return;
-  }
-  // Se initialPost foi encontrado da URL, ele permanece inalterado aqui.
-
-  console.log("8. Post FINAL selecionado para renderização:", initialPost ? initialPost.title.$t : "NULO");
-  console.log("--- FIM DEBUG showBlog ---");
-
-  // A função renderPost é chamada com a flag 'postFoundFromUrl'
-  renderPost(initialPost, postFoundFromUrl);
+  renderPost(initialPost, false);
   setupInteractions();
 }
 
-fetchBlogData('showBlog');
+window.showBlog = showBlog;
+fetchBlogData();
