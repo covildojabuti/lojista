@@ -250,6 +250,452 @@
             pricing: null
         };
 
+        const mixConsultant = createMixConsultant();
+
+        function createMixConsultant() {
+            const section = document.createElement("section");
+            section.className = "orcamento-consultor";
+            section.setAttribute("aria-labelledby", "orcamento-consultor-titulo");
+            section.innerHTML = `
+                <div class="orcamento-consultor__abertura" data-mix-intro>
+                    <div class="orcamento-consultor__abertura-texto">
+                        <p class="orcamento-eyebrow orcamento-eyebrow--dark">Ajuda rápida para escolher</p>
+                        <h2 id="orcamento-consultor-titulo">Quer uma ideia de mix para sua loja?</h2>
+                        <p>Conte o que quer explorar e quanto pretende investir. Vamos montar uma sugestão editável com os produtos e preços cadastrados.</p>
+                        <small>Sem cadastro e sem compromisso. A sugestão não usa histórico de vendas nem disponibilidade de estoque.</small>
+                    </div>
+                    <div class="orcamento-consultor__abertura-acoes">
+                        <button type="button" class="orcamento-consultor__botao" data-mix-start disabled>Montar uma sugestão <span aria-hidden="true">→</span></button>
+                        <a href="#orcamento-catalogo-titulo">Prefiro escolher no catálogo</a>
+                    </div>
+                </div>
+                <div class="orcamento-consultor__fluxo" data-mix-wizard hidden>
+                    <div class="orcamento-consultor__progresso">
+                        <span data-mix-progress-text>Etapa 1 de 3</span>
+                        <div role="progressbar" aria-label="Progresso das perguntas" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" data-mix-progress>
+                            <span data-mix-progress-bar></span>
+                        </div>
+                    </div>
+                    <div class="orcamento-consultor__etapa" data-mix-step="0">
+                        <fieldset class="orcamento-consultor__opcoes">
+                            <legend>Como prefere começar?</legend>
+                            <label><input type="radio" name="mix-style" value="enxuto"><span><strong>Com um teste mais enxuto</strong><small>Menos modelos para começar.</small></span></label>
+                            <label><input type="radio" name="mix-style" value="variedade"><span><strong>Com mais variedade</strong><small>Mais modelos para comparar.</small></span></label>
+                        </fieldset>
+                    </div>
+                    <div class="orcamento-consultor__etapa" data-mix-step="1" hidden>
+                        <fieldset class="orcamento-consultor__categorias">
+                            <legend>Quais linhas fazem sentido para sua loja?</legend>
+                            <p>Escolha uma ou mais. Se ainda estiver decidindo, deixe em branco para explorar o catálogo todo.</p>
+                            <div data-mix-category-options></div>
+                        </fieldset>
+                    </div>
+                    <div class="orcamento-consultor__etapa" data-mix-step="2" hidden>
+                        <label class="orcamento-consultor__orcamento" for="mix-budget">
+                            <span>Qual é seu teto para os produtos?</span>
+                            <small>Informe um valor aproximado; o frete aparece separado no orçamento.</small>
+                            <span class="orcamento-consultor__valor"><span aria-hidden="true">R$</span><input id="mix-budget" type="number" min="500" max="50000" step="10" inputmode="decimal" placeholder="Ex.: 1.000" data-mix-budget></span>
+                        </label>
+                        <p class="orcamento-consultor__nota">O pedido mínimo atual é <strong data-mix-minimum>R$ 500,00</strong> em produtos. Se não informar um teto, usamos esse valor apenas como referência inicial.</p>
+                    </div>
+                    <p class="orcamento-consultor__erro" data-mix-error role="alert" hidden></p>
+                    <div class="orcamento-consultor__navegacao">
+                        <button type="button" class="orcamento-consultor__voltar" data-mix-back hidden>Voltar</button>
+                        <button type="button" class="orcamento-consultor__botao" data-mix-next>Continuar</button>
+                        <button type="button" class="orcamento-consultor__botao" data-mix-generate hidden>Ver minha sugestão <span aria-hidden="true">→</span></button>
+                        <a href="#orcamento-catalogo-titulo">Pular e escolher no catálogo</a>
+                    </div>
+                </div>
+                <div class="orcamento-consultor__resultados" data-mix-results hidden>
+                    <div class="orcamento-consultor__resultado-cabecalho">
+                        <div>
+                            <p class="orcamento-eyebrow orcamento-eyebrow--dark">Sugestões para explorar</p>
+                            <h3>Revise o mix antes de adicionar</h3>
+                            <p>Os valores usam as mesmas faixas do orçamento. Ajuste quantidades; use 0 para tirar um item. Seus itens atuais serão mantidos.</p>
+                        </div>
+                        <button type="button" class="orcamento-consultor__editar" data-mix-edit>Editar respostas</button>
+                    </div>
+                    <div class="orcamento-consultor__disclaimer">A sugestão considera as categorias escolhidas, sua preferência por variedade e o teto informado. Usa os preços e faixas do catálogo carregado nesta página; o frete aparece separado. Não usa histórico de vendas nem disponibilidade de estoque. A cotação final é conferida pela equipe.</div>
+                    <div class="orcamento-consultor__planos" data-mix-plans></div>
+                    <p class="orcamento-consultor__status" data-mix-status role="status" aria-live="polite"></p>
+                </div>
+            `;
+
+            // The site's <base href="/"> makes bare fragment links point to the homepage.
+            const catalogAnchor = `${window.location.pathname}#orcamento-catalogo-titulo`;
+            section.querySelectorAll('a[href="#orcamento-catalogo-titulo"]').forEach((link) => {
+                link.href = catalogAnchor;
+            });
+
+            const policyCards = root.querySelector(".orcamento-regras");
+            if (policyCards) policyCards.insertAdjacentElement("afterend", section);
+
+            const intro = section.querySelector("[data-mix-intro]");
+            const wizard = section.querySelector("[data-mix-wizard]");
+            const results = section.querySelector("[data-mix-results]");
+            const categoryOptions = section.querySelector("[data-mix-category-options]");
+            const steps = [...section.querySelectorAll("[data-mix-step]")];
+            const progressText = section.querySelector("[data-mix-progress-text]");
+            const progress = section.querySelector("[data-mix-progress]");
+            const progressBar = section.querySelector("[data-mix-progress-bar]");
+            const error = section.querySelector("[data-mix-error]");
+            const budgetInput = section.querySelector("[data-mix-budget]");
+            const planContainer = section.querySelector("[data-mix-plans]");
+            const mixStatus = section.querySelector("[data-mix-status]");
+            const plans = new Map();
+            let activeStep = 0;
+
+            function track(action, parameters = {}) {
+                try {
+                    if (typeof window.gtag === "function") {
+                        window.gtag("event", `mix_consultor_${action}`, {
+                            ...parameters,
+                            send_to: "G-QXCH0V4VK2"
+                        });
+                    }
+                } catch (trackingError) {
+                    console.warn("Não foi possível registrar o uso do consultor de mix:", trackingError);
+                }
+            }
+
+            function renderCategoryOptions() {
+                const categories = [...new Set(state.products
+                    .map(product => String(product.CATEGORIA || "").trim())
+                    .filter(Boolean))]
+                    .sort((a, b) => a.localeCompare(b, "pt-BR"));
+                categoryOptions.innerHTML = categories.map((category, index) => {
+                    const count = state.products.filter(product => String(product.CATEGORIA || "").trim() === category).length;
+                    return `<label class="orcamento-consultor__categoria">
+                        <input type="checkbox" name="mix-category" value="${escapeHtml(category)}">
+                        <span><strong>${escapeHtml(category)}</strong><small>${count} ${count === 1 ? "produto" : "produtos"}</small></span>
+                    </label>`;
+                }).join("");
+                section.querySelector("[data-mix-start]").disabled = categories.length === 0;
+            }
+
+            function showStep(index) {
+                activeStep = Math.max(0, Math.min(steps.length - 1, index));
+                steps.forEach((step, stepIndex) => { step.hidden = stepIndex !== activeStep; });
+                progressText.textContent = `Etapa ${activeStep + 1} de ${steps.length}`;
+                progress.setAttribute("aria-valuenow", String(activeStep + 1));
+                progressBar.style.width = `${Math.round(((activeStep + 1) / steps.length) * 100)}%`;
+                section.querySelector("[data-mix-back]").hidden = activeStep === 0;
+                section.querySelector("[data-mix-next]").hidden = activeStep === steps.length - 1;
+                section.querySelector("[data-mix-generate]").hidden = activeStep !== steps.length - 1;
+                error.hidden = true;
+                error.textContent = "";
+            }
+
+            function calculatePlan(items) {
+                const groupVolumes = new Map();
+                const selected = [...items.entries()].map(([productIndex, quantity]) => ({
+                    product: findProduct(productIndex),
+                    quantity
+                })).filter(item => item.product && item.quantity > 0);
+                selected.forEach(item => {
+                    const group = item.product.pricing.groupKey;
+                    groupVolumes.set(group, (groupVolumes.get(group) || 0) + item.quantity);
+                });
+
+                let subtotalCents = 0;
+                const lines = selected.map(item => {
+                    const volume = groupVolumes.get(item.product.pricing.groupKey) || item.quantity;
+                    const pricing = getLinePrice(item.product, volume);
+                    if (pricing.price === null) return { ...item, volume, price: null, lineTotalCents: null };
+                    const lineTotalCents = cents(pricing.price) * item.quantity;
+                    subtotalCents += lineTotalCents;
+                    return { ...item, volume, price: pricing.price, tierRange: pricing.tierRange, lineTotalCents };
+                });
+                return { lines, subtotalCents, complete: lines.length > 0 && lines.every(line => line.price !== null) };
+            }
+
+            function buildPlan(categoryNames, budgetCents, maxProducts) {
+                const eligible = state.products.filter(product => {
+                    const categoryMatches = categoryNames.length === 0 || categoryNames.includes(String(product.CATEGORIA || "").trim());
+                    return categoryMatches && !product.pricing.invalid && getLinePrice(product, 1).price !== null;
+                });
+                const orderedCategories = categoryNames.length
+                    ? categoryNames
+                    : [...new Set(eligible.map(product => String(product.CATEGORIA || "").trim()))].sort((a, b) => a.localeCompare(b, "pt-BR"));
+                const categoryQueues = orderedCategories.map(category => {
+                    const products = eligible.filter(product => String(product.CATEGORIA || "").trim() === category);
+                    const subcategories = [...new Set(products.map(product => String(product.SUBCATEGORIA || "").trim() || "Outros"))]
+                        .sort((a, b) => a.localeCompare(b, "pt-BR"));
+                    const queues = subcategories.map(subcategory => products
+                        .filter(product => (String(product.SUBCATEGORIA || "").trim() || "Outros") === subcategory)
+                        .sort((a, b) => {
+                            const aPrice = cents(getLinePrice(a, 1).price);
+                            const bPrice = cents(getLinePrice(b, 1).price);
+                            return aPrice - bPrice || String(a.PRODUTO || "").localeCompare(String(b.PRODUTO || ""), "pt-BR");
+                        }));
+                    return { queues, subcategoryIndex: 0 };
+                });
+                const orderedProducts = [];
+                while (categoryQueues.some(category => category.queues.some(queue => queue.length))) {
+                    categoryQueues.forEach(category => {
+                        let attempts = 0;
+                        while (attempts < category.queues.length) {
+                            const index = category.subcategoryIndex % category.queues.length;
+                            category.subcategoryIndex += 1;
+                            attempts += 1;
+                            if (category.queues[index].length) {
+                                orderedProducts.push(category.queues[index].shift());
+                                break;
+                            }
+                        }
+                    });
+                }
+
+                const items = new Map();
+                let selectedProducts = [];
+                orderedProducts.forEach(product => {
+                    if (selectedProducts.length >= maxProducts) return;
+                    const proposed = new Map(items);
+                    proposed.set(product.index, 1);
+                    const calculation = calculatePlan(proposed);
+                    if (calculation.complete && calculation.subtotalCents <= budgetCents) {
+                        items.set(product.index, 1);
+                        selectedProducts.push(product);
+                    }
+                });
+
+                let unitCount = selectedProducts.length;
+                let canAdd = true;
+                while (canAdd && unitCount < 1000) {
+                    canAdd = false;
+                    for (const product of selectedProducts) {
+                        if (unitCount >= 1000) break;
+                        const quantity = items.get(product.index) || 0;
+                        if (quantity >= MAX_QUANTITY) continue;
+                        const proposed = new Map(items);
+                        proposed.set(product.index, quantity + 1);
+                        const calculation = calculatePlan(proposed);
+                        if (calculation.complete && calculation.subtotalCents <= budgetCents) {
+                            items.set(product.index, quantity + 1);
+                            unitCount += 1;
+                            canAdd = true;
+                        }
+                    }
+                }
+                return { items, ...calculatePlan(items) };
+            }
+
+            function renderPlanCard(id, title, description, plan, baseSubtotal = null) {
+                plans.set(id, plan);
+                const rows = plan.lines.map(line => {
+                    const image = productImageUrl(line.product.URL_IMG);
+                    const imageMarkup = image
+                        ? `<img src="${escapeHtml(image)}" alt="" loading="lazy" decoding="async">`
+                        : `<span class="orcamento-consultor__sem-imagem" aria-hidden="true">◇</span>`;
+                    return `<li class="orcamento-consultor__linha" data-mix-line>
+                        ${imageMarkup}
+                        <span class="orcamento-consultor__linha-info"><strong>${escapeHtml(line.product.PRODUTO || "Produto")}</strong><small>${escapeHtml(line.product.CATEGORIA || "")}${line.product.SUBCATEGORIA ? ` · ${escapeHtml(line.product.SUBCATEGORIA)}` : ""}</small><small data-mix-line-price>${formatCurrency(line.price)} / un. · ${formatCurrency(line.lineTotalCents / 100)}</small></span>
+                        <label><span class="sr-only">Quantidade de ${escapeHtml(line.product.PRODUTO || "produto")}</span><input type="number" min="0" max="${MAX_QUANTITY}" step="1" inputmode="numeric" value="${line.quantity}" data-mix-quantity data-product-index="${line.product.index}"></label>
+                    </li>`;
+                }).join("");
+                const delta = baseSubtotal === null ? "" : `<span class="orcamento-consultor__delta" data-mix-delta>${plan.subtotalCents > baseSubtotal ? `+ ${formatCurrency((plan.subtotalCents - baseSubtotal) / 100)} em produtos` : ""}</span>`;
+                return `<article class="orcamento-consultor__plano" data-mix-plan="${escapeHtml(id)}">
+                    <header><p class="orcamento-eyebrow orcamento-eyebrow--dark">${id === "enxuto" ? "Opção 1" : "Opção 2"}</p><h4>${escapeHtml(title)}</h4><p>${escapeHtml(description)}</p>${delta}</header>
+                    <ul>${rows}</ul>
+                    <div class="orcamento-consultor__totais">
+                        <div><span>Produtos</span><strong data-mix-subtotal>${formatCurrency(plan.subtotalCents / 100)}</strong></div>
+                        <div><span>Frete estimado para entrega</span><strong data-mix-shipping>${formatCurrency((plan.subtotalCents > COMMERCIAL_POLICY.freeShippingCents ? 0 : COMMERCIAL_POLICY.standardShippingCents) / 100)}</strong></div>
+                    </div>
+                    <p class="orcamento-consultor__minimo" data-mix-minimum-warning ${plan.subtotalCents >= COMMERCIAL_POLICY.minimumOrderCents ? "hidden" : ""}>
+                        <span data-mix-minimum-copy>${plan.subtotalCents < COMMERCIAL_POLICY.minimumOrderCents ? `Esta sugestão fica em ${formatCurrency(plan.subtotalCents / 100)}: faltam ${formatCurrency((COMMERCIAL_POLICY.minimumOrderCents - plan.subtotalCents) / 100)} para o pedido mínimo de ${formatCurrency(COMMERCIAL_POLICY.minimumOrderCents / 100)}. Ajuste quantidades, altere o teto ou siga pelo catálogo.` : ""}</span>
+                        <a href="${escapeHtml(catalogAnchor)}" data-mix-catalog-link>Escolher produtos no catálogo</a>
+                    </p>
+                    <p class="orcamento-consultor__limite" data-mix-ceiling-warning hidden>Esse ajuste passa do teto de <span data-mix-ceiling-label>${formatCurrency((plan.ceilingCents || 0) / 100)}</span>. Reduza as quantidades ou edite o teto informado.</p>
+                    <button type="button" class="orcamento-consultor__botao orcamento-consultor__usar" data-mix-use="${escapeHtml(id)}">${plan.subtotalCents < COMMERCIAL_POLICY.minimumOrderCents ? "Adicionar mix parcial ao orçamento" : "Adicionar este mix ao orçamento"}</button>
+                </article>`;
+            }
+
+            function updatePlanCard(card) {
+                const id = card.dataset.mixPlan;
+                const plan = plans.get(id);
+                if (!plan) return;
+                let validQuantities = true;
+                card.querySelectorAll("[data-mix-quantity]").forEach(input => {
+                    const raw = input.valueAsNumber;
+                    const quantity = input.value.trim() === "" ? 0 : raw;
+                    if (!Number.isInteger(quantity) || quantity < 0 || quantity > MAX_QUANTITY) {
+                        input.setAttribute("aria-invalid", "true");
+                        validQuantities = false;
+                        return;
+                    }
+                    input.removeAttribute("aria-invalid");
+                    const productIndex = Number(input.dataset.productIndex);
+                    if (quantity === 0) plan.items.delete(productIndex);
+                    else plan.items.set(productIndex, quantity);
+                    input.closest("[data-mix-line]")?.classList.toggle("orcamento-consultor__linha--removida", quantity === 0);
+                });
+                Object.assign(plan, calculatePlan(plan.items));
+                card.querySelectorAll("[data-mix-line]").forEach(row => {
+                    const productIndex = Number(row.querySelector("[data-mix-quantity]")?.dataset.productIndex);
+                    const line = plan.lines.find(item => item.product.index === productIndex);
+                    row.querySelector("[data-mix-line-price]").textContent = line
+                        ? `${formatCurrency(line.price)} / un. · ${formatCurrency(line.lineTotalCents / 100)}`
+                        : "Removido do mix";
+                });
+                card.querySelector("[data-mix-subtotal]").textContent = formatCurrency(plan.subtotalCents / 100);
+                const shippingCents = plan.subtotalCents > COMMERCIAL_POLICY.freeShippingCents ? 0 : COMMERCIAL_POLICY.standardShippingCents;
+                card.querySelector("[data-mix-shipping]").textContent = formatCurrency(shippingCents / 100);
+                const belowMinimum = plan.subtotalCents < COMMERCIAL_POLICY.minimumOrderCents;
+                const aboveCeiling = plan.subtotalCents > plan.ceilingCents;
+                const minimumWarning = card.querySelector("[data-mix-minimum-warning]");
+                minimumWarning.hidden = !belowMinimum;
+                minimumWarning.querySelector("[data-mix-minimum-copy]").textContent = belowMinimum
+                    ? `Esta sugestão fica em ${formatCurrency(plan.subtotalCents / 100)}: faltam ${formatCurrency((COMMERCIAL_POLICY.minimumOrderCents - plan.subtotalCents) / 100)} para o pedido mínimo de ${formatCurrency(COMMERCIAL_POLICY.minimumOrderCents / 100)}. Ajuste quantidades, altere o teto ou siga pelo catálogo.`
+                    : "";
+                card.querySelector("[data-mix-ceiling-label]").textContent = formatCurrency(plan.ceilingCents / 100);
+                card.querySelector("[data-mix-ceiling-warning]").hidden = !aboveCeiling;
+                const useButton = card.querySelector("[data-mix-use]");
+                useButton.textContent = belowMinimum ? "Adicionar mix parcial ao orçamento" : "Adicionar este mix ao orçamento";
+                useButton.disabled = !validQuantities || plan.lines.length === 0 || !plan.complete || aboveCeiling;
+                updateMixDelta();
+            }
+
+            function updateMixDelta() {
+                const base = plans.get("enxuto");
+                const broader = plans.get("amplo");
+                const deltaElement = planContainer.querySelector("[data-mix-delta]");
+                if (!base || !broader || !deltaElement) return;
+                const difference = broader.subtotalCents - base.subtotalCents;
+                deltaElement.textContent = difference > 0 ? `+ ${formatCurrency(difference / 100)} em produtos em relação à opção 1` : "";
+            }
+
+            function generateSuggestions() {
+                const style = section.querySelector('input[name="mix-style"]:checked')?.value;
+                if (!style) {
+                    error.textContent = "Escolha se prefere começar com um teste enxuto ou com mais variedade.";
+                    error.hidden = false;
+                    showStep(0);
+                    return;
+                }
+                const rawBudget = budgetInput.value.trim();
+                const typedBudget = rawBudget === "" ? null : Number(budgetInput.value);
+                if (typedBudget !== null && (!Number.isFinite(typedBudget) || typedBudget < COMMERCIAL_POLICY.minimumOrderCents / 100 || typedBudget > 50000)) {
+                    error.textContent = `Informe pelo menos ${formatCurrency(COMMERCIAL_POLICY.minimumOrderCents / 100)} em produtos e no máximo R$ 50.000,00, ou deixe em branco.`;
+                    error.hidden = false;
+                    return;
+                }
+                const budgetCents = typedBudget === null ? COMMERCIAL_POLICY.minimumOrderCents : Math.round(typedBudget * 100);
+                const categories = [...section.querySelectorAll('input[name="mix-category"]:checked')].map(input => input.value);
+                const compactMax = style === "enxuto" ? 4 : 5;
+                const widerMax = style === "enxuto" ? 7 : 8;
+                const compactTarget = typedBudget === null
+                    ? COMMERCIAL_POLICY.minimumOrderCents
+                    : Math.max(COMMERCIAL_POLICY.minimumOrderCents, Math.floor((budgetCents * 0.65) / 1000) * 1000);
+                let compactPlan = buildPlan(categories, compactTarget, compactMax);
+                let compactDescription = typedBudget === null
+                    ? "Uma combinação para começar perto do pedido mínimo atual."
+                    : "Uma combinação mais contida, sem usar automaticamente todo o teto informado.";
+                if (!compactPlan.complete || compactPlan.subtotalCents < COMMERCIAL_POLICY.minimumOrderCents) {
+                    // Tight ceilings can need extra SKUs to land between the minimum and the
+                    // ceiling after unit-price tier changes (for example, exactly R$ 500).
+                    compactPlan = buildPlan(categories, budgetCents, state.products.length);
+                    if (compactPlan.complete && compactPlan.subtotalCents >= COMMERCIAL_POLICY.minimumOrderCents) {
+                        compactDescription = "Ajustamos a variedade para alcançar o pedido mínimo sem passar do teto informado.";
+                    } else if (compactPlan.complete && compactPlan.lines.length > compactMax) {
+                        compactDescription = "Ampliamos a variedade para aproveitar o teto informado; confira abaixo a diferença para o pedido mínimo.";
+                    }
+                }
+                const broaderPlan = typedBudget === null ? null : buildPlan(categories, budgetCents, widerMax);
+                compactPlan.ceilingCents = budgetCents;
+                if (broaderPlan) broaderPlan.ceilingCents = budgetCents;
+
+                if (!compactPlan.complete || compactPlan.lines.length === 0) {
+                    error.textContent = "Não encontramos uma combinação de produtos com preço disponível dentro desse teto. Amplie o teto ou escolha os produtos manualmente.";
+                    error.hidden = false;
+                    return;
+                }
+
+                const showBroader = broaderPlan && broaderPlan.complete && broaderPlan.lines.length > compactPlan.lines.length &&
+                    broaderPlan.subtotalCents - compactPlan.subtotalCents >= 7500;
+                plans.clear();
+                planContainer.innerHTML = renderPlanCard(
+                    "enxuto",
+                    "Um primeiro teste",
+                    compactDescription,
+                    compactPlan
+                ) + (showBroader
+                    ? renderPlanCard("amplo", "Mais variedade", "Inclui mais modelos; confira o valor adicional antes de escolher.", broaderPlan, compactPlan.subtotalCents)
+                    : "");
+                intro.hidden = true;
+                wizard.hidden = true;
+                results.hidden = false;
+                mixStatus.textContent = "";
+                track("sugerido", { mix_opcoes: showBroader ? 2 : 1, mix_produtos: compactPlan.lines.length });
+                results.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+            }
+
+            section.addEventListener("click", event => {
+                const startButton = event.target.closest("[data-mix-start]");
+                if (startButton) {
+                    if (startButton.disabled) return;
+                    intro.hidden = true;
+                    wizard.hidden = false;
+                    results.hidden = true;
+                    showStep(0);
+                    track("iniciado");
+                    steps[0].querySelector("input")?.focus();
+                    return;
+                }
+                if (event.target.closest("[data-mix-back]")) {
+                    showStep(activeStep - 1);
+                    return;
+                }
+                if (event.target.closest("[data-mix-next]")) {
+                    if (activeStep === 0 && !section.querySelector('input[name="mix-style"]:checked')) {
+                        error.textContent = "Escolha uma das opções para continuar.";
+                        error.hidden = false;
+                        return;
+                    }
+                    showStep(activeStep + 1);
+                    steps[activeStep].querySelector("input")?.focus();
+                    return;
+                }
+                if (event.target.closest("[data-mix-generate]")) {
+                    generateSuggestions();
+                    return;
+                }
+                if (event.target.closest("[data-mix-edit]")) {
+                    results.hidden = true;
+                    wizard.hidden = false;
+                    showStep(0);
+                    steps[0].querySelector('input[name="mix-style"]:checked')?.focus();
+                    return;
+                }
+                const useButton = event.target.closest("[data-mix-use]");
+                if (!useButton) return;
+                const plan = plans.get(useButton.dataset.mixUse);
+                if (!plan || !plan.items.size) return;
+                const additions = [...plan.items.entries()].map(([productIndex, quantity]) => ({ product: findProduct(productIndex), quantity }));
+                if (additions.some(item => !item.product || (state.cart.get(item.product.key)?.quantity || 0) + item.quantity > MAX_QUANTITY)) {
+                    mixStatus.textContent = `Alguma quantidade excede o limite de ${MAX_QUANTITY} por produto. Reduza as quantidades antes de adicionar.`;
+                    return;
+                }
+                additions.forEach(({ product, quantity }) => {
+                    const current = state.cart.get(product.key)?.quantity || 0;
+                    state.cart.set(product.key, { product, quantity: current + quantity });
+                });
+                renderCart();
+                const unitsAdded = additions.reduce((sum, item) => sum + item.quantity, 0);
+                mixStatus.textContent = `Mix adicionado: ${additions.length} ${additions.length === 1 ? "produto" : "produtos"} e ${unitsAdded} ${unitsAdded === 1 ? "unidade" : "unidades"}. Seus itens anteriores foram mantidos; ajuste o orçamento quando quiser.`;
+                track("adicionado", { mix_tipo: useButton.dataset.mixUse, mix_produtos: additions.length, mix_unidades: unitsAdded });
+                quoteSummary.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+            });
+
+            planContainer.addEventListener("change", event => {
+                if (!event.target.matches("[data-mix-quantity]")) return;
+                const card = event.target.closest("[data-mix-plan]");
+                if (card) updatePlanCard(card);
+            });
+
+            section.querySelector("[data-mix-minimum]").textContent = formatCurrency(COMMERCIAL_POLICY.minimumOrderCents / 100);
+            return { renderCategoryOptions };
+        }
+
         function setStatus(message, type = "") {
             catalogStatus.className = `orcamento-status${type ? ` orcamento-status--${type}` : ""}`;
             catalogStatus.textContent = message;
@@ -1019,6 +1465,7 @@
                     pricing: parsePricing(product, index)
                 }));
                 buildCategories();
+                mixConsultant.renderCategoryOptions();
                 renderProducts();
                 setStatus("");
             } catch (error) {

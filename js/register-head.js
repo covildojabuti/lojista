@@ -78,7 +78,7 @@
             const assetPageName = pageName === 'produtos' ? 'orcamento' : pageName;
             const pageBasePath = `pages/${assetPageName}/${assetPageName}`;
             const pageAssetVersion = assetPageName === 'orcamento'
-                ? '20261106-orcamento20'
+                ? '20261107-consultor-mix8'
                 : assetPageName === 'quemsomos'
                     ? '20261106-quemsomos2'
                     : '20261106-orcamento4';
