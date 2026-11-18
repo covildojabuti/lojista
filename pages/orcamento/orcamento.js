@@ -350,7 +350,7 @@
                     if (typeof window.gtag === "function") {
                         window.gtag("event", `mix_consultor_${action}`, {
                             ...parameters,
-                            send_to: "G-QXCH0V4VK2"
+                            send_to: "G-2SYWRJ78N6"
                         });
                     }
                 } catch (trackingError) {

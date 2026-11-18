@@ -28,7 +28,7 @@
 
                 // Mesmo com mode: 'no-cors', você não terá acesso à resposta
                 // Mas a requisição será enviada
-                console.log("Requisição enviada"); if (typeof window.gtag === "function") { window.gtag("event", "generate_lead", { send_to: "G-QXCH0V4VK2", form_id: "lojista_contact", form_name: "Contato para lojistas", page_path: window.location.pathname }); window.gtag("event", "conversion", { send_to: "AW-17697272500/ZMjECLiboLIdELTl2_ZB" }); }
+                console.log("Requisição enviada"); if (typeof window.gtag === "function") { window.gtag("event", "generate_lead", { send_to: "G-2SYWRJ78N6", form_id: "lojista_contact", form_name: "Contato para lojistas", page_path: window.location.pathname }); window.gtag("event", "conversion", { send_to: "AW-17697272500/ZMjECLiboLIdELTl2_ZB" }); }
                 alert("Formulário enviado com sucesso!");
                 form.reset();
             } catch (err) {

@@ -91,7 +91,7 @@
     // Keep preview clicks out of the live GA4/Google Ads properties.
     const isLocalPreview = ['localhost', '127.0.0.1'].includes(window.location.hostname);
     const googleAdsId = 'AW-17697272500';
-    const googleAnalyticsId = 'G-QXCH0V4VK2';
+    const googleAnalyticsId = 'G-2SYWRJ78N6';
 
     window.dataLayer = window.dataLayer || [];
     if (isLocalPreview) {
