@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lojista.covildojabuti.com.br/sitemap.xml
